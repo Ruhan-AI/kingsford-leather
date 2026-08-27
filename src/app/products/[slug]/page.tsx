@@ -2,13 +2,14 @@ import React from 'react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ChevronRight } from 'lucide-react'
-import { PRODUCTS, Product, primaryBuyLink } from '@/lib/products'
-import { SITE, absoluteUrl } from '@/lib/site'
+import { Container } from '@/components/ui/Container'
+import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { ProductGallery } from '@/components/product/ProductGallery'
-import { ProductInfo } from '@/components/product/ProductInfo'
-import { ProductCard } from '@/components/product/ProductCard'
-import { StickyMobileCTA } from './StickyMobileCTA'
+import { ProductSummary } from '@/components/product/ProductSummary'
+import { ProductCard } from '@/components/catalog/ProductCard'
+import { MobileMarketplaceBar } from '@/components/product/MobileMarketplaceBar'
+import { PRODUCTS, CATEGORIES } from '@/lib/products'
+import { SITE, absoluteUrl } from '@/lib/site'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -19,10 +20,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const product = PRODUCTS.find((p) => p.slug === slug)
   if (!product) return {}
 
-  const title = `${product.title}`
-  // Not "genuine ${material}" — the catalogue includes fabric and Kodra pieces,
-  // and the word turns an accurate spec into a claim those SKUs cannot carry.
-  const description = `${product.blurb} Handcrafted in ${product.material}. Available in standard sizes and custom bespoke measurements.`
+  const title = `${product.title} | Kingsford Leather`
+  const description = `${product.blurb} Handcrafted in ${product.material}. Available in standard sizes and bespoke made-to-measure measurements on Etsy and eBay.`
 
   return {
     title,
@@ -60,22 +59,21 @@ export default async function ProductDetailPage({ params }: Props) {
     notFound()
   }
 
-  // Related products from the same category or gender
+  const categoryObj = CATEGORIES.find((c) => c.slug === product.category)
+  const categoryLabel = categoryObj ? categoryObj.label : product.category
+
+  // Related products from same category or gender
   const relatedProducts = PRODUCTS.filter(
     (p) => p.id !== product.id && (p.category === product.category || p.gender === product.gender)
   ).slice(0, 4)
 
   const productImages = product.images?.length ? product.images : [product.image]
-  const primaryLink = primaryBuyLink(product)
 
   const productSchema = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: product.title,
     image: productImages.map(absoluteUrl),
-    // The full description, not the one-line blurb. `blurb` is card copy; the
-    // catalogue carries a much richer per-SKU description that was not
-    // reaching structured data at all.
     description: product.description,
     sku: product.id,
     material: product.material,
@@ -89,9 +87,6 @@ export default async function ProductDetailPage({ params }: Props) {
       url: `${SITE.url}/products/${product.slug}`,
       priceCurrency: 'CAD',
       price: product.salePrice.toString(),
-      // No priceValidUntil: the previous fixed date was invented, and once it
-      // passes Google treats the offer as expired. Marketplace pricing has no
-      // published end date, so the correct move is to omit the field.
       itemCondition: 'https://schema.org/NewCondition',
       availability: 'https://schema.org/InStock',
       seller: {
@@ -99,11 +94,6 @@ export default async function ProductDetailPage({ params }: Props) {
         name: 'Kingsford Leather',
       },
     },
-    // No aggregateRating here on purpose. This block previously attached the
-    // shop's 2 reviews to every one of the 49 products, so each page claimed a
-    // 5.0 rating it does not individually have. A Product rating has to be that
-    // product's own; the shop-level rating stays on Organization in layout.tsx.
-    // Add it back per-SKU only when a product accumulates its own reviews.
   }
 
   const breadcrumbSchema = {
@@ -125,6 +115,12 @@ export default async function ProductDetailPage({ params }: Props) {
       {
         '@type': 'ListItem',
         position: 3,
+        name: categoryLabel,
+        item: `${SITE.url}/collections/${product.category}`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 4,
         name: product.title,
         item: `${SITE.url}/products/${product.slug}`,
       },
@@ -132,7 +128,7 @@ export default async function ProductDetailPage({ params }: Props) {
   }
 
   return (
-    <div className="bg-night text-bone min-h-screen py-8 sm:py-12">
+    <div className="bg-white py-8 sm:py-12">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
@@ -142,31 +138,21 @@ export default async function ProductDetailPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        
-        {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-spec text-muted overflow-x-auto">
-          <Link href="/" className="hover:text-bone transition-colors shrink-0">
-            Home
-          </Link>
-          <ChevronRight className="w-3 h-3 text-muted/60 shrink-0" />
-          <Link href="/shop" className="hover:text-bone transition-colors shrink-0">
-            Shop
-          </Link>
-          <ChevronRight className="w-3 h-3 text-muted/60 shrink-0" />
-          <Link
-            href={`/collections/${product.category}`}
-            className="hover:text-bone transition-colors capitalize shrink-0"
-          >
-            {product.category.replace('-', ' ')}
-          </Link>
-          <ChevronRight className="w-3 h-3 text-muted/60 shrink-0" />
-          <span className="text-brass truncate">{product.title}</span>
-        </nav>
+      <Container size="wide">
+        {/* Breadcrumb Navigation */}
+        <div className="mb-8">
+          <Breadcrumbs
+            items={[
+              { label: 'Shop', href: '/shop' },
+              { label: categoryLabel, href: `/collections/${product.category}` },
+              { label: product.title },
+            ]}
+          />
+        </div>
 
-        {/* 2-Column Showcase */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          {/* Left Column: Gallery */}
+        {/* 2-Column Product Showcase (58% / 42% split) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start pb-16 border-b border-[#ded7ce]">
+          {/* Left Column: Gallery (7 cols on lg / ~58%) */}
           <div className="lg:col-span-7 lg:sticky lg:top-24">
             <ProductGallery
               title={product.title}
@@ -174,44 +160,43 @@ export default async function ProductDetailPage({ params }: Props) {
             />
           </div>
 
-          {/* Right Column: Info & Actions */}
+          {/* Right Column: Product Summary & Marketplace Conversion (5 cols on lg / ~42%) */}
           <div className="lg:col-span-5">
-            <ProductInfo product={product} />
+            <ProductSummary product={product} />
           </div>
         </div>
 
-        {/* Related Products Carousel / Grid */}
+        {/* Related Products */}
         {relatedProducts.length > 0 && (
-          <div className="pt-16 border-t border-bone/10 space-y-8">
+          <div className="pt-16 space-y-8">
             <div className="flex items-center justify-between">
               <div>
-                <span className="text-xs font-spec uppercase tracking-widest text-brass block">
+                <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#8b5a35] block">
                   Complementary Cuts
                 </span>
-                <h2 className="font-brand font-bold text-2xl text-white mt-1">
+                <h2 className="text-2xl sm:text-3xl font-serif text-[#1c1a17] font-normal mt-1">
                   You May Also Admire
                 </h2>
               </div>
               <Link
                 href={`/collections/${product.category}`}
-                className="text-xs font-display font-bold text-bone-warm hover:text-white transition-colors"
+                className="text-xs font-semibold text-[#8b5a35] hover:text-[#5d3923] underline"
               >
-                More in {product.category} →
+                More in {categoryLabel} →
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               {relatedProducts.map((p) => (
                 <ProductCard key={p.id} product={p} />
               ))}
             </div>
           </div>
         )}
-
-      </div>
+      </Container>
 
       {/* Sticky Mobile Marketplace Outbound Bar */}
-      <StickyMobileCTA product={product} primaryLink={primaryLink} />
+      <MobileMarketplaceBar product={product} />
     </div>
   )
 }
