@@ -1,20 +1,23 @@
 import React from 'react'
 import type { Metadata } from 'next'
-import { EditorialHero } from '@/components/sections/EditorialHero'
-import { BrandPrinciples } from '@/components/sections/BrandPrinciples'
-import { FeaturedEdit } from '@/components/sections/FeaturedEdit'
-import { CategoryRail } from '@/components/sections/CategoryRail'
-import { CuratedArchive } from '@/components/sections/CuratedArchive'
-import { WorkshopStory } from '@/components/sections/WorkshopStory'
-import { ReviewsSection } from '@/components/sections/ReviewsSection'
-import { FAQSection } from '@/components/sections/FAQSection'
+import { EditorialHero } from '@/components/home/EditorialHero'
+import { CollectionRail } from '@/components/home/CollectionRail'
+import { FeaturedEdit } from '@/components/home/FeaturedEdit'
+import { GenderEditorial } from '@/components/home/GenderEditorial'
+import { CraftStory } from '@/components/home/CraftStory'
+import { SilhouetteGrid } from '@/components/home/SilhouetteGrid'
+import { FeaturedCollectionStory } from '@/components/home/FeaturedCollectionStory'
+import { MarketplaceTrust } from '@/components/home/MarketplaceTrust'
+import { VerifiedReviews } from '@/components/home/VerifiedReviews'
+import { GuideCards } from '@/components/home/GuideCards'
+import { HomeFAQ } from '@/components/home/HomeFAQ'
+import { ClosingCTA } from '@/components/home/ClosingCTA'
 import { FAQS } from '@/lib/data/faqs'
-import { MarketplaceCTA } from '@/components/sections/MarketplaceCTA'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Kingsford Leather | Handmade Leather Outerwear' },
+  title: { absolute: 'Kingsford Leather | Handcrafted Leather Outerwear & Made-To-Measure Jackets' },
   description:
-    'Handmade leather jackets, coats and vests direct from the workshop. Biker, cafe racer, bomber and western cuts, in standard or made-to-measure sizing.',
+    'Handmade genuine leather and suede outerwear made to order. Explore 49 biker, cafe racer, bomber, and shearling cuts with standard or custom sizing, purchased on Etsy and eBay.',
 }
 
 export default function HomePage() {
@@ -32,37 +35,46 @@ export default function HomePage() {
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col bg-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      {/* 1. Cinematic Hero */}
+      {/* 1. White Editorial Hero */}
       <EditorialHero />
 
-      {/* 2. Brand Principles (Why Kingsford) */}
-      <BrandPrinciples />
+      {/* 2. Collection Navigation Rail */}
+      <CollectionRail />
 
-      {/* 4. Featured Edit (Asymmetric Showcase) */}
+      {/* 3. The Kingsford Edit (Featured Products) */}
       <FeaturedEdit />
 
-      {/* 5. Shop by Cut (Category Rail) */}
-      <CategoryRail />
+      {/* 4. Men & Women Editorial Asymmetric Cards */}
+      <GenderEditorial />
 
-      {/* 6. Curated Outerwear Archive */}
-      <CuratedArchive />
+      {/* 5. Craftsmanship Story */}
+      <CraftStory />
 
-      {/* 7. Workshop Story & Sialkot Heritage */}
-      <WorkshopStory />
+      {/* 6. Shop by Silhouette Image Grid */}
+      <SilhouetteGrid />
 
-      {/* 8. Verified Customer Reviews */}
-      <ReviewsSection />
+      {/* 7. Featured Collection Story */}
+      <FeaturedCollectionStory />
 
-      {/* 9. Honest FAQ */}
-      <FAQSection />
+      {/* 8. Marketplace Purchase Clarity & Protection */}
+      <MarketplaceTrust />
 
-      {/* 10. Final Marketplace Conversion CTA */}
-      <MarketplaceCTA />
+      {/* 9. Verified Customer Reviews */}
+      <VerifiedReviews />
+
+      {/* 10. Leather Knowledge & Guides */}
+      <GuideCards />
+
+      {/* 11. Frequently Asked Questions */}
+      <HomeFAQ />
+
+      {/* 12. Closing Call to Action */}
+      <ClosingCTA />
     </div>
   )
 }
