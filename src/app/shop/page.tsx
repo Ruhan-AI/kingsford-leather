@@ -1,74 +1,77 @@
 import React, { Suspense } from 'react'
 import type { Metadata } from 'next'
-import Link from 'next/link'
-import { ChevronRight } from 'lucide-react'
+import { Container } from '@/components/ui/Container'
+import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
+import { CatalogueShell } from '@/components/catalog/CatalogueShell'
 import { PRODUCTS } from '@/lib/products'
-import { SITE, absoluteUrl } from '@/lib/site'
-import { ShopView } from './ShopView'
+import { SITE } from '@/lib/site'
 
 export const metadata: Metadata = {
-  title: 'Shop Leather Jackets & Outerwear',
+  title: 'Shop All 49 Pieces | Handcrafted Leather Outerwear',
   description:
-    'All 49 pieces: biker jackets, cafe racers, bombers, truckers, coats and vests in leather, suede and shearling. Standard sizes or made-to-measure.',
+    'Explore the complete Kingsford Leather catalogue of 49 verified biker, cafe racer, bomber, suede, shearling, and tailored coats. Custom sizing available on all made-to-order listings on Etsy and eBay.',
   alternates: {
     canonical: '/shop',
   },
 }
 
 export default function ShopPage() {
-  const collectionSchema = {
+  const itemListSchema = {
     '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    name: 'All Outerwear — Kingsford Leather Catalogue',
-    description: 'Complete archive of handcrafted genuine leather, suede, and shearling outerwear.',
-    url: `${SITE.url}/shop`,
-    mainEntity: {
-      '@type': 'ItemList',
-      itemListElement: PRODUCTS.map((item, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        url: `${SITE.url}/products/${item.slug}`,
-        name: item.title,
-        image: absoluteUrl(item.image),
-      })),
-    },
+    '@type': 'ItemList',
+    name: 'Kingsford Leather Catalogue',
+    numberOfItems: PRODUCTS.length,
+    itemListElement: PRODUCTS.map((product, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: product.title,
+      url: `${SITE.url}/products/${product.slug}`,
+      image: `${SITE.url}${product.image}`,
+    })),
   }
 
   return (
-    <div className="bg-night text-bone min-h-screen py-10">
+    <div className="bg-white py-8 sm:py-12">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
       />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        
-        {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-spec text-muted">
-          <Link href="/" className="hover:text-bone transition-colors">
-            Home
-          </Link>
-          <ChevronRight className="w-3 h-3 text-muted/60" />
-          <span className="text-brass">Shop All Outerwear</span>
-        </nav>
-
-        {/* Hero Header */}
-        <div className="bg-charcoal border border-bone/10 rounded-2xl p-8 sm:p-12 relative overflow-hidden shadow-xl">
-          <div className="relative z-10 max-w-2xl space-y-3">
-            <h1 className="font-brand font-bold text-3xl sm:text-5xl text-white tracking-[0.015em]">
-              The Complete Collection
-            </h1>
-            <p className="font-body text-base sm:text-lg text-bone-warm leading-relaxed">
-              Every jacket is bench-cut to order from authentic cowhide, sheepskin, or suede. Available in standard off-the-rack sizing (XS–5XL) or tailored to your custom measurements.
-            </p>
-          </div>
+      <Container size="wide">
+        {/* Header & Breadcrumbs */}
+        <div className="mb-8">
+          <Breadcrumbs items={[{ label: 'Shop All Pieces' }]} className="mb-4" />
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#1c1a17] font-normal tracking-tight">
+            The Complete Outerwear Catalogue
+          </h1>
+          <p className="text-sm sm:text-base text-[#706a62] mt-2 max-w-2xl font-sans">
+            Every piece is cut and stitched to order from hand-selected cowhides, sheepskins, and genuine suedes. Browse our complete 49-piece collection below.
+          </p>
         </div>
 
-        {/* Dynamic Shop Grid & Filters (Wrapped in Suspense for searchParams) */}
-        <Suspense fallback={<div className="py-20 text-center font-spec text-muted">Loading catalogue archive...</div>}>
-          <ShopView allProducts={PRODUCTS} />
+        {/* Dynamic Catalogue Shell wrapped in Suspense */}
+        <Suspense
+          fallback={
+            <div className="py-20 text-center text-[#706a62] font-serif">
+              Loading catalogue pieces...
+            </div>
+          }
+        >
+          <CatalogueShell initialProducts={PRODUCTS} />
         </Suspense>
 
-      </div>
+        {/* Post-Grid Editorial & SEO Information */}
+        <div className="mt-16 pt-12 border-t border-[#ded7ce] max-w-3xl">
+          <h2 className="text-2xl font-serif text-[#1c1a17] mb-3 font-medium">
+            About Our Made-to-Order Leather Outerwear
+          </h2>
+          <p className="text-sm text-[#706a62] leading-relaxed mb-4 font-sans">
+            At Kingsford Leather, we do not operate high-volume automated warehouse stock. Every garment is crafted individually by our experienced tailors once your order is confirmed on our official Etsy or eBay stores. This made-to-order model allows us to offer standard sizing (XS to 3XL) as well as bespoke made-to-measure tailoring without retail markups.
+          </p>
+          <p className="text-sm text-[#706a62] leading-relaxed font-sans">
+            Whether you are looking for an asymmetrical cowhide motorcycle jacket, a minimalist cafe racer, a winter shearling aviator, or a tailored full-length leather duster, each piece features premium YKK brass hardware, reinforced stitching, and durable interior linings built for years of wear.
+          </p>
+        </div>
+      </Container>
     </div>
   )
 }

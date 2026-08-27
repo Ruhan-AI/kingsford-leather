@@ -1,11 +1,11 @@
 import React, { Suspense } from 'react'
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ChevronRight } from 'lucide-react'
-import { PRODUCTS, Gender } from '@/lib/products'
-import { SITE, absoluteUrl } from '@/lib/site'
-import { ShopView } from '@/app/shop/ShopView'
+import { Container } from '@/components/ui/Container'
+import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
+import { CatalogueShell } from '@/components/catalog/CatalogueShell'
+import { PRODUCTS } from '@/lib/products'
+import { SITE } from '@/lib/site'
 
 type Props = {
   params: Promise<{ gender: string }>
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       : "Shop tailored women's genuine leather outerwear: western suede truckers, shearling flight jackets, blazers, and coats. Custom sizing available through Etsy & eBay."
 
   return {
-    title,
+    title: `${title} | Kingsford Leather`,
     description,
     alternates: {
       canonical: `/${gender}`,
@@ -63,8 +63,8 @@ export default async function GenderCollectionPage({ params }: Props) {
   const title = gender === 'men' ? "Men's Leather Collection" : "Women's Leather Collection"
   const subtitle =
     gender === 'men'
-      ? 'Heavyweight cowhide double-riders, vintage cafe racers, suede bombers and flight jackets cut to order.'
-      : 'Tailored feminine cuts, western suede truckers, shearling aviators, and blazers handcrafted to your numbers.'
+      ? 'Heavyweight cowhide double-riders, vintage cafe racers, suede bombers, and flight jackets cut to order in standard or bespoke sizing.'
+      : 'Tailored feminine silhouettes, western suede truckers, shearling aviators, and blazers handcrafted to your measurements.'
 
   const collectionSchema = {
     '@context': 'https://schema.org',
@@ -74,75 +74,55 @@ export default async function GenderCollectionPage({ params }: Props) {
     url: `${SITE.url}/${gender}`,
     mainEntity: {
       '@type': 'ItemList',
+      numberOfItems: collection.length,
       itemListElement: collection.map((item, index) => ({
         '@type': 'ListItem',
         position: index + 1,
         url: `${SITE.url}/products/${item.slug}`,
         name: item.title,
-        image: absoluteUrl(item.image),
+        image: `${SITE.url}${item.image}`,
       })),
     },
   }
 
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: SITE.url,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: `${gender === 'men' ? "Men's" : "Women's"} Collection`,
-        item: `${SITE.url}/${gender}`,
-      },
-    ],
-  }
-
   return (
-    <div className="bg-night text-bone min-h-screen py-10">
+    <div className="bg-white py-8 sm:py-12">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        
-        {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-spec text-muted">
-          <Link href="/" className="hover:text-bone transition-colors">
-            Home
-          </Link>
-          <ChevronRight className="w-3 h-3 text-muted/60" />
-          <span className="text-brass capitalize">{gender}'s Collection</span>
-        </nav>
-
-        {/* Header Banner */}
-        <div className="bg-charcoal border border-bone/10 rounded-2xl p-8 sm:p-12 relative overflow-hidden shadow-xl">
-          <div className="relative z-10 max-w-2xl space-y-3">
-            <h1 className="font-brand font-bold text-3xl sm:text-5xl text-white tracking-[0.015em]">
+      <Container size="wide">
+        {/* Breadcrumb & Header */}
+        <div className="mb-8">
+          <Breadcrumbs
+            items={[{ label: `${gender === 'men' ? "Men's" : "Women's"} Collection` }]}
+            className="mb-4"
+          />
+          <div className="bg-[#f8f6f2] border border-[#ded7ce] rounded-[4px] p-6 sm:p-10">
+            <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#8b5a35] block mb-2">
+              Curated Silhouette
+            </span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#1c1a17] font-normal tracking-tight">
               {title}
             </h1>
-            <p className="font-body text-base sm:text-lg text-bone-warm leading-relaxed">
+            <p className="text-sm sm:text-base text-[#706a62] mt-2 max-w-2xl font-sans">
               {subtitle}
             </p>
           </div>
         </div>
 
-        {/* Grid & Filters */}
-        <Suspense fallback={<div className="py-20 text-center font-spec text-muted">Loading {gender}'s collection...</div>}>
-          <ShopView allProducts={collection} />
+        {/* Dynamic Catalogue */}
+        <Suspense
+          fallback={
+            <div className="py-20 text-center text-[#706a62] font-serif">
+              Loading {gender}&apos;s collection...
+            </div>
+          }
+        >
+          <CatalogueShell initialProducts={collection} lockedGender={gender as 'men' | 'women'} />
         </Suspense>
-
-      </div>
+      </Container>
     </div>
   )
 }

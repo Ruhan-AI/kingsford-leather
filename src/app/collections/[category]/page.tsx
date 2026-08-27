@@ -1,11 +1,11 @@
 import React, { Suspense } from 'react'
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ChevronRight } from 'lucide-react'
+import { Container } from '@/components/ui/Container'
+import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
+import { CatalogueShell } from '@/components/catalog/CatalogueShell'
 import { PRODUCTS, CATEGORIES } from '@/lib/products'
-import { SITE, absoluteUrl } from '@/lib/site'
-import { ShopView } from '@/app/shop/ShopView'
+import { SITE } from '@/lib/site'
 
 type Props = {
   params: Promise<{ category: string }>
@@ -16,14 +16,29 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const found = CATEGORIES.find((c) => c.slug === category)
   if (!found) return {}
 
-  const title = `${found.label} Jackets & Outerwear`
-  const description = `Discover handcrafted ${found.label.toLowerCase()} outerwear bench-cut from genuine hides. Standard sizing and bespoke made-to-measure.`
+  const title = `${found.label} Leather Outerwear | Kingsford Leather`
+  const description = `Discover handcrafted ${found.label.toLowerCase()} jackets and outerwear made to order from genuine cowhide, sheepskin, and suede hides. Available through Etsy and eBay.`
 
   return {
     title,
     description,
     alternates: {
       canonical: `/collections/${category}`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `${SITE.url}/collections/${category}`,
+      siteName: 'Kingsford Leather',
+      images: [
+        {
+          url: '/images/og-card.png',
+          width: 1200,
+          height: 630,
+          alt: `Kingsford Leather ${found.label}`,
+        },
+      ],
+      type: 'website',
     },
   }
 }
@@ -50,56 +65,59 @@ export default async function CategoryCollectionPage({ params }: Props) {
     url: `${SITE.url}/collections/${category}`,
     mainEntity: {
       '@type': 'ItemList',
+      numberOfItems: collection.length,
       itemListElement: collection.map((item, index) => ({
         '@type': 'ListItem',
         position: index + 1,
         url: `${SITE.url}/products/${item.slug}`,
         name: item.title,
-        image: absoluteUrl(item.image),
+        image: `${SITE.url}${item.image}`,
       })),
     },
   }
 
   return (
-    <div className="bg-night text-bone min-h-screen py-10">
+    <div className="bg-white py-8 sm:py-12">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        
-        {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-spec text-muted">
-          <Link href="/" className="hover:text-bone transition-colors">
-            Home
-          </Link>
-          <ChevronRight className="w-3 h-3 text-muted/60" />
-          <Link href="/shop" className="hover:text-bone transition-colors">
-            Shop
-          </Link>
-          <ChevronRight className="w-3 h-3 text-muted/60" />
-          <span className="text-brass">{catObj.label}</span>
-        </nav>
+      <Container size="wide">
+        {/* Breadcrumb & Header */}
+        <div className="mb-8">
+          <Breadcrumbs
+            items={[
+              { label: 'Shop', href: '/shop' },
+              { label: catObj.label },
+            ]}
+            className="mb-4"
+          />
 
-        {/* Header Banner */}
-        <div className="bg-charcoal border border-bone/10 rounded-2xl p-8 sm:p-12 relative overflow-hidden shadow-xl">
-          <div className="relative z-10 max-w-2xl space-y-3">
-            <h1 className="font-brand font-bold text-3xl sm:text-5xl text-white tracking-[0.015em]">
+          <div className="bg-[#f8f6f2] border border-[#ded7ce] rounded-[4px] p-6 sm:p-10">
+            <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#8b5a35] block mb-2">
+              Silhouette Showcase
+            </span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#1c1a17] font-normal tracking-tight">
               {catObj.label} Outerwear
             </h1>
-            <p className="font-body text-base sm:text-lg text-bone-warm leading-relaxed">
-              Explore our bench-cut {catObj.label.toLowerCase()} pieces. Every jacket is individually crafted upon order from select hides.
+            <p className="text-sm sm:text-base text-[#706a62] mt-2 max-w-2xl font-sans">
+              Explore our bench-cut {catObj.label.toLowerCase()} pieces. Every jacket is individually tailored upon order from select hides with standard or custom sizing.
             </p>
           </div>
         </div>
 
-        {/* Grid & Filters */}
-        <Suspense fallback={<div className="py-20 text-center font-spec text-muted">Loading category collection...</div>}>
-          <ShopView allProducts={collection} />
+        {/* Dynamic Catalogue */}
+        <Suspense
+          fallback={
+            <div className="py-20 text-center text-[#706a62] font-serif">
+              Loading {catObj.label.toLowerCase()} collection...
+            </div>
+          }
+        >
+          <CatalogueShell initialProducts={collection} lockedCategory={category} />
         </Suspense>
-
-      </div>
+      </Container>
     </div>
   )
 }
