@@ -1,12 +1,16 @@
 import React from 'react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ChevronRight, RotateCcw, Clock, Globe } from 'lucide-react'
+import { ArrowRight, RotateCcw, Clock, Globe, ShieldCheck } from 'lucide-react'
+import { Container } from '@/components/ui/Container'
+import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
+import { Button } from '@/components/ui/Button'
+import { SITE } from '@/lib/site'
 
 export const metadata: Metadata = {
-  title: 'Shipping & Returns',
+  title: 'Shipping, Delivery & Returns | Kingsford Leather',
   description:
-    'Information regarding production times, express tracked international courier shipping, 30-day returns, and workshop remake guarantees.',
+    'Information regarding made-to-order production timelines, express courier delivery, 30-day returns, and marketplace buyer guarantees on Etsy & eBay.',
   alternates: {
     canonical: '/shipping-returns',
   },
@@ -14,115 +18,106 @@ export const metadata: Metadata = {
 
 export default function ShippingReturnsPage() {
   return (
-    <div className="bg-night text-bone min-h-screen py-10 sm:py-16">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        
+    <div className="bg-white py-8 sm:py-16">
+      <Container size="narrow">
         {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-spec text-muted">
-          <Link href="/" className="hover:text-bone transition-colors">
-            Home
-          </Link>
-          <ChevronRight className="w-3 h-3 text-muted/60" />
-          <span className="text-brass">Shipping &amp; Returns</span>
-        </nav>
+        <Breadcrumbs items={[{ label: 'Shipping & Returns' }]} className="mb-6" />
 
         {/* Hero Header */}
-        <div className="space-y-4 max-w-3xl">
-          <h1 className="font-brand font-bold text-3xl sm:text-5xl text-white tracking-[0.015em] leading-tight">
+        <div className="space-y-4 mb-12">
+          <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#8b5a35] block">
+            Policies & Dispatch
+          </span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#1c1a17] font-normal tracking-tight leading-[1.15]">
             Shipping, Delivery &amp; Returns
           </h1>
-          <p className="font-body text-base sm:text-xl text-bone-warm leading-relaxed">
-            Everything you need to know about our made-to-order production timelines, express courier partners, and workshop return policies.
+          <p className="text-base sm:text-lg text-[#706a62] leading-relaxed font-sans">
+            Everything you need to know about our made-to-order production schedules, tracked express couriers, and marketplace purchase protection.
           </p>
         </div>
 
-        {/* Production & Shipping Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          
-          <div className="bg-charcoal border border-bone/15 rounded-2xl p-6 sm:p-8 space-y-4 shadow-lg">
+        {/* Timelines Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          <div className="bg-[#f8f6f2] border border-[#ded7ce] rounded-[4px] p-6 sm:p-8 space-y-4">
             <div className="flex items-center gap-3">
-              <Clock className="w-6 h-6 text-brass" />
-              <h2 className="font-brand font-bold text-xl text-white">
-                Production Timelines
+              <Clock className="w-5 h-5 text-[#8b5a35]" />
+              <h2 className="font-serif font-medium text-xl text-[#1c1a17]">
+                Production Schedules
               </h2>
             </div>
-            <div className="space-y-2 text-xs font-display">
-              <div className="p-3.5 rounded-xl bg-smoke/40 border border-bone/10 space-y-1">
-                <strong className="text-white font-bold block">Standard Sizes (XS–5XL):</strong>
-                <span className="text-muted leading-relaxed font-body">Dispatched from the workshop bench in 3–5 business days.</span>
+            <div className="space-y-3 text-xs sm:text-sm text-[#706a62] font-sans">
+              <div className="p-3 bg-white rounded-[4px] border border-[#ded7ce] space-y-1">
+                <strong className="text-[#1c1a17] block">Standard Sizes (XS–3XL):</strong>
+                <span>Dispatched from the workshop bench in 3–5 business days.</span>
               </div>
-              <div className="p-3.5 rounded-xl bg-smoke/40 border border-bone/10 space-y-1">
-                <strong className="text-brass font-bold block">Custom Made-to-Measure:</strong>
-                <span className="text-muted leading-relaxed font-body">Custom drafted, bench-cut, and assembled in 10–14 business days.</span>
+              <div className="p-3 bg-white rounded-[4px] border border-[#ded7ce] space-y-1">
+                <strong className="text-[#8b5a35] block">Custom Made-to-Measure:</strong>
+                <span>Custom drafted, bench-cut, and tailored in 10–14 business days.</span>
               </div>
             </div>
           </div>
 
-          <div className="bg-charcoal border border-bone/15 rounded-2xl p-6 sm:p-8 space-y-4 shadow-lg">
+          <div className="bg-[#f8f6f2] border border-[#ded7ce] rounded-[4px] p-6 sm:p-8 space-y-4">
             <div className="flex items-center gap-3">
-              <Globe className="w-6 h-6 text-brass" />
-              <h2 className="font-brand font-bold text-xl text-white">
-                Express Tracked Delivery
+              <Globe className="w-5 h-5 text-[#8b5a35]" />
+              <h2 className="font-serif font-medium text-xl text-[#1c1a17]">
+                Tracked Express Delivery
               </h2>
             </div>
-            <div className="space-y-2 text-xs font-display">
-              <div className="p-3.5 rounded-xl bg-smoke/40 border border-bone/10 space-y-1">
-                <strong className="text-white font-bold block">Courier Partners:</strong>
-                <span className="text-muted leading-relaxed font-body">All parcels are shipped via tracked international express (DHL, FedEx, UPS, or Canada Post).</span>
+            <div className="space-y-3 text-xs sm:text-sm text-[#706a62] font-sans">
+              <div className="p-3 bg-white rounded-[4px] border border-[#ded7ce] space-y-1">
+                <strong className="text-[#1c1a17] block">Courier Carriers:</strong>
+                <span>Shipped via international express couriers (DHL, FedEx, UPS, or Canada Post).</span>
               </div>
-              <div className="p-3.5 rounded-xl bg-smoke/40 border border-bone/10 space-y-1">
-                <strong className="text-white font-bold block">Transit Time:</strong>
-                <span className="text-muted leading-relaxed font-body">5–8 business days to Canada, US, UK, and Europe once dispatched. Tracking is emailed immediately.</span>
+              <div className="p-3 bg-white rounded-[4px] border border-[#ded7ce] space-y-1">
+                <strong className="text-[#1c1a17] block">Transit Time:</strong>
+                <span>5–8 business days to Canada, US, UK, and Europe once dispatched.</span>
               </div>
             </div>
           </div>
-
         </div>
 
         {/* Returns & Remake Policy */}
-        <div className="bg-charcoal border border-bone/10 rounded-2xl p-8 space-y-6">
+        <div className="bg-[#efe9e1] border border-[#ded7ce] rounded-[4px] p-8 sm:p-10 space-y-6 mb-12">
           <div className="flex items-center gap-3">
-            <RotateCcw className="w-7 h-7 text-brass shrink-0" />
+            <RotateCcw className="w-6 h-6 text-[#8b5a35] shrink-0" />
             <div>
-              <h2 className="font-brand font-bold text-2xl text-white">
+              <h2 className="font-serif font-medium text-2xl text-[#1c1a17]">
                 30-Day Returns &amp; Workshop Remake Guarantee
               </h2>
-              <span className="font-spec text-xs text-brass uppercase">
-                Secured via Etsy &amp; eBay Buyer Protection
+              <span className="text-xs text-[#8b5a35] uppercase font-semibold">
+                Backed by Etsy Purchase Protection &amp; eBay Money Back Guarantee
               </span>
             </div>
           </div>
 
-          <div className="space-y-4 font-body text-sm text-bone-warm leading-relaxed">
+          <div className="space-y-4 text-xs sm:text-sm text-[#706a62] leading-relaxed font-sans">
             <p>
-              <strong>Off-the-Rack Orders:</strong> If your standard-sized jacket does not fit as expected, you may exchange for a different size or return it within 30 days of receipt in unworn, original condition.
+              <strong className="text-[#1c1a17]">Standard Off-the-Rack Orders:</strong> If your standard-sized jacket does not fit as expected, you may exchange for a different size or return it within 30 days of receipt in unworn, original condition with all tags intact.
             </p>
             <p>
-              <strong>Custom Made-to-Measure Orders:</strong> Because bespoke jackets are patterned exclusively to your body measurements, they cannot be returned for a simple change of mind. However, if there is <em>any workshop error or dimensional discrepancy against your submitted numbers</em>, we will alter or remake the jacket completely free of charge.
+              <strong className="text-[#1c1a17]">Custom Made-to-Measure Orders:</strong> Because bespoke garments are patterned and cut exclusively to your individual measurements, they cannot be returned for a simple change of mind. However, if there is <em>any workshop error or dimensional discrepancy against your submitted numbers</em>, we will alter or remake the jacket completely free of charge.
             </p>
             <p>
-              All purchases on our official Etsy and eBay storefronts are backed by full marketplace buyer guarantees.
+              All orders placed through our official storefronts on Etsy and eBay are protected by complete marketplace buyer policies.
             </p>
           </div>
         </div>
 
-        {/* Action Link */}
-        <div className="pt-4 flex items-center justify-between">
+        {/* Outro */}
+        <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-[#ded7ce]">
           <Link
             href="/contact"
-            className="text-xs font-display font-bold text-bone-warm hover:text-white underline"
+            className="text-xs font-semibold text-[#8b5a35] hover:underline"
           >
-            Have a question about an existing order? Contact us →
+            Have a question about an order? Contact workshop →
           </Link>
-          <Link
-            href="/shop"
-            className="py-3 px-6 rounded-xl bg-saddle hover:bg-oxblood text-white font-display font-bold text-xs transition-colors shadow-md"
-          >
-            Shop Outerwear
-          </Link>
+          <Button href="/shop" variant="primary" size="md">
+            <span>Explore Catalogue</span>
+            <ArrowRight className="w-4 h-4" />
+          </Button>
         </div>
-
-      </div>
+      </Container>
     </div>
   )
 }

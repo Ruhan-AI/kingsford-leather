@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { ExternalLink, ShieldCheck } from 'lucide-react'
+import { ArrowUpRight, ShieldCheck } from 'lucide-react'
 import { Product } from '@/lib/products'
 import { trackEvent } from '@/lib/analytics/events'
 
@@ -11,12 +11,13 @@ interface MarketplaceButtonsProps {
 }
 
 export function MarketplaceButtons({ product, size = 'large' }: MarketplaceButtonsProps) {
-  const handleMarketplaceClick = (marketplace: 'Etsy' | 'eBay') => {
-    trackEvent('outbound_marketplace_click', {
-      product_id: product.id,
-      product_slug: product.slug,
+  const handleMarketplaceClick = (marketplace: 'etsy' | 'ebay') => {
+    trackEvent('marketplace_click', {
+      productId: product.id,
+      productSlug: product.slug,
       marketplace,
-      category: product.category,
+      source: 'product',
+      destinationType: 'product',
     })
   }
 
@@ -28,14 +29,14 @@ export function MarketplaceButtons({ product, size = 'large' }: MarketplaceButto
           <a
             href={product.etsyUrl}
             target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => handleMarketplaceClick('Etsy')}
-            className={`flex-1 py-4 px-6 bg-saddle hover:bg-oxblood text-white font-display font-bold rounded-2xl transition-all shadow-xl shadow-saddle/20 flex items-center justify-center gap-2 group cursor-pointer ${
+            rel="noopener noreferrer sponsored nofollow"
+            onClick={() => handleMarketplaceClick('etsy')}
+            className={`flex-1 py-4 px-6 bg-[#8b5a35] hover:bg-[#5d3923] text-white font-medium rounded-[4px] transition-all flex items-center justify-center gap-2 group cursor-pointer focus-ring shadow-xs ${
               size === 'large' ? 'text-base' : 'text-sm'
             }`}
           >
-            <span>Order on Official Etsy Shop</span>
-            <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            <span>Purchase on Etsy (Direct Listing)</span>
+            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </a>
         )}
 
@@ -44,22 +45,22 @@ export function MarketplaceButtons({ product, size = 'large' }: MarketplaceButto
           <a
             href={product.ebayUrl}
             target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => handleMarketplaceClick('eBay')}
-            className={`py-4 px-6 bg-charcoal hover:bg-smoke text-bone hover:text-white border border-bone/15 font-display font-semibold rounded-2xl transition-all flex items-center justify-center gap-2 cursor-pointer ${
+            rel="noopener noreferrer sponsored nofollow"
+            onClick={() => handleMarketplaceClick('ebay')}
+            className={`py-4 px-6 bg-white hover:bg-[#f8f6f2] text-[#1c1a17] border border-[#ded7ce] font-medium rounded-[4px] transition-all flex items-center justify-center gap-2 cursor-pointer focus-ring ${
               size === 'large' ? 'text-base' : 'text-sm'
             }`}
           >
-            <span>Order on eBay</span>
-            <ExternalLink className="w-4 h-4" />
+            <span>Purchase on eBay</span>
+            <ArrowUpRight className="w-4 h-4" />
           </a>
         )}
       </div>
 
       {/* Trust guarantees badge */}
-      <div className="flex items-center justify-center sm:justify-start gap-2 text-xs font-spec text-muted pt-1">
-        <ShieldCheck className="w-4 h-4 text-brass shrink-0" />
-        <span>Secured checkout with Etsy Buyer Protection &amp; eBay Money Back Guarantee</span>
+      <div className="flex items-center justify-center sm:justify-start gap-2 text-xs text-[#706a62] pt-1 font-sans">
+        <ShieldCheck className="w-4 h-4 text-[#8b5a35] shrink-0" />
+        <span>Secured checkout with Etsy Purchase Protection &amp; eBay Money Back Guarantee</span>
       </div>
     </div>
   )

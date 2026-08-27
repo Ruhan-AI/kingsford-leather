@@ -1,13 +1,14 @@
 import React from 'react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ChevronRight } from 'lucide-react'
+import { Container } from '@/components/ui/Container'
+import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { SITE } from '@/lib/site'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy',
+  title: 'Privacy Policy | Kingsford Leather',
   description:
-    'How this site handles analytics, and why payment and personal data stay with the marketplace you order from.',
+    'How this website handles anonymous discovery analytics, and why all payment and customer transactions are handled directly through Etsy and eBay.',
   alternates: {
     canonical: '/privacy',
   },
@@ -15,64 +16,66 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <div className="bg-night text-bone min-h-screen py-10 sm:py-16">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 font-body text-bone-warm leading-relaxed">
-        
+    <div className="bg-white py-8 sm:py-16">
+      <Container size="narrow">
         {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-spec text-muted">
-          <Link href="/" className="hover:text-bone transition-colors">
-            Home
-          </Link>
-          <ChevronRight className="w-3 h-3 text-muted/60" />
-          <span className="text-brass">Privacy Policy</span>
-        </nav>
+        <Breadcrumbs items={[{ label: 'Privacy Policy' }]} className="mb-6" />
 
         {/* Header */}
-        <div className="space-y-3">
-          <span className="text-xs font-spec uppercase tracking-widest text-brass block">
-            Data Governance &amp; AI Ethics
+        <div className="space-y-3 mb-10 pb-6 border-b border-[#ded7ce]">
+          <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#8b5a35] block">
+            Data Governance &amp; Transparency
           </span>
-          <h1 className="font-brand font-bold text-3xl sm:text-5xl text-white tracking-[0.015em]">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#1c1a17] font-normal tracking-tight leading-[1.15]">
             Privacy Policy
           </h1>
-          <p className="text-sm font-spec text-muted">
-            Last Updated: February 2026
+          <p className="text-xs text-[#706a62] font-sans">
+            Last Updated: August 2026
           </p>
         </div>
 
+        {/* Policy Content */}
+        <div className="space-y-8 text-sm text-[#2c2925] leading-relaxed font-sans">
+          <div className="space-y-3">
+            <h2 className="text-xl font-serif font-medium text-[#1c1a17]">
+              1. Marketplace Purchases &amp; Zero Payment Collection
+            </h2>
+            <p className="text-[#706a62]">
+              Kingsford Leather does not collect, process, or store payment cards, banking information, or customer billing credentials on this website. All commercial transactions take place exclusively on our verified storefronts on Etsy (<a href={SITE.etsyUrl} target="_blank" rel="noopener noreferrer" className="text-[#8b5a35] underline font-medium">KingsfordLeatherCA</a>) and eBay (<a href={SITE.ebayUrl} target="_blank" rel="noopener noreferrer" className="text-[#8b5a35] underline font-medium">kingsfordleather</a>), which are governed by their respective privacy standards and secure payment gateways.
+            </p>
+          </div>
 
-        {/* Standard Website Analytics & Marketplace Transactions */}
-        <div className="space-y-6 text-sm">
-          <h2 className="font-brand font-bold text-2xl text-white">
-            1. Marketplace Transactions &amp; Payment Data
-          </h2>
-          <p>
-            Kingsford Leather does not collect, store, or process credit card numbers or financial credentials directly on this website. All commercial checkout transactions take place on our official storefronts on Etsy (<a href={SITE.etsyUrl} target="_blank" rel="noopener noreferrer" className="text-brass underline">KingsfordLeatherCA</a>) and eBay (<a href={SITE.ebayUrl} target="_blank" rel="noopener noreferrer" className="text-brass underline">kingsfordleather</a>), subject to their respective buyer data protection standards.
-          </p>
+          <div className="space-y-3">
+            <h2 className="text-xl font-serif font-medium text-[#1c1a17]">
+              2. Anonymous Website Analytics
+            </h2>
+            <p className="text-[#706a62]">
+              We collect aggregate, non-personally identifiable website metrics (such as page views, search interactions, and outbound marketplace button clicks) solely to assess product catalog interest, improve site performance, and ensure fast page loading. We do not use third-party behavioral advertising trackers or cross-site tracking cookies.
+            </p>
+          </div>
 
-          <h2 className="font-brand font-bold text-2xl text-white pt-4">
-            2. Anonymous Analytics
-          </h2>
-          <p>
-            We collect anonymized, non-PII aggregate website analytics (such as page views, button clicks, and anonymous error reporting) to improve navigation, optimize mobile layout speed, and assess outer garments popularity.
-          </p>
+          <div className="space-y-3">
+            <h2 className="text-xl font-serif font-medium text-[#1c1a17]">
+              3. Direct Communication
+            </h2>
+            <p className="text-[#706a62]">
+              When you email us at <a href={`mailto:${SITE.email}`} className="text-[#8b5a35] font-semibold">{SITE.email}</a> or message our workshop on Etsy/eBay, your information is used solely to respond to your inquiry and coordinate custom measurements. We will never sell, lease, or distribute your email address or contact details to third parties.
+            </p>
+          </div>
 
-          <h2 className="font-brand font-bold text-2xl text-white pt-4">
-            3. Contact &amp; Correspondence
-          </h2>
-          <p>
-            If you contact us via email ({SITE.email}) or marketplace message, your communication is used solely to answer your questions, assist with sizing, and coordinate workshop production. We never sell or share your contact details.
-          </p>
-
-          <h2 className="font-brand font-bold text-2xl text-white pt-4">
-            4. Contact Our Data Representative
-          </h2>
-          <p>
-            If you have questions regarding our data practices or wish to submit an inquiry, email us at <a href={`mailto:${SITE.email}`} className="text-brass underline font-bold">{SITE.email}</a>.
-          </p>
+          <div className="space-y-3">
+            <h2 className="text-xl font-serif font-medium text-[#1c1a17]">
+              4. Contact Us
+            </h2>
+            <p className="text-[#706a62]">
+              If you have any questions regarding this Privacy Policy, please contact our team at{' '}
+              <a href={`mailto:${SITE.email}`} className="text-[#8b5a35] font-semibold underline">
+                {SITE.email}
+              </a>.
+            </p>
+          </div>
         </div>
-
-      </div>
+      </Container>
     </div>
   )
 }

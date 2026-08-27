@@ -1,13 +1,14 @@
 import React from 'react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ChevronRight } from 'lucide-react'
+import { Container } from '@/components/ui/Container'
+import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { SITE } from '@/lib/site'
 
 export const metadata: Metadata = {
-  title: 'Terms of Service',
+  title: 'Terms of Service | Kingsford Leather',
   description:
-    'Terms of service, intellectual property, product descriptions, and marketplace ordering terms for Kingsford Leather.',
+    'Terms of service, natural hide variations, made-to-measure guarantees, and marketplace purchasing terms for Kingsford Leather.',
   alternates: {
     canonical: '/terms',
   },
@@ -15,64 +16,63 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <div className="bg-night text-bone min-h-screen py-10 sm:py-16">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 font-body text-bone-warm leading-relaxed">
-        
+    <div className="bg-white py-8 sm:py-16">
+      <Container size="narrow">
         {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-spec text-muted">
-          <Link href="/" className="hover:text-bone transition-colors">
-            Home
-          </Link>
-          <ChevronRight className="w-3 h-3 text-muted/60" />
-          <span className="text-brass">Terms of Service</span>
-        </nav>
+        <Breadcrumbs items={[{ label: 'Terms of Service' }]} className="mb-6" />
 
         {/* Header */}
-        <div className="space-y-3">
-          <span className="text-xs font-spec uppercase tracking-widest text-brass block">
+        <div className="space-y-3 mb-10 pb-6 border-b border-[#ded7ce]">
+          <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#8b5a35] block">
             Legal Terms &amp; Conditions
           </span>
-          <h1 className="font-brand font-bold text-3xl sm:text-5xl text-white tracking-[0.015em]">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#1c1a17] font-normal tracking-tight leading-[1.15]">
             Terms of Service
           </h1>
-          <p className="text-sm font-spec text-muted">
-            Last Updated: February 2026
+          <p className="text-xs text-[#706a62] font-sans">
+            Last Updated: August 2026
           </p>
         </div>
 
         {/* Content */}
-        <div className="space-y-6 text-sm">
-          <h2 className="font-brand font-bold text-xl text-white">
-            1. Overview &amp; Commercial Scope
-          </h2>
-          <p>
-            Kingsford Leather provides an editorial showroom for handcrafted leather outerwear. All final retail orders, payment processing, escrow, and shipment tracking are executed via our official storefronts on Etsy (<a href={SITE.etsyUrl} target="_blank" rel="noopener noreferrer" className="text-brass underline">KingsfordLeatherCA</a>) and eBay (<a href={SITE.ebayUrl} target="_blank" rel="noopener noreferrer" className="text-brass underline">kingsfordleather</a>).
-          </p>
+        <div className="space-y-8 text-sm text-[#2c2925] leading-relaxed font-sans">
+          <div className="space-y-3">
+            <h2 className="text-xl font-serif font-medium text-[#1c1a17]">
+              1. Overview &amp; Marketplace Showroom Model
+            </h2>
+            <p className="text-[#706a62]">
+              Kingsford Leather provides an editorial showroom and product discovery experience. All commercial checkouts, payment processing, escrow protection, and shipment deliveries are executed securely via our official storefronts on Etsy (<a href={SITE.etsyUrl} target="_blank" rel="noopener noreferrer" className="text-[#8b5a35] underline font-medium">KingsfordLeatherCA</a>) and eBay (<a href={SITE.ebayUrl} target="_blank" rel="noopener noreferrer" className="text-[#8b5a35] underline font-medium">kingsfordleather</a>).
+            </p>
+          </div>
 
-          <h2 className="font-brand font-bold text-xl text-white pt-4">
-            2. Product Descriptions &amp; Natural Leather Variations
-          </h2>
-          <p>
-            Because our jackets are bench-crafted from authentic full-grain cowhide, sheepskin, natural suede, and shearling pelts, natural variations in grain texture, subtle dye pull-up, and leather character are intrinsic qualities of genuine hides. We endeavor to display product images and specifications with highest fidelity.
-          </p>
+          <div className="space-y-3">
+            <h2 className="text-xl font-serif font-medium text-[#1c1a17]">
+              2. Natural Leather Variations
+            </h2>
+            <p className="text-[#706a62]">
+              Because our jackets are handcrafted from genuine full-grain cowhide, sheepskin, natural suede, and shearling pelts, subtle variations in natural grain texture, pull-up patina, and hand feel are inherent characteristics of real leather. We photograph each piece under natural light to accurately represent each silhouette.
+            </p>
+          </div>
 
+          <div className="space-y-3">
+            <h2 className="text-xl font-serif font-medium text-[#1c1a17]">
+              3. Made-to-Measure Tailoring Standards
+            </h2>
+            <p className="text-[#706a62]">
+              For custom made-to-measure orders, customers provide their body measurements in the marketplace order notes. Kingsford Leather warrants that the finished garment will be bench-cut to the submitted dimensions within standard master tailor tolerances (±0.5 inches). In case of workshop dimensional error, we alter or remake the garment free of charge.
+            </p>
+          </div>
 
-          <h2 className="font-brand font-bold text-xl text-white pt-4">
-            3. Made-To-Measure Terms
-          </h2>
-          <p>
-            For made-to-measure orders, customers are responsible for submitting accurate physical measurements in order notes. Kingsford Leather warrants that the finished garment will be bench-cut to the submitted numbers within standard master tailor tolerances (±0.5 inches).
-          </p>
-
-          <h2 className="font-brand font-bold text-xl text-white pt-4">
-            4. Intellectual Property
-          </h2>
-          <p>
-            All brand crests, monograms, editorial copy, product patterns, and photography on this site are the property of Kingsford Leather and protected by applicable copyright and trademark laws.
-          </p>
+          <div className="space-y-3">
+            <h2 className="text-xl font-serif font-medium text-[#1c1a17]">
+              4. Intellectual Property
+            </h2>
+            <p className="text-[#706a62]">
+              All brand crests, photography, product patterns, and editorial copy on this site are the property of Kingsford Leather and protected by copyright and intellectual property laws.
+            </p>
+          </div>
         </div>
-
-      </div>
+      </Container>
     </div>
   )
 }

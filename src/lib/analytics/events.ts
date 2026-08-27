@@ -1,34 +1,46 @@
 'use client'
 
-export type SafeAnalyticsEvent =
+export type AnalyticsEventName =
+  | 'view_home'
+  | 'view_collection'
   | 'view_product'
-  | 'open_try_on'
-  | 'select_try_on_product'
-  | 'choose_sample_model'
-  | 'choose_photo_upload'
-  | 'start_try_on'
-  | 'try_on_success'
-  | 'try_on_error'
-  | 'download_try_on_result'
-  | 'outbound_marketplace_click'
+  | 'search_open'
+  | 'search_submit'
+  | 'filter_apply'
+  | 'filter_clear'
+  | 'select_product'
+  | 'marketplace_click'
+  | 'size_guide_open'
+  | 'guide_view'
+  | 'faq_expand'
 
-export type SafeEventProperties = {
-  product_id?: string
-  product_slug?: string
+export type MarketplaceClickProps = {
+  marketplace: 'etsy' | 'ebay'
+  productId?: string
+  productSlug?: string
+  source: 'header' | 'footer' | 'product' | 'collection' | 'home' | 'shipping'
+  destinationType: 'product' | 'store'
+}
+
+export type EventProperties = {
+  productId?: string
+  productSlug?: string
   category?: string
-  marketplace?: 'Etsy' | 'eBay'
-  page_location?: string
-  try_on_used?: boolean
-  error_code?: string
-  latency_bucket?: string
+  query?: string
+  filterKey?: string
+  filterValue?: string
+  guideSlug?: string
   [key: string]: unknown
 }
 
 /**
  * Non-blocking, privacy-preserving event tracker.
- * Strictly avoids capturing photos, names, faces, or PII.
+ * Strictly avoids capturing PII or personal data.
  */
-export function trackEvent(eventName: SafeAnalyticsEvent, properties?: SafeEventProperties): void {
+export function trackEvent(
+  eventName: AnalyticsEventName,
+  properties?: EventProperties | MarketplaceClickProps
+): void {
   if (typeof window === 'undefined') return
 
   try {
@@ -37,11 +49,11 @@ export function trackEvent(eventName: SafeAnalyticsEvent, properties?: SafeEvent
       ;(window as any).gtag('event', eventName, properties)
     }
 
-    // 2. Safe debugging in development
+    // 2. Safe console logging in development
     if (process.env.NODE_ENV === 'development') {
-      console.log(`[Analytics Event] ${eventName}:`, properties)
+      console.log(`[Analytics: ${eventName}]`, properties)
     }
   } catch {
-    // Non-blocking catch
+    // Non-blocking
   }
 }
