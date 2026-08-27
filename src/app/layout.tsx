@@ -1,53 +1,28 @@
 import type { Metadata, Viewport } from 'next'
-import { Archivo, Newsreader, Martian_Mono, Cinzel } from 'next/font/google'
+import { Cormorant_Garamond, Manrope } from 'next/font/google'
 import './globals.css'
-import { Header } from '@/components/layout/Header'
-import { Footer } from '@/components/layout/Footer'
+import { SiteHeader } from '@/components/layout/SiteHeader'
+import { SiteFooter } from '@/components/layout/SiteFooter'
+import { AnnouncementBar } from '@/components/layout/AnnouncementBar'
 import { SITE, SHOP_STATS } from '@/lib/site'
 
-/**
- * The brand face. The Kingsford Leather wordmark is set in Trajan-style Roman
- * inscriptional capitals — spurred G, splayed R leg, fine bracketed serifs.
- * Cinzel is the closest match available as a web font, and it is what the
- * wordmark, the crest monogram and every section heading are set in, so the
- * lockup and the page speak with one voice.
- */
-const cinzel = Cinzel({
-  subsets: ['latin'],
-  variable: '--font-brand',
-  weight: ['400', '500', '600', '700', '900'],
-  display: 'swap',
-})
-
-/**
- * UI and editorial sans. Italic is loaded deliberately: the hero headline sets
- * a light weight against a bold italic, and without a real italic cut the
- * browser synthesises an oblique by shearing the glyphs — which looks wrong at
- * display size, exactly where the contrast is supposed to carry the design.
- */
-const archivo = Archivo({
+const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
   variable: '--font-display',
-  weight: ['300', '400', '500', '600', '700', '800'],
+  weight: ['400', '500', '600', '700'],
   style: ['normal', 'italic'],
   display: 'swap',
 })
 
-const newsreader = Newsreader({
+const manrope = Manrope({
   subsets: ['latin'],
   variable: '--font-body',
-  display: 'swap',
-  style: ['normal', 'italic'],
-})
-
-const martianMono = Martian_Mono({
-  subsets: ['latin'],
-  variable: '--font-spec',
+  weight: ['400', '500', '600', '700'],
   display: 'swap',
 })
 
 export const viewport: Viewport = {
-  themeColor: '#14191c',
+  themeColor: '#ffffff',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
@@ -89,8 +64,6 @@ export const metadata: Metadata = {
       'en-GB': '/uk',
     },
   },
-  // The favicon and apple touch icon come from src/app/icon.png and
-  // src/app/apple-icon.png by file convention — both generated from the crest.
   openGraph: {
     title: 'Kingsford Leather | Handcrafted Leather Outerwear & Made-To-Measure Jackets',
     description:
@@ -190,7 +163,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cinzel.variable} ${archivo.variable} ${newsreader.variable} ${martianMono.variable}`}
+      className={`${cormorant.variable} ${manrope.variable}`}
     >
       <head>
         <script
@@ -202,12 +175,12 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
-      <body className="min-h-screen bg-night text-bone font-body antialiased flex flex-col justify-between selection:bg-saddle selection:text-white">
-        <Header />
+      <body className="min-h-screen bg-white text-[#2c2925] font-body antialiased flex flex-col justify-between selection:bg-[#8b5a35] selection:text-white">
+        <AnnouncementBar />
+        <SiteHeader />
         <main className="flex-1">{children}</main>
-        <Footer />
+        <SiteFooter />
       </body>
     </html>
   )
 }
-
