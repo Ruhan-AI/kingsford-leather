@@ -9,7 +9,8 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "verify": "npm run typecheck && npm run build"
+    "verify": "npm run typecheck && npm run build",
+    "export:zip": "next build && node scripts/create_hostinger_zip.js"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -25,9 +26,11 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",
+    "@types/archiver": "^8.0.0",
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "archiver": "^8.0.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^5.9.3"
   }
