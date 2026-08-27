@@ -21,6 +21,7 @@ export const SITE = {
   etsyReviewsUrl: 'https://www.etsy.com/ca/shop/KingsfordLeatherCA#reviews',
   etsyPoliciesUrl: 'https://www.etsy.com/ca/shop/KingsfordLeatherCA#policies',
   ebayUrl: 'https://www.ebay.com/usr/kingsfordleather',
+  email: 'care@kingsfordleather.com',
   logoUrl: '/images/kingsford-crest.png',
 } as const
 
@@ -63,3 +64,17 @@ export const PROMISES: ReadonlyArray<{ label: string; detail: string }> = [
       'Payment, buyer protection and tracking are handled by the marketplace you order from.',
   },
 ]
+
+/**
+ * Absolute URL for a site-relative asset path.
+ *
+ * Structured data must carry absolute URLs — a relative "/images/..." in
+ * JSON-LD is invalid and Google will not associate the image with the entity.
+ * Product photography became local (and therefore relative) when it stopped
+ * being hotlinked from the marketplaces, so every schema image now has to go
+ * through here.
+ */
+export function absoluteUrl(pathOrUrl: string): string {
+  if (/^https?:\/\//i.test(pathOrUrl)) return pathOrUrl
+  return `${SITE.url}${pathOrUrl.startsWith('/') ? '' : '/'}${pathOrUrl}`
+}

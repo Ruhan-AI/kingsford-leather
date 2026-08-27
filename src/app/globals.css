@@ -1,120 +1,109 @@
 @import "tailwindcss";
 
+@theme {
+  --color-night: #0e1011;
+  --color-charcoal: #181b1d;
+  --color-smoke: #262a2d;
+  --color-parchment: #f1eee8;
+  --color-bone: #e8e5df;
+  --color-bone-warm: #d5d1c8;
+  --color-muted: #a7a39b;
+  --color-saddle: #b86f3f;
+  --color-saddle-hover: #cb7e4b;
+  --color-oxblood: #63252a;
+  --color-oxblood-bright: #7e2d33;
+  --color-brass: #c79d59;
+  --color-brass-glow: rgba(199, 157, 89, 0.18);
+
+  --font-brand: var(--font-brand), 'Cinzel', Georgia, serif;
+  --font-display: var(--font-display), 'Archivo', sans-serif;
+  --font-body: var(--font-body), 'Newsreader', Georgia, serif;
+  --font-spec: var(--font-spec), 'Martian Mono', ui-monospace, monospace;
+
+  --radius-panel: 24px;
+  --radius-card: 18px;
+}
+
 @layer base {
   :root {
-    --color-slate-dusk: #14191c;
-    --color-dusk-raise: #1f262b;
-    --color-dusk-card: #192025;
-    --color-bone: #deded8;
-    --color-bone-warm: #c5c3b9;
-    --color-bone-muted: #8b9298;
-    --color-saddle: #b8733e;
-    --color-saddle-hover: #c9824c;
-    --color-oxblood: #5e1c20;
-    --color-oxblood-bright: #7c262c;
-    --color-brass: #d4ac5e;
-    --color-brass-glow: rgba(212, 172, 94, 0.15);
-
-    /* ── Logo palette ──────────────────────────────────────────────────────
-       Sampled from the Kingsford Leather crest and wordmark: the parchment
-       ground the crest sits on, the antique gold of the crown and of the word
-       LEATHER, and the near-black of KINGSFORD itself. Everything branded
-       — crest, wordmark, rules, favicon — is built from these four. */
-    --brand-parchment: #f7ece6;
-    --brand-ink: #12100f;
-    --brand-gold: #c08a3e;
-    --brand-gold-light: #e0b063;
-    --brand-gold-deep: #8a5f24;
+    --bg-night: #0e1011;
+    --bg-charcoal: #181b1d;
+    --bg-smoke: #262a2d;
+    --text-bone: #e8e5df;
+    --text-muted: #a7a39b;
+    --brand-saddle: #b86f3f;
+    --brand-oxblood: #63252a;
+    --brand-brass: #c79d59;
   }
 
   body {
-    background-color: var(--color-slate-dusk);
-    color: var(--color-bone);
-    font-family: 'Newsreader', Georgia, serif;
+    background-color: var(--color-night, #0e1011);
+    color: var(--color-bone, #e8e5df);
+    font-family: var(--font-body), 'Newsreader', Georgia, serif;
     overflow-x: hidden;
-    selection-background-color: var(--color-saddle);
-    selection-color: var(--color-bone);
   }
 
   ::selection {
-    background-color: #b8733e;
+    background-color: #b86f3f;
     color: #ffffff;
   }
 }
 
-/* Custom Typography & Utility Classes */
-
-/* The brand face — wordmark, crest monogram and section headings. Roman
-   inscriptional capitals, so it is only ever set in caps.
-
-   Family only, deliberately: this rule sits outside Tailwind's layers, so any
-   letter-spacing declared here outranks the `tracking-*` utility on the same
-   element and the wide LEATHER spacing in the wordmark silently collapses.
-   Tracking is set per usage instead. */
-.font-brand {
-  font-family: var(--font-brand), 'Cinzel', 'Trajan Pro', Georgia, serif;
-}
-
-.font-display {
-  font-family: 'Archivo', sans-serif;
-  letter-spacing: -0.02em;
-}
-
-.font-body {
-  font-family: 'Newsreader', Georgia, serif;
-}
-
-.font-spec {
-  font-family: 'Martian Mono', ui-monospace, monospace;
-}
-
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #14191c;
+  background: #0e1011;
 }
 ::-webkit-scrollbar-thumb {
-  background: #2b353b;
+  background: #262a2d;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #b8733e;
+  background: #b86f3f;
 }
 
-/* Texture overlay for rugged leather ambiance */
+/* Subtle background grain & docket grid */
 .bg-grain {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
+  background-image: radial-gradient(rgba(232, 229, 223, 0.035) 1px, transparent 0);
   background-size: 24px 24px;
 }
 
-/* Technical Docket Grid Pattern */
-.bg-grid-docket {
-  background-image: 
-    linear-gradient(to right, rgba(222, 222, 216, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(222, 222, 216, 0.04) 1px, transparent 1px);
-  background-size: 20px 20px;
+.glass-panel {
+  background: rgba(24, 27, 29, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(232, 229, 223, 0.1);
 }
 
-/* Smooth button transitions */
-.btn-primary {
-  background-color: var(--color-saddle);
+.brass-focus {
+  outline: none;
+}
+.brass-focus:focus-visible {
+  outline: 2px solid #c79d59;
+  outline-offset: 2px;
+}
+
+/* Button & Action styles */
+.btn-saddle {
+  background-color: #b86f3f;
   color: #ffffff;
-  transition: all 200ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: all 220ms cubic-bezier(0.22, 1, 0.36, 1);
 }
-.btn-primary:hover {
-  background-color: var(--color-oxblood);
+.btn-saddle:hover {
+  background-color: #63252a;
 }
 
-.btn-secondary {
-  background-color: transparent;
-  border: 1px solid rgba(222, 222, 216, 0.25);
-  color: var(--color-bone);
-  transition: all 200ms cubic-bezier(0.22, 1, 0.36, 1);
+.btn-charcoal {
+  background-color: #181b1d;
+  border: 1px solid rgba(232, 229, 223, 0.15);
+  color: #e8e5df;
+  transition: all 220ms cubic-bezier(0.22, 1, 0.36, 1);
 }
-.btn-secondary:hover {
-  background-color: rgba(222, 222, 216, 0.08);
-  border-color: rgba(222, 222, 216, 0.5);
+.btn-charcoal:hover {
+  background-color: #262a2d;
+  border-color: rgba(199, 157, 89, 0.4);
+  color: #ffffff;
 }

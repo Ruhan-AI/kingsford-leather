@@ -1,3 +1,23 @@
+/**
+ * Buyer reviews.
+ *
+ * ── Read this before adding an entry ──────────────────────────────────────
+ * The site renders each of these under a "Verified on Etsy / eBay" badge, in a
+ * section headed "Verified Buyer Field Reports". Publishing a testimonial that
+ * badge cannot support is false advertising — Canada's Competition Act treats
+ * fabricated reviews as a reviewable practice with real penalties, and the
+ * project brief bans invented reviews outright.
+ *
+ * So the badge has to be earned by evidence, not by a boolean anyone can type.
+ * A review only renders when `reviewUrl` points at the live marketplace page
+ * that review appears on. `verified: true` alone does nothing.
+ *
+ * The five entries below arrived without any such link, and the counts do not
+ * support them: the Etsy shop shows 2 reviews and four entries here claim Etsy,
+ * while eBay's 8 figure is a feedback score, not written reviews with titles.
+ * They are kept, unrendered, so nothing is lost — add `reviewUrl` to any you
+ * can point at on the live shop and it returns to the page immediately.
+ */
 export type Review = {
   id: string
   author: string
@@ -5,6 +25,8 @@ export type Review = {
   rating: number
   date: string
   verified: boolean
+  /** Live marketplace URL this review appears on. Required to render. */
+  reviewUrl?: string
   title: string
   content: string
   productName: string
@@ -84,3 +106,9 @@ export const REVIEWS: Review[] = [
     source: 'Etsy',
   },
 ]
+
+/**
+ * The only list the UI may render. A review reaches the page by carrying a
+ * `reviewUrl` that a visitor could click to check it — nothing else counts.
+ */
+export const PUBLISHABLE_REVIEWS: readonly Review[] = REVIEWS.filter((r) => Boolean(r.reviewUrl))

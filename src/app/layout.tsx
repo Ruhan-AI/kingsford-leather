@@ -19,9 +19,17 @@ const cinzel = Cinzel({
   display: 'swap',
 })
 
+/**
+ * UI and editorial sans. Italic is loaded deliberately: the hero headline sets
+ * a light weight against a bold italic, and without a real italic cut the
+ * browser synthesises an oblique by shearing the glyphs — which looks wrong at
+ * display size, exactly where the contrast is supposed to carry the design.
+ */
 const archivo = Archivo({
   subsets: ['latin'],
   variable: '--font-display',
+  weight: ['300', '400', '500', '600', '700', '800'],
+  style: ['normal', 'italic'],
   display: 'swap',
 })
 
@@ -118,6 +126,16 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon.png', type: 'image/png' },
+      { url: '/images/kingsford-crest.png', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
 }
 
 export default function RootLayout({
@@ -164,7 +182,7 @@ export default function RootLayout({
     url: SITE.url,
     potentialAction: {
       '@type': 'SearchAction',
-      target: `${SITE.url}/#collection?q={search_term_string}`,
+      target: `${SITE.url}/shop?q={search_term_string}`,
       'query-input': 'required name=search_term_string',
     },
   }
@@ -184,7 +202,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
-      <body className="min-h-screen bg-[#14191c] text-[#deded8] font-body antialiased flex flex-col justify-between selection:bg-[#b8733e] selection:text-white">
+      <body className="min-h-screen bg-night text-bone font-body antialiased flex flex-col justify-between selection:bg-saddle selection:text-white">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
