@@ -3,6 +3,8 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { ChevronDown, ArrowUpRight } from 'lucide-react'
+import { Crest } from '@/components/brand/Crest'
+import { Wordmark } from '@/components/brand/Wordmark'
 import { Drawer } from '@/components/ui/Drawer'
 import { CATEGORIES } from '@/lib/products'
 import { SITE } from '@/lib/site'
@@ -17,9 +19,14 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
   const [guidesOpen, setGuidesOpen] = useState(false)
 
   return (
-    <Drawer isOpen={isOpen} onClose={onClose} title="Kingsford Leather" position="right">
-      <div className="flex flex-col justify-between h-full space-y-8">
+    <Drawer isOpen={isOpen} onClose={onClose} position="right">
+      <div className="flex flex-col justify-between h-full space-y-6">
         <nav aria-label="Mobile Navigation" className="space-y-6">
+          <div className="flex items-center gap-3 pb-4 border-b border-[#ded7ce]">
+            <Crest size={34} />
+            <Wordmark size="sm" tone="onLight" />
+          </div>
+
           <div className="space-y-4 font-serif text-xl border-b border-[#ded7ce] pb-6">
             <Link
               href="/shop"

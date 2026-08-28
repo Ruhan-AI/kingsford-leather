@@ -2,9 +2,10 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { Search, Menu, ChevronDown, ArrowUpRight } from 'lucide-react'
 import { clsx } from 'clsx'
+import { Crest } from '@/components/brand/Crest'
+import { Wordmark } from '@/components/brand/Wordmark'
 import { ShopMegaMenu } from './ShopMegaMenu'
 import { MobileNav } from './MobileNav'
 import { SearchOverlay } from './SearchOverlay'
@@ -67,28 +68,17 @@ export function SiteHeader() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Brand Logo & Wordmark */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center">
             <Link
               href="/"
-              className="flex items-center gap-3 text-[#1c1a17] hover:opacity-90 transition-opacity focus-ring"
+              className="flex items-center gap-2.5 sm:gap-3 group select-none hover:opacity-90 transition-opacity focus-ring"
+              aria-label="Kingsford Leather Home"
             >
-              <div className="relative w-8 h-8 sm:w-9 sm:h-9 shrink-0">
-                <Image
-                  src="/images/kingsford-crest.png"
-                  alt="Kingsford Crest"
-                  fill
-                  priority
-                  className="object-contain"
-                />
-              </div>
-              <div className="flex flex-col">
-                <span className="font-serif text-lg sm:text-xl tracking-tight leading-none text-[#1c1a17] font-medium uppercase">
-                  Kingsford
-                </span>
-                <span className="text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-[#706a62] font-semibold leading-tight mt-0.5">
-                  Leather
-                </span>
-              </div>
+              <Crest
+                size={isScrolled ? 34 : 40}
+                className="shrink-0 transition-transform duration-200 group-hover:scale-105"
+              />
+              <Wordmark size="sm" tone="onLight" />
             </Link>
           </div>
 

@@ -5,12 +5,9 @@ import { Crest } from './Crest'
  * The Kingsford Leather wordmark.
  *
  * KINGSFORD set in the brand face (Cinzel — Trajan-style Roman capitals), with
- * LEATHER letterspaced beneath it in antique gold, flanked by rules. This is
- * the lockup exactly as it appears on the shop's stock and on the watermark
- * carried by every product photograph, so the site and the listings match.
- *
- * It is live text rather than an image: it stays crisp at any size, reflows on
- * small screens, and is readable by search engines and screen readers.
+ * LEATHER letterspaced beneath it in antique gold/leather tone, flanked by rules.
+ * This is the lockup exactly as it appears on the brand's master insignia and
+ * watermarks across all product listings.
  */
 
 const SIZES = {
@@ -21,7 +18,7 @@ const SIZES = {
 
 export function Wordmark({
   size = 'md',
-  tone = 'onDark',
+  tone = 'onLight',
   className = '',
 }: {
   size?: keyof typeof SIZES
@@ -29,21 +26,27 @@ export function Wordmark({
   className?: string
 }) {
   const s = SIZES[size]
-  const wordColor = tone === 'onDark' ? 'text-[#deded8]' : 'text-[#12100f]'
+  const wordColor = tone === 'onDark' ? 'text-[#deded8]' : 'text-[#1c1a17]'
+  const goldColor = tone === 'onDark' ? 'text-[#c08a3e]' : 'text-[#8b5a35]'
+  const ruleBg = tone === 'onDark' ? 'bg-[#c08a3e]' : 'bg-[#8b5a35]'
 
   return (
-    <span className={`inline-flex flex-col items-center leading-none ${className}`}>
+    <span className={`inline-flex flex-col items-center leading-none select-none ${className}`}>
       <span
-        className={`font-brand font-bold tracking-[0.06em] ${s.word} ${wordColor}`}
+        style={{ fontFamily: 'var(--font-brand, "Cinzel", Georgia, serif)' }}
+        className={`font-bold tracking-[0.08em] ${s.word} ${wordColor}`}
       >
         KINGSFORD
       </span>
       <span className={`flex items-center ${s.gap} mt-1`}>
-        <span className={`h-px ${s.rule} bg-[#c08a3e]`} aria-hidden="true" />
-        <span className={`font-brand tracking-[0.42em] indent-[0.42em] ${s.sub} text-[#c08a3e]`}>
+        <span className={`h-px ${s.rule} ${ruleBg}`} aria-hidden="true" />
+        <span
+          style={{ fontFamily: 'var(--font-brand, "Cinzel", Georgia, serif)' }}
+          className={`tracking-[0.42em] indent-[0.42em] font-semibold ${s.sub} ${goldColor}`}
+        >
           LEATHER
         </span>
-        <span className={`h-px ${s.rule} bg-[#c08a3e]`} aria-hidden="true" />
+        <span className={`h-px ${s.rule} ${ruleBg}`} aria-hidden="true" />
       </span>
     </span>
   )
@@ -55,9 +58,9 @@ export function Wordmark({
  * component.
  */
 export function BrandLockup({
-  crestSize = 46,
-  size = 'md',
-  tone = 'onDark',
+  crestSize = 42,
+  size = 'sm',
+  tone = 'onLight',
   className = '',
 }: {
   crestSize?: number
@@ -66,8 +69,8 @@ export function BrandLockup({
   className?: string
 }) {
   return (
-    <span className={`inline-flex items-center gap-3 ${className}`}>
-      <Crest size={crestSize} className="shrink-0" />
+    <span className={`inline-flex items-center gap-2.5 sm:gap-3 ${className}`}>
+      <Crest size={crestSize} className="shrink-0 transition-transform duration-200 group-hover:scale-105" />
       <Wordmark size={size} tone={tone} />
     </span>
   )

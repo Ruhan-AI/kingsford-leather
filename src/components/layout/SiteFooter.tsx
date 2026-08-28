@@ -1,7 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
+import { Crest } from '@/components/brand/Crest'
+import { Wordmark } from '@/components/brand/Wordmark'
 import { SITE, SHOP_STATS } from '@/lib/site'
 
 export function SiteFooter() {
@@ -13,18 +14,16 @@ export function SiteFooter() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-[#2c2925]">
           {/* Column 1: Brand Summary (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
-            <Link href="/" className="inline-flex items-center gap-3 text-white">
-              <div className="relative w-8 h-8 shrink-0">
-                <Image
-                  src="/images/kingsford-crest.png"
-                  alt="Kingsford Crest"
-                  fill
-                  className="object-contain brightness-200"
-                />
-              </div>
-              <span className="font-serif text-2xl tracking-tight uppercase font-medium">
-                Kingsford Leather
-              </span>
+            <Link
+              href="/"
+              className="inline-flex items-center gap-3.5 group select-none hover:opacity-95 transition-opacity"
+              aria-label="Kingsford Leather Home"
+            >
+              <Crest
+                size={44}
+                className="shrink-0 transition-transform duration-200 group-hover:scale-105"
+              />
+              <Wordmark size="sm" tone="onDark" />
             </Link>
             <p className="text-sm text-[#a7a39b] leading-relaxed max-w-sm font-sans">
               Handcrafted leather outerwear made to order. Direct from our workshop to Canadian and international riders, collectors, and enthusiasts.

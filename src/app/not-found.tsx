@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
+import { Crest } from '@/components/brand/Crest'
 import { Container } from '@/components/ui/Container'
 import { Button } from '@/components/ui/Button'
 
@@ -9,13 +9,8 @@ export default function NotFound() {
   return (
     <div className="bg-white py-20 sm:py-32">
       <Container size="narrow" className="text-center space-y-6">
-        <div className="relative w-12 h-12 mx-auto">
-          <Image
-            src="/images/kingsford-crest.png"
-            alt="Kingsford Crest"
-            fill
-            className="object-contain"
-          />
+        <div className="flex justify-center">
+          <Crest size={56} />
         </div>
 
         <div className="space-y-3">

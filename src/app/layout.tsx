@@ -1,10 +1,17 @@
 import type { Metadata, Viewport } from 'next'
-import { Cormorant_Garamond, Manrope } from 'next/font/google'
+import { Cormorant_Garamond, Manrope, Cinzel } from 'next/font/google'
 import './globals.css'
 import { SiteHeader } from '@/components/layout/SiteHeader'
 import { SiteFooter } from '@/components/layout/SiteFooter'
 import { AnnouncementBar } from '@/components/layout/AnnouncementBar'
 import { SITE, SHOP_STATS } from '@/lib/site'
+
+const cinzel = Cinzel({
+  subsets: ['latin'],
+  variable: '--font-brand',
+  weight: ['400', '500', '600', '700', '900'],
+  display: 'swap',
+})
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -163,7 +170,8 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${manrope.variable}`}
+      className={`${cormorant.variable} ${manrope.variable} ${cinzel.variable}`}
+      suppressHydrationWarning
     >
       <head>
         <script
@@ -175,7 +183,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
-      <body className="min-h-screen bg-white text-[#2c2925] font-body antialiased flex flex-col justify-between selection:bg-[#8b5a35] selection:text-white">
+      <body
+        className="min-h-screen bg-white text-[#2c2925] font-body antialiased flex flex-col justify-between selection:bg-[#8b5a35] selection:text-white"
+        suppressHydrationWarning
+      >
         <AnnouncementBar />
         <SiteHeader />
         <main className="flex-1">{children}</main>
