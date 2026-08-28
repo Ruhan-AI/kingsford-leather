@@ -128,7 +128,7 @@ export default async function ProductDetailPage({ params }: Props) {
   }
 
   return (
-    <div className="bg-white py-8 sm:py-12">
+    <div className="bg-white py-5 sm:py-8">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
@@ -140,7 +140,7 @@ export default async function ProductDetailPage({ params }: Props) {
 
       <Container size="wide">
         {/* Breadcrumb Navigation */}
-        <div className="mb-8">
+        <div className="mb-4">
           <Breadcrumbs
             items={[
               { label: 'Shop', href: '/shop' },
@@ -151,7 +151,7 @@ export default async function ProductDetailPage({ params }: Props) {
         </div>
 
         {/* 2-Column Product Showcase (58% / 42% split) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start pb-16 border-b border-[#ded7ce]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start pb-10 border-b border-[#ded7ce]">
           {/* Left Column: Gallery (7 cols on lg / ~58%) */}
           <div className="lg:col-span-7 lg:sticky lg:top-24">
             <ProductGallery
@@ -168,7 +168,7 @@ export default async function ProductDetailPage({ params }: Props) {
 
         {/* Related Products */}
         {relatedProducts.length > 0 && (
-          <div className="pt-16 space-y-8">
+          <div className="pt-10 space-y-6">
             <div className="flex items-center justify-between">
               <div>
                 <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#8b5a35] block">

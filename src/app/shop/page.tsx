@@ -31,19 +31,19 @@ export default function ShopPage() {
   }
 
   return (
-    <div className="bg-white py-8 sm:py-12">
+    <div className="bg-white py-5 sm:py-8">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
       />
       <Container size="wide">
         {/* Header & Breadcrumbs */}
-        <div className="mb-8">
-          <Breadcrumbs items={[{ label: 'Shop All Pieces' }]} className="mb-4" />
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#1c1a17] font-normal tracking-tight">
+        <div className="mb-5">
+          <Breadcrumbs items={[{ label: 'Shop All Pieces' }]} className="mb-2.5" />
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif text-[#1c1a17] font-normal tracking-tight">
             The Complete Outerwear Catalogue
           </h1>
-          <p className="text-sm sm:text-base text-[#706a62] mt-2 max-w-2xl font-sans">
+          <p className="text-xs sm:text-sm text-[#706a62] mt-1.5 max-w-2xl font-sans">
             Every piece is cut and stitched to order from hand-selected cowhides, sheepskins, and genuine suedes. Browse our complete 49-piece collection below.
           </p>
         </div>

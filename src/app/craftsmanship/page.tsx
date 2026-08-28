@@ -50,26 +50,26 @@ export default function CraftsmanshipPage() {
   ]
 
   return (
-    <div className="bg-white py-8 sm:py-16">
+    <div className="bg-white py-6 sm:py-10">
       <Container size="narrow">
         {/* Breadcrumb */}
-        <Breadcrumbs items={[{ label: 'Craftsmanship' }]} className="mb-6" />
+        <Breadcrumbs items={[{ label: 'Craftsmanship' }]} className="mb-4" />
 
         {/* Hero Header */}
-        <div className="space-y-4 mb-12">
+        <div className="space-y-3 mb-8">
           <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#8b5a35] block">
             Artisan Bench Standards
           </span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#1c1a17] font-normal tracking-tight leading-[1.15]">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif text-[#1c1a17] font-normal tracking-tight leading-[1.15]">
             The Architecture of a Kingsford Jacket
           </h1>
-          <p className="text-base sm:text-lg text-[#706a62] leading-relaxed font-sans">
+          <p className="text-sm sm:text-base text-[#706a62] leading-relaxed font-sans">
             Every seam, hide selection, and brass rivet is engineered to endure decades of hard riding, travel, and cold climates.
           </p>
         </div>
 
         {/* 6 Step Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8">
           {steps.map((s) => (
             <div
               key={s.num}

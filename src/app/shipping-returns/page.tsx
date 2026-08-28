@@ -18,26 +18,26 @@ export const metadata: Metadata = {
 
 export default function ShippingReturnsPage() {
   return (
-    <div className="bg-white py-8 sm:py-16">
+    <div className="bg-white py-6 sm:py-10">
       <Container size="narrow">
         {/* Breadcrumb */}
-        <Breadcrumbs items={[{ label: 'Shipping & Returns' }]} className="mb-6" />
+        <Breadcrumbs items={[{ label: 'Shipping & Returns' }]} className="mb-4" />
 
         {/* Hero Header */}
-        <div className="space-y-4 mb-12">
+        <div className="space-y-3 mb-8">
           <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#8b5a35] block">
-            Policies & Dispatch
+            Policies &amp; Dispatch
           </span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#1c1a17] font-normal tracking-tight leading-[1.15]">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif text-[#1c1a17] font-normal tracking-tight leading-[1.15]">
             Shipping, Delivery &amp; Returns
           </h1>
-          <p className="text-base sm:text-lg text-[#706a62] leading-relaxed font-sans">
+          <p className="text-sm sm:text-base text-[#706a62] leading-relaxed font-sans">
             Everything you need to know about our made-to-order production schedules, tracked express couriers, and marketplace purchase protection.
           </p>
         </div>
 
         {/* Timelines Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8">
           <div className="bg-[#f8f6f2] border border-[#ded7ce] rounded-[4px] p-6 sm:p-8 space-y-4">
             <div className="flex items-center gap-3">
               <Clock className="w-5 h-5 text-[#8b5a35]" />

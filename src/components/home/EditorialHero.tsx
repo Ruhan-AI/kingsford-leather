@@ -10,45 +10,37 @@ import { SITE, SHOP_STATS } from '@/lib/site'
 
 export function EditorialHero() {
   return (
-    <section className="relative bg-white pt-6 pb-16 sm:pt-12 sm:pb-24 border-b border-[#ded7ce]">
+    <section className="relative bg-white pt-4 pb-8 sm:pt-6 sm:pb-12 border-b border-[#ded7ce]">
       <Container size="wide">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Left Column: Brand Story & Conversion Path (7 cols on lg) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
+          {/* Left Column: Brand Story & Conversion Path (5 cols on lg) */}
           <div className="lg:col-span-6 xl:col-span-5 flex flex-col justify-center">
             <Reveal delay={0.1}>
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#f8f6f2] border border-[#ded7ce] rounded-full text-xs text-[#8b5a35] font-semibold uppercase tracking-[0.14em] mb-6">
-                <span>Handmade Leather Outerwear</span>
-                <span className="w-1 h-1 rounded-full bg-[#8b5a35]" />
-                <span>Made to Order</span>
-              </div>
-            </Reveal>
-
-            <Reveal delay={0.2}>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif text-[#1c1a17] tracking-tight leading-[1.08] text-balance mb-6 font-normal">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-serif text-[#1c1a17] tracking-tight leading-[1.1] text-balance mb-3.5 font-normal">
                 Leather with character. Made for the years ahead.
               </h1>
             </Reveal>
 
-            <Reveal delay={0.3}>
-              <p className="text-base sm:text-lg text-[#706a62] leading-relaxed max-w-xl mb-8 font-sans">
+            <Reveal delay={0.2}>
+              <p className="text-sm sm:text-base text-[#706a62] leading-relaxed max-w-xl mb-5 font-sans">
                 Explore 49 handcrafted leather jackets, coats, and suede bombers. Tailored to standard or custom measurements, and purchased securely through our verified Etsy and eBay shops.
               </p>
             </Reveal>
 
-            <Reveal delay={0.4}>
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mb-8">
-                <Button href="/shop" variant="primary" size="lg" className="w-full sm:w-auto">
+            <Reveal delay={0.3}>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-5">
+                <Button href="/shop" variant="primary" size="md" className="w-full sm:w-auto">
                   <span>Explore the Collection</span>
                   <ArrowRight className="w-4 h-4" />
                 </Button>
-                <Button href="/craftsmanship" variant="secondary" size="lg" className="w-full sm:w-auto">
+                <Button href="/craftsmanship" variant="secondary" size="md" className="w-full sm:w-auto">
                   <span>Discover Our Craft</span>
                 </Button>
               </div>
             </Reveal>
 
-            <Reveal delay={0.5}>
-              <div className="pt-6 border-t border-[#ded7ce] flex items-center gap-4 text-xs text-[#706a62]">
+            <Reveal delay={0.4}>
+              <div className="pt-4 border-t border-[#ded7ce] flex items-center gap-3 text-xs text-[#706a62]">
                 <ShieldCheck className="w-4 h-4 text-[#8b5a35] shrink-0" />
                 <span>
                   Official Storefronts:{' '}
@@ -60,7 +52,7 @@ export function EditorialHero() {
                   >
                     Etsy ({SHOP_STATS.rating.toFixed(1)} ★)
                   </a>{' '}
-                  and{' '}
+                  &amp;{' '}
                   <a
                     href={SITE.ebayUrl}
                     target="_blank"
@@ -74,26 +66,23 @@ export function EditorialHero() {
             </Reveal>
           </div>
 
-          {/* Right Column: Hero Visual Artwork (5/7 cols on lg) */}
+          {/* Right Column: Hero Visual Frame (7 cols on lg) */}
           <div className="lg:col-span-6 xl:col-span-7">
-            <ImageReveal delay={0.2}>
-              <div className="relative aspect-[4/3] lg:aspect-[16/11] w-full rounded-[4px] overflow-hidden bg-[#efe9e1] border border-[#ded7ce] shadow-sm">
+            <ImageReveal>
+              <div className="relative aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9] lg:aspect-[16/10] w-full rounded-[4px] overflow-hidden bg-[#efe9e1] border border-[#ded7ce] shadow-xs">
                 <Image
                   src="/images/hero-workshop.jpg"
-                  alt="Kingsford Leather artisan workshop and genuine leather jacket on dress form"
+                  alt="Kingsford Leather Workshop & Bench Craft"
                   fill
                   priority
-                  sizes="(max-width: 1024px) 100vw, 720px"
+                  sizes="(max-width: 1024px) 100vw, 700px"
                   className="object-cover object-center"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-xs px-4 py-2.5 rounded-[4px] border border-[#ded7ce] flex items-center justify-between text-xs">
-                  <span className="font-serif text-[#1c1a17] font-medium">
-                    Genuine Leather & Suede Sourcing
-                  </span>
-                  <span className="text-[#8b5a35] font-semibold uppercase tracking-wider text-[10px]">
-                    49 Unique Cuts
-                  </span>
+
+                {/* Subtle bottom-left editorial caption badge */}
+                <div className="absolute bottom-3 left-3 bg-white/95 backdrop-blur-xs px-3 py-1.5 rounded-[2px] border border-[#ded7ce] text-[11px] font-medium text-[#1c1a17] shadow-xs flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#8b5a35]" />
+                  <span>Bench-cut in premium cowhides &amp; shearling</span>
                 </div>
               </div>
             </ImageReveal>

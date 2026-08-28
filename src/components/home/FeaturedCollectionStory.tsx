@@ -7,36 +7,39 @@ import { Container } from '@/components/ui/Container'
 
 export function FeaturedCollectionStory() {
   return (
-    <section className="bg-white py-16 sm:py-24 border-b border-[#ded7ce]">
+    <section className="bg-white py-10 sm:py-14 border-b border-[#ded7ce]">
       <Container size="wide">
-        <div className="relative rounded-[4px] overflow-hidden border border-[#ded7ce] bg-[#efe9e1]">
-          {/* Main Background Editorial Image */}
-          <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full min-h-[360px]">
-            <Image
-              src="/images/catalogue/bb5f20eb9776.jpg"
-              alt="Kingsford Leather artisan trench coat and outerwear tailoring"
-              fill
-              sizes="(max-width: 1440px) 100vw, 1440px"
-              className="object-cover object-center"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/20" />
-          </div>
+        <div className="relative bg-[#1c1a17] text-[#efe9e1] rounded-[4px] overflow-hidden border border-[#2c2925] p-6 sm:p-10 lg:p-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+            <div className="lg:col-span-7 space-y-3.5">
+              <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#c9a378] block">
+                Featured Silhouette Edit
+              </span>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-normal text-white tracking-tight">
+                The Heritage Suede Bomber Series
+              </h2>
+              <p className="text-xs sm:text-sm text-[#a7a39b] leading-relaxed max-w-xl font-sans">
+                Cut from heavy velvety split suedes and paired with genuine detachable shearling collars and antiqued heavy brass zippers. An essential balance of warmth, texture, and relaxed structure.
+              </p>
+              <div className="pt-2 flex items-center gap-3">
+                <Button href="/collections/bomber" variant="primary" size="md">
+                  <span>Explore Bombers</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              </div>
+            </div>
 
-          {/* Overlapping White Editorial Story Card */}
-          <div className="relative sm:absolute sm:bottom-8 sm:left-8 bg-white p-6 sm:p-8 rounded-[4px] border border-[#ded7ce] shadow-lg max-w-md m-4 sm:m-0">
-            <span className="block text-xs font-semibold uppercase tracking-[0.14em] text-[#8b5a35] mb-2">
-              Featured Edition
-            </span>
-            <h3 className="text-2xl sm:text-3xl font-serif text-[#1c1a17] font-normal leading-tight mb-3">
-              The Heritage Duster & Trench
-            </h3>
-            <p className="text-xs sm:text-sm text-[#706a62] leading-relaxed mb-6 font-sans">
-              Cut from heavyweight full-grain cowhides with authentic double-breasted closures, storm flaps, and durable satin lining for timeless winter warmth.
-            </p>
-            <Button href="/collections/coats" variant="primary" size="md">
-              <span>Shop the Collection</span>
-              <ArrowRight className="w-4 h-4" />
-            </Button>
+            <div className="lg:col-span-5">
+              <div className="relative aspect-[4/3] w-full rounded-[2px] overflow-hidden border border-[#3f3b35]">
+                <Image
+                  src="/images/catalogue/3da6124d3698.jpg"
+                  alt="Men's Tan Suede Bomber Jacket with Shearling Collar"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 450px"
+                  className="object-cover object-top"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </Container>

@@ -50,26 +50,26 @@ export default function SizeGuidePage() {
   ]
 
   return (
-    <div className="bg-white py-8 sm:py-16">
+    <div className="bg-white py-6 sm:py-10">
       <Container size="narrow">
         {/* Breadcrumb */}
-        <Breadcrumbs items={[{ label: 'Size & Fit Guide' }]} className="mb-6" />
+        <Breadcrumbs items={[{ label: 'Size & Fit Guide' }]} className="mb-4" />
 
         {/* Header */}
-        <div className="space-y-4 mb-12">
+        <div className="space-y-3 mb-8">
           <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#8b5a35] block">
-            Fit & Measurement Guidance
+            Fit &amp; Measurement Guidance
           </span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#1c1a17] font-normal tracking-tight leading-[1.15]">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif text-[#1c1a17] font-normal tracking-tight leading-[1.15]">
             How To Choose Your Perfect Fit
           </h1>
-          <p className="text-base sm:text-lg text-[#706a62] leading-relaxed font-sans">
+          <p className="text-sm sm:text-base text-[#706a62] leading-relaxed font-sans">
             Every Kingsford piece is available in standard sizes (XS to 3XL) or crafted specifically to your bespoke body numbers.
           </p>
         </div>
 
         {/* Size Chart Table */}
-        <div className="space-y-4 mb-12">
+        <div className="space-y-3 mb-8">
           <div className="flex items-center justify-between">
             <h2 className="text-2xl font-serif font-medium text-[#1c1a17]">
               Standard Outerwear Sizing Chart

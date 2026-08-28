@@ -56,26 +56,26 @@ export default function CareGuidePage() {
   ]
 
   return (
-    <div className="bg-white py-8 sm:py-16">
+    <div className="bg-white py-6 sm:py-10">
       <Container size="narrow">
         {/* Breadcrumb */}
-        <Breadcrumbs items={[{ label: 'Care Guide' }]} className="mb-6" />
+        <Breadcrumbs items={[{ label: 'Care Guide' }]} className="mb-4" />
 
         {/* Header */}
-        <div className="space-y-4 mb-12">
+        <div className="space-y-3 mb-8">
           <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#8b5a35] block">
-            Preservation & Maintenance
+            Preservation &amp; Maintenance
           </span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#1c1a17] font-normal tracking-tight leading-[1.15]">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif text-[#1c1a17] font-normal tracking-tight leading-[1.15]">
             How to Care for Your Leather Outerwear
           </h1>
-          <p className="text-base sm:text-lg text-[#706a62] leading-relaxed font-sans">
+          <p className="text-sm sm:text-base text-[#706a62] leading-relaxed font-sans">
             Genuine leather is a living material that develops a rich, individual patina with age. Follow these workshop guidelines to keep your jacket supple for decades.
           </p>
         </div>
 
         {/* Care Sections Grid */}
-        <div className="space-y-6 mb-12">
+        <div className="space-y-4 mb-8">
           {careSections.map((section, idx) => (
             <div
               key={idx}

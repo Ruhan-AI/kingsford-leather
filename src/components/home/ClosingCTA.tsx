@@ -1,53 +1,36 @@
 import React from 'react'
+import Link from 'next/link'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
-import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
-import { SITE, SHOP_STATS } from '@/lib/site'
+import { Button } from '@/components/ui/Button'
+import { SITE } from '@/lib/site'
 
 export function ClosingCTA() {
   return (
-    <section className="bg-[#f8f6f2] py-20 sm:py-28 border-b border-[#ded7ce] text-center">
+    <section className="bg-white py-10 sm:py-14">
       <Container size="narrow">
-        <span className="block text-xs font-semibold uppercase tracking-[0.14em] text-[#8b5a35] mb-3">
-          Kingsford Leather
-        </span>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#1c1a17] font-normal tracking-tight leading-[1.15] mb-6">
-          Find the piece that becomes part of your story.
-        </h2>
-        <p className="text-base text-[#706a62] leading-relaxed max-w-xl mx-auto mb-10 font-sans">
-          Browse the complete 49-piece catalogue of biker, cafe racer, bomber, shearling, and tailored coats. Custom sizing available on all made-to-order listings.
-        </p>
+        <div className="bg-[#f8f6f2] border border-[#ded7ce] rounded-[4px] p-6 sm:p-10 text-center space-y-4 shadow-xs">
+          <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#8b5a35] block">
+            Direct Bench Craft
+          </span>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-          <Button href="/shop" variant="primary" size="lg" className="w-full sm:w-auto">
-            <span>Shop All 49 Pieces</span>
-            <ArrowRight className="w-4 h-4" />
-          </Button>
-          <Button href="/craftsmanship" variant="secondary" size="lg" className="w-full sm:w-auto">
-            <span>Read Craft Story</span>
-          </Button>
-        </div>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-[#1c1a17] font-normal tracking-tight max-w-xl mx-auto leading-tight">
+            Find the jacket that will stay with you for decades.
+          </h2>
 
-        <div className="pt-6 border-t border-[#ded7ce] max-w-md mx-auto flex items-center justify-center gap-6 text-xs text-[#706a62]">
-          <a
-            href={SITE.etsyUrl}
-            target="_blank"
-            rel="noopener noreferrer sponsored nofollow"
-            className="font-medium text-[#1c1a17] hover:text-[#8b5a35] inline-flex items-center gap-1 focus-ring"
-          >
-            <span>Etsy Shop ({SHOP_STATS.rating.toFixed(1)} ★)</span>
-            <ArrowUpRight className="w-3 h-3" />
-          </a>
-          <span>•</span>
-          <a
-            href={SITE.ebayUrl}
-            target="_blank"
-            rel="noopener noreferrer sponsored nofollow"
-            className="font-medium text-[#1c1a17] hover:text-[#8b5a35] inline-flex items-center gap-1 focus-ring"
-          >
-            <span>eBay Shop ({SHOP_STATS.ebayPositivePercent}%)</span>
-            <ArrowUpRight className="w-3 h-3" />
-          </a>
+          <p className="text-xs sm:text-sm text-[#706a62] max-w-md mx-auto leading-relaxed font-sans">
+            Explore 49 handcrafted styles in standard XS–3XL or custom made-to-measure sizing. Safe, protected checkouts on Etsy and eBay.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+            <Button href="/shop" variant="primary" size="md">
+              <span>Explore All 49 Pieces</span>
+              <ArrowRight className="w-4 h-4" />
+            </Button>
+            <Button href="/size-guide" variant="secondary" size="md">
+              <span>Size &amp; Fit Guide</span>
+            </Button>
+          </div>
         </div>
       </Container>
     </section>

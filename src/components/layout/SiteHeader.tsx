@@ -61,8 +61,8 @@ export function SiteHeader() {
         className={clsx(
           'sticky top-0 z-40 bg-white transition-all duration-200',
           {
-            'shadow-xs border-b border-[#ded7ce] py-3': isScrolled,
-            'border-b border-[#ded7ce]/60 py-4 sm:py-5': !isScrolled,
+            'shadow-xs border-b border-[#ded7ce] py-2': isScrolled,
+            'border-b border-[#ded7ce]/60 py-3 sm:py-3.5': !isScrolled,
           }
         )}
       >

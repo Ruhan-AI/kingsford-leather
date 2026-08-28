@@ -1,99 +1,84 @@
 import React from 'react'
-import { Star, ArrowUpRight, CheckCircle2 } from 'lucide-react'
+import { Star, ArrowUpRight } from 'lucide-react'
 import { Container } from '@/components/ui/Container'
 import { SectionHeading } from '@/components/ui/SectionHeading'
+import { REVIEWS } from '@/lib/data/reviews'
 import { SITE, SHOP_STATS } from '@/lib/site'
 
 export function VerifiedReviews() {
-  const verifiedQuotes = [
-    {
-      author: 'Mark T.',
-      location: 'Calgary, AB',
-      source: 'Etsy Verified Buyer',
-      rating: 5,
-      date: 'August 2026',
-      product: 'Tan Suede Bomber Jacket',
-      quote:
-        'The jacket fits like a second skin. Quality of stitching and the custom measurements were spot on. Truly bespoke work straight from the workshop bench.',
-    },
-    {
-      author: 'David R.',
-      location: 'Vancouver, BC',
-      source: 'Etsy Verified Buyer',
-      rating: 5,
-      date: 'July 2026',
-      product: 'Distressed Brown Cafe Racer',
-      quote:
-        'Incredible craftsmanship for this price point. Genuine leather hide, solid brass YKK zippers, and clean edge stitching with great natural drape.',
-    },
-    {
-      author: 'eBay Buyer',
-      location: 'Canada',
-      source: 'eBay Verified Purchase',
-      rating: 5,
-      date: 'July 2026',
-      product: 'Handmade Leather Outerwear',
-      quote:
-        'Fast tracked delivery across Canada. The leather weight and hand-feel exceeded expectations. Excellent communication on sizing throughout.',
-    },
-  ]
+  const featuredReviews = REVIEWS.slice(0, 4)
 
   return (
-    <section className="bg-white py-16 sm:py-24 border-b border-[#ded7ce]">
+    <section className="bg-white py-10 sm:py-14 border-b border-[#ded7ce]">
       <Container size="wide">
-        <SectionHeading
-          eyebrow="Marketplace Verification"
-          title="Field Notes & Buyer Feedback"
-          description={`Real ratings from our active marketplace storefronts. Rated ${SHOP_STATS.rating.toFixed(1)}/5.0 on Etsy and ${SHOP_STATS.ebayPositivePercent}% positive on eBay.`}
-        />
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 sm:mb-8">
+          <div>
+            <span className="block text-xs font-semibold uppercase tracking-[0.14em] text-[#8b5a35] mb-1">
+              Customer Experiences
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-[#1c1a17] font-normal tracking-tight">
+              Verified Marketplace Reviews
+            </h2>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
-          {verifiedQuotes.map((item, idx) => (
+          <div className="mt-3 md:mt-0 flex items-center gap-4 text-xs text-[#706a62]">
+            <div className="flex items-center gap-1.5">
+              <div className="flex text-[#8b5a35]">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-3.5 h-3.5 fill-current" />
+                ))}
+              </div>
+              <span className="font-semibold text-[#1c1a17]">
+                {SHOP_STATS.rating.toFixed(1)} / 5.0
+              </span>
+            </div>
+            <span>•</span>
+            <span>{SHOP_STATS.reviewCount}+ Global Ratings</span>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          {featuredReviews.map((review) => (
             <div
-              key={idx}
-              className="bg-[#f8f6f2] p-6 sm:p-7 rounded-[4px] border border-[#ded7ce] flex flex-col justify-between"
+              key={review.id}
+              className="bg-[#f8f6f2] border border-[#ded7ce] rounded-[4px] p-4 sm:p-5 flex flex-col justify-between space-y-3"
             >
-              <div className="space-y-4">
+              <div className="space-y-2.5">
                 <div className="flex items-center justify-between">
                   <div className="flex text-[#8b5a35]">
-                    {[...Array(item.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-current" />
+                    {[...Array(review.rating)].map((_, i) => (
+                      <Star key={i} className="w-3 h-3 fill-current" />
                     ))}
                   </div>
-                  <span className="text-[11px] font-semibold text-[#8b5a35] flex items-center gap-1">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
-                    <span>{item.source}</span>
+                  <span className="text-[10px] text-[#706a62] uppercase font-semibold">
+                    via {review.source}
                   </span>
                 </div>
 
-                <blockquote className="text-sm text-[#2c2925] leading-relaxed font-serif italic">
-                  &ldquo;{item.quote}&rdquo;
-                </blockquote>
+                <p className="text-xs text-[#2c2925] leading-relaxed font-sans italic">
+                  &ldquo;{review.content}&rdquo;
+                </p>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-[#ded7ce] flex items-center justify-between text-xs text-[#706a62]">
-                <div>
-                  <span className="font-semibold text-[#1c1a17] block">{item.author}</span>
-                  <span>{item.location}</span>
-                </div>
-                <span className="text-[11px] text-[#8b5a35] font-medium max-w-[120px] text-right truncate">
-                  {item.product}
+              <div className="pt-2.5 border-t border-[#ded7ce]/70 flex items-center justify-between text-[11px]">
+                <span className="font-serif font-medium text-[#1c1a17]">
+                  {review.author}
                 </span>
+                <span className="text-[#706a62]">{review.location}</span>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="mt-10 text-center">
+        <div className="mt-8 text-center">
           <a
-            href={SITE.etsyReviewsUrl}
+            href={SITE.etsyUrl}
             target="_blank"
             rel="noopener noreferrer sponsored nofollow"
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#8b5a35] hover:text-[#5d3923] underline underline-offset-4 focus-ring"
+            className="inline-flex items-center gap-1 text-xs font-semibold text-[#8b5a35] hover:text-[#5d3923] underline"
           >
-            <span>Read all live reviews on Etsy</span>
+            <span>Read all verified customer reviews on Etsy</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
-            <span className="sr-only">(opens Etsy reviews in new tab)</span>
           </a>
         </div>
       </Container>

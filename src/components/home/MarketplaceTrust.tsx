@@ -1,112 +1,97 @@
 import React from 'react'
-import { ArrowUpRight, ShieldCheck, Truck, RefreshCw, Lock } from 'lucide-react'
+import { ShieldCheck, Star, Clock, RotateCcw, ArrowUpRight } from 'lucide-react'
 import { Container } from '@/components/ui/Container'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { SITE, SHOP_STATS } from '@/lib/site'
 
 export function MarketplaceTrust() {
+  const pillars = [
+    {
+      icon: ShieldCheck,
+      title: 'Marketplace Buyer Protection',
+      description:
+        'All purchases are protected by Etsy Purchase Protection and eBay Money Back Guarantee with secure escrow checkouts.',
+    },
+    {
+      icon: Star,
+      title: 'Verified Customer Reviews',
+      description: `${SHOP_STATS.rating.toFixed(1)} ★ on Etsy across ${SHOP_STATS.reviewCount}+ verified customer orders, with a ${SHOP_STATS.ebayPositivePercent}% positive feedback rating on eBay.`,
+    },
+    {
+      icon: Clock,
+      title: 'Fast Dispatch & Live Tracking',
+      description:
+        'Standard off-the-rack sizes dispatch in 3–5 days; custom made-to-measure orders ship in 10–14 days via tracked couriers.',
+    },
+    {
+      icon: RotateCcw,
+      title: '30-Day Returns & Exchanges',
+      description:
+        'Simple 30-day return policy on standard sizes. Free pattern adjustments and remake support for custom sizing inquiries.',
+    },
+  ]
+
   return (
-    <section className="bg-[#f8f6f2] py-16 sm:py-24 border-b border-[#ded7ce]">
+    <section className="bg-[#f8f6f2] py-10 sm:py-14 border-b border-[#ded7ce]">
       <Container size="wide">
         <SectionHeading
-          eyebrow="Marketplace Protection"
-          title="Safe, Protected Shopping on Etsy & eBay"
-          description="We use Etsy and eBay for all order processing, payment escrow, and dispatch tracking. You get full buyer protection, transparent reviews, and zero payment risk on an external store."
+          eyebrow="Purchasing Confidence"
+          title="Direct Maker Pricing, Complete Protection"
+          description="We operate exclusively through official verified shops on Etsy and eBay so you enjoy transparent ratings and guaranteed buyer security."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {/* Etsy Storefront Card */}
-          <div className="bg-white p-8 rounded-[4px] border border-[#ded7ce] shadow-xs flex flex-col justify-between">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between pb-4 border-b border-[#ded7ce]">
-                <div>
-                  <span className="text-xs font-semibold uppercase tracking-wider text-[#8b5a35]">
-                    Official Etsy Shop
-                  </span>
-                  <h3 className="text-2xl font-serif font-medium text-[#1c1a17]">
-                    KingsfordLeatherCA
-                  </h3>
-                </div>
-                <span className="text-sm font-semibold bg-[#f8f6f2] text-[#8b5a35] px-2.5 py-1 rounded-[2px] border border-[#ded7ce]">
-                  {SHOP_STATS.rating.toFixed(1)} ★ Rating
-                </span>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
+          {pillars.map((pillar, idx) => (
+            <div
+              key={idx}
+              className="bg-white border border-[#ded7ce] rounded-[4px] p-4 sm:p-5 space-y-2.5 shadow-xs"
+            >
+              <div className="w-8 h-8 rounded-[2px] bg-[#f8f6f2] text-[#8b5a35] flex items-center justify-center border border-[#ded7ce]">
+                <pillar.icon className="w-4 h-4" />
               </div>
-
-              <ul className="space-y-3 text-sm text-[#706a62] pt-2 font-sans">
-                <li className="flex items-start gap-2.5">
-                  <ShieldCheck className="w-4 h-4 text-[#8b5a35] shrink-0 mt-0.5" />
-                  <span><strong>Etsy Purchase Protection:</strong> Full refund if your piece doesn&apos;t arrive or isn&apos;t as described.</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <Truck className="w-4 h-4 text-[#8b5a35] shrink-0 mt-0.5" />
-                  <span><strong>Free Delivery on Etsy:</strong> Express courier dispatch included across Canadian & global listings.</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <Lock className="w-4 h-4 text-[#8b5a35] shrink-0 mt-0.5" />
-                  <span><strong>Encrypted Checkout:</strong> Apple Pay, Google Pay, PayPal, and all major credit cards.</span>
-                </li>
-              </ul>
+              <h3 className="font-serif font-medium text-base text-[#1c1a17]">
+                {pillar.title}
+              </h3>
+              <p className="text-xs text-[#706a62] leading-relaxed font-sans">
+                {pillar.description}
+              </p>
             </div>
+          ))}
+        </div>
 
-            <div className="mt-8 pt-6 border-t border-[#ded7ce]">
-              <a
-                href={SITE.etsyUrl}
-                target="_blank"
-                rel="noopener noreferrer sponsored nofollow"
-                className="flex items-center justify-center gap-2 w-full py-3.5 bg-[#8b5a35] hover:bg-[#5d3923] text-white rounded-[4px] font-medium text-sm transition-colors focus-ring"
-              >
-                <span>Visit Kingsford on Etsy</span>
-                <ArrowUpRight className="w-4 h-4" />
-                <span className="sr-only">(opens in a new tab)</span>
-              </a>
+        {/* Verified Storefront Links Bar */}
+        <div className="bg-white border border-[#ded7ce] rounded-[4px] p-5 sm:p-6 flex flex-col md:flex-row items-center justify-between gap-4 shadow-xs">
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 sm:gap-6 text-xs text-[#706a62]">
+            <div className="flex items-center gap-2">
+              <span className="font-semibold text-[#1c1a17]">Etsy Shop:</span>
+              <span>KingsfordLeatherCA ({SHOP_STATS.rating.toFixed(1)} ★)</span>
+            </div>
+            <span className="hidden sm:inline text-[#ded7ce]">|</span>
+            <div className="flex items-center gap-2">
+              <span className="font-semibold text-[#1c1a17]">eBay Store:</span>
+              <span>kingsfordleather ({SHOP_STATS.ebayPositivePercent}% Positive)</span>
             </div>
           </div>
 
-          {/* eBay Storefront Card */}
-          <div className="bg-white p-8 rounded-[4px] border border-[#ded7ce] shadow-xs flex flex-col justify-between">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between pb-4 border-b border-[#ded7ce]">
-                <div>
-                  <span className="text-xs font-semibold uppercase tracking-wider text-[#8b5a35]">
-                    Official eBay Shop
-                  </span>
-                  <h3 className="text-2xl font-serif font-medium text-[#1c1a17]">
-                    kingsfordleather
-                  </h3>
-                </div>
-                <span className="text-sm font-semibold bg-[#f8f6f2] text-[#1c1a17] px-2.5 py-1 rounded-[2px] border border-[#ded7ce]">
-                  {SHOP_STATS.ebayPositivePercent}% Positive
-                </span>
-              </div>
-
-              <ul className="space-y-3 text-sm text-[#706a62] pt-2 font-sans">
-                <li className="flex items-start gap-2.5">
-                  <ShieldCheck className="w-4 h-4 text-[#8b5a35] shrink-0 mt-0.5" />
-                  <span><strong>eBay Money Back Guarantee:</strong> Get the item you ordered or your money back.</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <Truck className="w-4 h-4 text-[#8b5a35] shrink-0 mt-0.5" />
-                  <span><strong>Tracked Express Delivery:</strong> Full international tracking from dispatch to doorstep.</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <RefreshCw className="w-4 h-4 text-[#8b5a35] shrink-0 mt-0.5" />
-                  <span><strong>Direct Seller Messaging:</strong> Send custom sizing requests directly through eBay messages.</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="mt-8 pt-6 border-t border-[#ded7ce]">
-              <a
-                href={SITE.ebayUrl}
-                target="_blank"
-                rel="noopener noreferrer sponsored nofollow"
-                className="flex items-center justify-center gap-2 w-full py-3.5 bg-[#1c1a17] hover:bg-[#2c2925] text-white rounded-[4px] font-medium text-sm transition-colors focus-ring"
-              >
-                <span>Visit Kingsford on eBay</span>
-                <ArrowUpRight className="w-4 h-4" />
-                <span className="sr-only">(opens in a new tab)</span>
-              </a>
-            </div>
+          <div className="flex items-center gap-2.5 shrink-0">
+            <a
+              href={SITE.etsyUrl}
+              target="_blank"
+              rel="noopener noreferrer sponsored nofollow"
+              className="px-3.5 py-2 bg-[#8b5a35] hover:bg-[#5d3923] text-white text-xs font-semibold rounded-[2px] transition-colors flex items-center gap-1 focus-ring"
+            >
+              <span>Visit Etsy Store</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
+            <a
+              href={SITE.ebayUrl}
+              target="_blank"
+              rel="noopener noreferrer sponsored nofollow"
+              className="px-3.5 py-2 bg-[#f8f6f2] hover:bg-[#efe9e1] text-[#1c1a17] text-xs font-semibold rounded-[2px] border border-[#ded7ce] transition-colors flex items-center gap-1 focus-ring"
+            >
+              <span>Visit eBay Store</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
           </div>
         </div>
       </Container>

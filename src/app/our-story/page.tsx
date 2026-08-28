@@ -19,26 +19,26 @@ export const metadata: Metadata = {
 
 export default function OurStoryPage() {
   return (
-    <div className="bg-white py-8 sm:py-16">
+    <div className="bg-white py-6 sm:py-10">
       <Container size="narrow">
         {/* Breadcrumb */}
-        <Breadcrumbs items={[{ label: 'Our Story' }]} className="mb-6" />
+        <Breadcrumbs items={[{ label: 'Our Story' }]} className="mb-4" />
 
         {/* Hero Header */}
-        <div className="space-y-4 mb-10">
+        <div className="space-y-3 mb-6">
           <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#8b5a35] block">
-            Brand Origin & Philosophy
+            Brand Origin &amp; Philosophy
           </span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#1c1a17] font-normal tracking-tight leading-[1.15]">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif text-[#1c1a17] font-normal tracking-tight leading-[1.15]">
             Handcrafted for wild roads &amp; cold climates.
           </h1>
-          <p className="text-base sm:text-lg text-[#706a62] leading-relaxed font-sans">
+          <p className="text-sm sm:text-base text-[#706a62] leading-relaxed font-sans">
             Kingsford Leather was founded on a straightforward conviction: authentic, bench-crafted leather jackets should outlast seasonal trends without inflated retail luxury markups.
           </p>
         </div>
 
         {/* Hero Image */}
-        <div className="relative aspect-[16/9] rounded-[4px] overflow-hidden border border-[#ded7ce] bg-[#efe9e1] mb-12 shadow-xs">
+        <div className="relative aspect-[16/9] rounded-[4px] overflow-hidden border border-[#ded7ce] bg-[#efe9e1] mb-8 shadow-xs">
           <Image
             src="/images/hero-workshop.jpg"
             alt="Kingsford Leather artisan workbench"

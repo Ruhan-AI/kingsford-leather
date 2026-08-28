@@ -86,7 +86,7 @@ export default async function GenderCollectionPage({ params }: Props) {
   }
 
   return (
-    <div className="bg-white py-8 sm:py-12">
+    <div className="bg-white py-5 sm:py-8">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
@@ -94,19 +94,19 @@ export default async function GenderCollectionPage({ params }: Props) {
 
       <Container size="wide">
         {/* Breadcrumb & Header */}
-        <div className="mb-8">
+        <div className="mb-5">
           <Breadcrumbs
             items={[{ label: `${gender === 'men' ? "Men's" : "Women's"} Collection` }]}
-            className="mb-4"
+            className="mb-2.5"
           />
-          <div className="bg-[#f8f6f2] border border-[#ded7ce] rounded-[4px] p-6 sm:p-10">
-            <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#8b5a35] block mb-2">
+          <div className="bg-[#f8f6f2] border border-[#ded7ce] rounded-[4px] p-5 sm:p-7">
+            <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#8b5a35] block mb-1">
               Curated Silhouette
             </span>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#1c1a17] font-normal tracking-tight">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif text-[#1c1a17] font-normal tracking-tight">
               {title}
             </h1>
-            <p className="text-sm sm:text-base text-[#706a62] mt-2 max-w-2xl font-sans">
+            <p className="text-xs sm:text-sm text-[#706a62] mt-1.5 max-w-2xl font-sans">
               {subtitle}
             </p>
           </div>

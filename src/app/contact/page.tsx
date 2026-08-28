@@ -17,26 +17,26 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="bg-white py-8 sm:py-16">
+    <div className="bg-white py-6 sm:py-10">
       <Container size="narrow">
         {/* Breadcrumb */}
-        <Breadcrumbs items={[{ label: 'Contact Workshop' }]} className="mb-6" />
+        <Breadcrumbs items={[{ label: 'Contact Workshop' }]} className="mb-4" />
 
         {/* Hero Header */}
-        <div className="space-y-4 mb-12">
+        <div className="space-y-3 mb-8">
           <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#8b5a35] block">
-            Customer Care & Consultation
+            Customer Care &amp; Consultation
           </span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#1c1a17] font-normal tracking-tight leading-[1.15]">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif text-[#1c1a17] font-normal tracking-tight leading-[1.15]">
             We&apos;re Here to Help You Find Your Fit
           </h1>
-          <p className="text-base sm:text-lg text-[#706a62] leading-relaxed font-sans">
+          <p className="text-sm sm:text-base text-[#706a62] leading-relaxed font-sans">
             Whether you need guidance measuring your shoulders, want custom hide recommendations, or have an inquiry regarding an order, our team is directly at your service.
           </p>
         </div>
 
         {/* Contact Channels Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-8">
           {/* Email */}
           <div className="bg-[#f8f6f2] border border-[#ded7ce] rounded-[4px] p-6 space-y-4 flex flex-col justify-between shadow-xs">
             <div className="space-y-3">

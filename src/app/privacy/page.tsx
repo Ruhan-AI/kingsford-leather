@@ -16,17 +16,17 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <div className="bg-white py-8 sm:py-16">
+    <div className="bg-white py-6 sm:py-10">
       <Container size="narrow">
         {/* Breadcrumb */}
-        <Breadcrumbs items={[{ label: 'Privacy Policy' }]} className="mb-6" />
+        <Breadcrumbs items={[{ label: 'Privacy Policy' }]} className="mb-4" />
 
         {/* Header */}
-        <div className="space-y-3 mb-10 pb-6 border-b border-[#ded7ce]">
+        <div className="space-y-3 mb-6 pb-4 border-b border-[#ded7ce]">
           <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#8b5a35] block">
             Data Governance &amp; Transparency
           </span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#1c1a17] font-normal tracking-tight leading-[1.15]">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif text-[#1c1a17] font-normal tracking-tight leading-[1.15]">
             Privacy Policy
           </h1>
           <p className="text-xs text-[#706a62] font-sans">

@@ -16,11 +16,11 @@ const RAIL_ITEMS = [
 
 export function CollectionRail() {
   return (
-    <section className="bg-[#f8f6f2] py-8 sm:py-10 border-b border-[#ded7ce]">
+    <section className="bg-[#f8f6f2] py-5 sm:py-6 border-b border-[#ded7ce]">
       <Container size="wide">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-3">
           <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#8b5a35]">
-            Explore by Cut & Gender
+            Explore by Cut &amp; Gender
           </span>
           <Link
             href="/shop"
@@ -30,14 +30,14 @@ export function CollectionRail() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5 sm:gap-3.5">
           {RAIL_ITEMS.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="group flex flex-col items-center p-2.5 bg-white hover:bg-[#efe9e1] border border-[#ded7ce] rounded-[4px] transition-all duration-200 focus-ring text-center"
+              className="group flex flex-col items-center p-2 bg-white hover:bg-[#efe9e1] border border-[#ded7ce] rounded-[4px] transition-all duration-200 focus-ring text-center"
             >
-              <div className="relative w-14 h-18 sm:w-16 sm:h-20 mb-2 rounded-[2px] overflow-hidden bg-[#efe9e1]">
+              <div className="relative w-12 h-16 sm:w-14 sm:h-18 mb-1.5 rounded-[2px] overflow-hidden bg-[#efe9e1]">
                 <Image
                   src={item.image}
                   alt={item.label}
@@ -46,7 +46,7 @@ export function CollectionRail() {
                   className="object-cover object-top group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
-              <span className="text-xs font-serif font-medium text-[#1c1a17] group-hover:text-[#8b5a35] transition-colors leading-tight">
+              <span className="text-[11px] sm:text-xs font-serif font-medium text-[#1c1a17] group-hover:text-[#8b5a35] transition-colors leading-tight">
                 {item.label}
               </span>
             </Link>
