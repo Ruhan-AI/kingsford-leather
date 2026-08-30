@@ -4,7 +4,7 @@ import { clsx } from 'clsx'
 const VARIANT_WIDTHS = [240, 480, 960] as const
 
 interface ResponsiveImageProps {
-  /** Original asset path, e.g. `/images/catalogue/abc123.jpg`. */
+  /** Original asset path under public/, ending in .jpg or .png. */
   src: string
   alt: string
   /** Layout hint for the browser's srcset pick. Always pass a real value. */

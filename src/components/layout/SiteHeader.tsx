@@ -128,9 +128,21 @@ export function SiteHeader() {
 
           {/* Desktop Navigation */}
           <nav aria-label="Main Navigation" className="hidden lg:flex items-center gap-8">
-            {/* Shop with Mega Menu */}
+            {/*
+              Deliberately NOT `relative`.
+
+              ShopMegaMenu is `absolute … left-0 w-full`, so its containing block
+              decides its width. With `relative` here, that block was this
+              wrapper — the width of the word "Shop" — and the mega menu's three
+              columns were crushed into ~60px and overlapped each other. The
+              <header> is `sticky`, which is already a positioned ancestor, so
+              dropping `relative` lets the panel span the full header width.
+
+              The Guides dropdown below keeps `relative`: it is a fixed `w-64`
+              panel that should anchor to its own trigger.
+            */}
             <div
-              className="relative py-2"
+              className="py-2"
               onMouseEnter={handleShopEnter}
               onMouseLeave={handleShopLeave}
             >

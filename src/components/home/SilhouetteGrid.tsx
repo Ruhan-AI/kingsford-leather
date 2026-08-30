@@ -37,7 +37,10 @@ const SILHOUETTES = [
   {
     title: 'Western Truckers',
     description: 'Pointed collar, snap flap chest pockets, and supple cowhide or suede.',
-    image: '/images/catalogue/cff0fe6d7560.jpg',
+    // Was cff0fe6d7560.jpg, which is not in public/images/catalogue — the tile
+    // rendered a broken-image icon. This is the brown suede trucker from the
+    // catalogue, which is the piece this tile links to.
+    image: '/images/catalogue/8352644af515.jpg',
     href: '/collections/trucker',
     count: 6,
   },
