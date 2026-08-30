@@ -54,6 +54,50 @@ export function SiteHeader() {
     }, 150)
   }
 
+  /*
+   * These menus used to open on hover alone. That makes them unreachable on any
+   * touch screen — a tap on "Shop" just navigated, and "Guides" was a button
+   * with no click handler at all, so tapping it did nothing. Keyboard users
+   * could not open either one.
+   *
+   * Hover still opens them for mouse users; click now toggles, Escape closes,
+   * and a click outside dismisses. `aria-expanded` / `aria-haspopup` were also
+   * missing, so assistive tech had no idea a menu existed.
+   */
+  const toggleShop = () => {
+    if (shopTimeoutRef.current) clearTimeout(shopTimeoutRef.current)
+    setShopMenuOpen((open) => !open)
+    setGuidesMenuOpen(false)
+  }
+
+  const toggleGuides = () => {
+    if (guidesTimeoutRef.current) clearTimeout(guidesTimeoutRef.current)
+    setGuidesMenuOpen((open) => !open)
+    setShopMenuOpen(false)
+  }
+
+  useEffect(() => {
+    if (!shopMenuOpen && !guidesMenuOpen) return
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return
+      setShopMenuOpen(false)
+      setGuidesMenuOpen(false)
+    }
+    const onPointerDown = (event: PointerEvent) => {
+      if (headerRef.current?.contains(event.target as Node)) return
+      setShopMenuOpen(false)
+      setGuidesMenuOpen(false)
+    }
+
+    document.addEventListener('keydown', onKeyDown)
+    document.addEventListener('pointerdown', onPointerDown)
+    return () => {
+      document.removeEventListener('keydown', onKeyDown)
+      document.removeEventListener('pointerdown', onPointerDown)
+    }
+  }, [shopMenuOpen, guidesMenuOpen])
+
   return (
     <>
       <header
@@ -90,17 +134,30 @@ export function SiteHeader() {
               onMouseEnter={handleShopEnter}
               onMouseLeave={handleShopLeave}
             >
-              <Link
-                href="/shop"
-                className="text-sm font-medium text-[#2c2925] hover:text-[#8b5a35] inline-flex items-center gap-1 transition-colors focus-ring"
-              >
-                <span>Shop</span>
-                <ChevronDown
-                  className={clsx('w-3.5 h-3.5 transition-transform duration-150', {
-                    'rotate-180 text-[#8b5a35]': shopMenuOpen,
-                  })}
-                />
-              </Link>
+              {/* Label stays a link so /shop is still reachable; the chevron is
+                  a separate control that opens the menu on tap and by keyboard. */}
+              <span className="inline-flex items-center gap-0.5">
+                <Link
+                  href="/shop"
+                  className="text-sm font-medium text-[#2c2925] hover:text-[#8b5a35] transition-colors focus-ring"
+                >
+                  Shop
+                </Link>
+                <button
+                  type="button"
+                  onClick={toggleShop}
+                  aria-expanded={shopMenuOpen}
+                  aria-haspopup="true"
+                  aria-label={shopMenuOpen ? 'Close shop menu' : 'Open shop menu'}
+                  className="inline-flex h-6 w-6 items-center justify-center text-[#2c2925] hover:text-[#8b5a35] transition-colors focus-ring"
+                >
+                  <ChevronDown
+                    className={clsx('w-3.5 h-3.5 transition-transform duration-150', {
+                      'rotate-180 text-[#8b5a35]': shopMenuOpen,
+                    })}
+                  />
+                </button>
+              </span>
               {shopMenuOpen && <ShopMegaMenu onClose={() => setShopMenuOpen(false)} />}
             </div>
 
@@ -133,6 +190,9 @@ export function SiteHeader() {
             >
               <button
                 type="button"
+                onClick={toggleGuides}
+                aria-expanded={guidesMenuOpen}
+                aria-haspopup="true"
                 className="text-sm font-medium text-[#2c2925] hover:text-[#8b5a35] inline-flex items-center gap-1 transition-colors focus-ring"
               >
                 <span>Guides</span>

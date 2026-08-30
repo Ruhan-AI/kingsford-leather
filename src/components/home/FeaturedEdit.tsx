@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
+import { ResponsiveImage } from '@/components/ui/ResponsiveImage'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import { Container } from '@/components/ui/Container'
 import { SectionHeading } from '@/components/ui/SectionHeading'
@@ -46,7 +46,7 @@ export function FeaturedEdit() {
                   href={`/products/${product.slug}`}
                   className="relative aspect-[4/5] w-full bg-[#f8f6f2] overflow-hidden block focus-ring"
                 >
-                  <Image
+                  <ResponsiveImage
                     src={product.image}
                     alt={product.title}
                     fill
@@ -56,7 +56,7 @@ export function FeaturedEdit() {
                     }`}
                   />
                   {hoverImage && (
-                    <Image
+                    <ResponsiveImage
                       src={hoverImage}
                       alt={`${product.title} alternate angle`}
                       fill

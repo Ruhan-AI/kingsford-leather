@@ -10,3 +10,6 @@ build/
 next-env.d.ts
 .vercel
 .claude/
+
+# Generated responsive image variants (rebuilt by npm run build)
+public/images/**/*-[0-9]*w.webp

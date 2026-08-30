@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
+import { ResponsiveImage } from '@/components/ui/ResponsiveImage'
 import { Product } from '@/lib/products'
 
 interface ProductCardProps {
@@ -20,7 +20,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
         href={`/products/${product.slug}`}
         className="relative aspect-[4/5] w-full bg-[#f8f6f2] overflow-hidden block focus-ring"
       >
-        <Image
+        <ResponsiveImage
           src={product.image}
           alt={product.title}
           fill
@@ -31,12 +31,12 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
           }`}
         />
         {hoverImage && (
-          <Image
+          <ResponsiveImage
             src={hoverImage}
-            alt={`${product.title} alternate view`}
+            alt=""
             fill
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-            className="object-cover object-top opacity-0 group-hover:opacity-100 group-hover:scale-103 transition-all duration-500 absolute inset-0"
+            className="object-cover object-top opacity-0 group-hover:opacity-100 group-hover:scale-103 transition-all duration-500"
           />
         )}
 

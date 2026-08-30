@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
-import Image from 'next/image'
+import { ResponsiveImage } from '@/components/ui/ResponsiveImage'
 import { Maximize2, X, ChevronLeft, ChevronRight } from 'lucide-react'
 
 interface ProductGalleryProps {
@@ -58,7 +58,7 @@ export function ProductGallery({ title, images }: ProductGalleryProps) {
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
-        <Image
+        <ResponsiveImage
           src={activeImage}
           alt={`${title} - view ${selectedIndex + 1}`}
           fill
@@ -120,7 +120,7 @@ export function ProductGallery({ title, images }: ProductGalleryProps) {
                   : 'border-[#ded7ce] opacity-70 hover:opacity-100 hover:border-[#706a62]'
               }`}
             >
-              <Image
+              <ResponsiveImage
                 src={img}
                 alt={`${title} thumbnail ${idx + 1}`}
                 fill
@@ -156,7 +156,7 @@ export function ProductGallery({ title, images }: ProductGalleryProps) {
 
           <div className="relative flex-1 w-full flex items-center justify-center">
             <div className="relative w-full h-full max-w-4xl max-h-[85vh]">
-              <Image
+              <ResponsiveImage
                 src={activeImage}
                 alt={title}
                 fill

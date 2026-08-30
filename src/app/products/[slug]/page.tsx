@@ -150,18 +150,23 @@ export default async function ProductDetailPage({ params }: Props) {
           />
         </div>
 
-        {/* 2-Column Product Showcase (58% / 42% split) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start pb-10 border-b border-[#ded7ce]">
-          {/* Left Column: Gallery (7 cols on lg / ~58%) */}
-          <div className="lg:col-span-7 lg:sticky lg:top-24">
+        {/*
+          2-column showcase from `md`, not `lg`.
+          On an 800px tablet the single-column version gave the 4:5 gallery the
+          full width — a ~1000px-tall image that pushed the price, sizing and
+          marketplace buttons entirely below the fold.
+        */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-10 items-start pb-10 border-b border-[#ded7ce]">
+          {/* Left Column: Gallery (~58%) */}
+          <div className="md:col-span-7 md:sticky md:top-24">
             <ProductGallery
               title={product.title}
               images={productImages}
             />
           </div>
 
-          {/* Right Column: Product Summary & Marketplace Conversion (5 cols on lg / ~42%) */}
-          <div className="lg:col-span-5">
+          {/* Right Column: Product Summary & Marketplace Conversion (~42%) */}
+          <div className="md:col-span-5">
             <ProductSummary product={product} />
           </div>
         </div>
@@ -186,7 +191,7 @@ export default async function ProductDetailPage({ params }: Props) {
               </Link>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
               {relatedProducts.map((p) => (
                 <ProductCard key={p.id} product={p} />
               ))}
