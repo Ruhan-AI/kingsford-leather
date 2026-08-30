@@ -35,7 +35,7 @@ export function MarketplaceButtons({ product, size = 'large' }: MarketplaceButto
               size === 'large' ? 'text-base' : 'text-sm'
             }`}
           >
-            <span>Purchase on Etsy (Direct Listing)</span>
+            <span>Purchase on Etsy</span>
             <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </a>
         )}
