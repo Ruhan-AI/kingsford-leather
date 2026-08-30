@@ -142,14 +142,14 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
             <Link
               href="/shipping-returns"
               onClick={onClose}
-              className="block hover:text-[#1c1a17] transition-colors"
+              className="block py-1 hover:text-[#1c1a17] transition-colors"
             >
               Shipping & Marketplace Returns
             </Link>
             <Link
               href="/contact"
               onClick={onClose}
-              className="block hover:text-[#1c1a17] transition-colors"
+              className="block py-1 hover:text-[#1c1a17] transition-colors"
             >
               Contact Workshop
             </Link>

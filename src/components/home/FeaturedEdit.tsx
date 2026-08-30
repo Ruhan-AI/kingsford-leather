@@ -86,8 +86,14 @@ export function FeaturedEdit() {
                   </div>
 
                   {/* Pricing & Marketplace Buttons */}
-                  <div className="mt-3.5 pt-3 border-t border-[#ded7ce] flex items-center justify-between">
-                    <div>
+                  {/*
+                    Price plus two marketplace buttons overflows a half-width
+                    card on a small phone, and the card clips rather than
+                    scrolls — so the buttons vanished. Wrapping lets the row
+                    drop to a second line instead.
+                  */}
+                  <div className="mt-3.5 pt-3 border-t border-[#ded7ce] flex flex-wrap items-center justify-between gap-x-2 gap-y-2">
+                    <div className="min-w-0">
                       <span className="text-base font-semibold text-[#1c1a17]">
                         CA${product.salePrice}
                       </span>
@@ -98,7 +104,7 @@ export function FeaturedEdit() {
                       )}
                     </div>
 
-                    <div className="flex items-center gap-1.5">
+                    <div className="flex shrink-0 items-center gap-1.5">
                       {product.etsyUrl && (
                         <a
                           href={product.etsyUrl}

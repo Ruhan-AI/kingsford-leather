@@ -52,7 +52,10 @@ export default function ContactPage() {
             </div>
             <a
               href={`mailto:${SITE.email}`}
-              className="py-2 px-3 bg-white hover:bg-[#efe9e1] text-[#1c1a17] font-medium text-xs rounded-[4px] border border-[#ded7ce] text-center transition-colors block truncate focus-ring"
+              /* `truncate` hid the end of the address once this card sits in the
+                 3-column grid at md+. An email is worth reading in full, so let
+                 it wrap instead — break-all because it is a single long token. */
+              className="py-2 px-3 bg-white hover:bg-[#efe9e1] text-[#1c1a17] font-medium text-xs rounded-[4px] border border-[#ded7ce] text-center transition-colors block break-all focus-ring"
             >
               {SITE.email}
             </a>

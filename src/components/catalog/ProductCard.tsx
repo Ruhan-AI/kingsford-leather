@@ -78,8 +78,16 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
           </p>
         </div>
 
-        <div className="mt-3 pt-3 border-t border-[#ded7ce] flex items-center justify-between">
-          <div className="flex items-baseline gap-2">
+        {/*
+          Two columns of prices plus a Details link do not fit a half-width card
+          on a 320–375px screen: the row used to overflow its card, and because
+          the card is `overflow-hidden` the strike price and the arrow were
+          silently cut off rather than wrapping. Allowing the row to wrap (and
+          giving the price group `min-w-0`) lets it reflow to a second line
+          instead of disappearing.
+        */}
+        <div className="mt-3 pt-3 border-t border-[#ded7ce] flex flex-wrap items-center justify-between gap-x-2 gap-y-1.5">
+          <div className="flex min-w-0 flex-wrap items-baseline gap-x-2">
             <span className="text-sm sm:text-base font-semibold text-[#1c1a17]">
               CA${product.salePrice}
             </span>
@@ -90,12 +98,20 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
             )}
           </div>
 
+          {/*
+            Below `sm` this collapses to the arrow alone. Two things follow from
+            that: the tap target needs a floor of 24px (WCAG 2.2 target size),
+            and the label cannot simply be `hidden` — display:none removes it
+            from the accessibility tree, which left an icon-only link with no
+            accessible name on exactly the screens where it is icon-only.
+          */}
           <Link
             href={`/products/${product.slug}`}
-            className="text-xs font-medium text-[#8b5a35] hover:underline inline-flex items-center gap-0.5"
+            className="shrink-0 min-h-6 min-w-6 text-xs font-medium text-[#8b5a35] hover:underline inline-flex items-center justify-center gap-0.5"
           >
             <span className="hidden sm:inline">Details</span>
-            <ArrowRight className="w-3 h-3" />
+            <span className="sr-only sm:hidden">View {product.title}</span>
+            <ArrowRight className="w-3 h-3" aria-hidden="true" />
           </Link>
         </div>
       </div>

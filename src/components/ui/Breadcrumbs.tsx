@@ -22,7 +22,7 @@ export function Breadcrumbs({ items, className = '' }: BreadcrumbsProps) {
         <li>
           <Link
             href="/"
-            className="hover:text-[#8b5a35] transition-colors duration-150 focus-ring"
+            className="inline-block py-1 hover:text-[#8b5a35] transition-colors duration-150 focus-ring"
           >
             Home
           </Link>
@@ -39,7 +39,7 @@ export function Breadcrumbs({ items, className = '' }: BreadcrumbsProps) {
               ) : (
                 <Link
                   href={item.href}
-                  className="hover:text-[#8b5a35] transition-colors duration-150 focus-ring"
+                  className="inline-block py-1 hover:text-[#8b5a35] transition-colors duration-150 focus-ring"
                 >
                   {item.label}
                 </Link>

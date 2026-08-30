@@ -42,37 +42,37 @@ export function SiteFooter() {
             </span>
             <ul className="space-y-2 text-sm text-[#a7a39b]">
               <li>
-                <Link href="/shop" className="hover:text-white transition-colors">
+                <Link href="/shop" className="inline-block py-1 hover:text-white transition-colors">
                   All 49 Pieces
                 </Link>
               </li>
               <li>
-                <Link href="/men" className="hover:text-white transition-colors">
+                <Link href="/men" className="inline-block py-1 hover:text-white transition-colors">
                   Men&apos;s Collection
                 </Link>
               </li>
               <li>
-                <Link href="/women" className="hover:text-white transition-colors">
+                <Link href="/women" className="inline-block py-1 hover:text-white transition-colors">
                   Women&apos;s Collection
                 </Link>
               </li>
               <li>
-                <Link href="/collections/biker" className="hover:text-white transition-colors">
+                <Link href="/collections/biker" className="inline-block py-1 hover:text-white transition-colors">
                   Biker & Moto
                 </Link>
               </li>
               <li>
-                <Link href="/collections/cafe-racer" className="hover:text-white transition-colors">
+                <Link href="/collections/cafe-racer" className="inline-block py-1 hover:text-white transition-colors">
                   Cafe Racer
                 </Link>
               </li>
               <li>
-                <Link href="/collections/bomber" className="hover:text-white transition-colors">
+                <Link href="/collections/bomber" className="inline-block py-1 hover:text-white transition-colors">
                   Bomber & Aviator
                 </Link>
               </li>
               <li>
-                <Link href="/collections/shearling" className="hover:text-white transition-colors">
+                <Link href="/collections/shearling" className="inline-block py-1 hover:text-white transition-colors">
                   Shearling & Fur
                 </Link>
               </li>
@@ -86,27 +86,27 @@ export function SiteFooter() {
             </span>
             <ul className="space-y-2 text-sm text-[#a7a39b]">
               <li>
-                <Link href="/craftsmanship" className="hover:text-white transition-colors">
+                <Link href="/craftsmanship" className="inline-block py-1 hover:text-white transition-colors">
                   Craftsmanship
                 </Link>
               </li>
               <li>
-                <Link href="/leather-guide" className="hover:text-white transition-colors">
+                <Link href="/leather-guide" className="inline-block py-1 hover:text-white transition-colors">
                   Leather Guide
                 </Link>
               </li>
               <li>
-                <Link href="/size-guide" className="hover:text-white transition-colors">
+                <Link href="/size-guide" className="inline-block py-1 hover:text-white transition-colors">
                   Size & Fit Guide
                 </Link>
               </li>
               <li>
-                <Link href="/care-guide" className="hover:text-white transition-colors">
+                <Link href="/care-guide" className="inline-block py-1 hover:text-white transition-colors">
                   Leather Care Guide
                 </Link>
               </li>
               <li>
-                <Link href="/our-story" className="hover:text-white transition-colors">
+                <Link href="/our-story" className="inline-block py-1 hover:text-white transition-colors">
                   Our Story
                 </Link>
               </li>
@@ -120,22 +120,22 @@ export function SiteFooter() {
             </span>
             <ul className="space-y-2 text-sm text-[#a7a39b]">
               <li>
-                <Link href="/shipping-returns" className="hover:text-white transition-colors">
+                <Link href="/shipping-returns" className="inline-block py-1 hover:text-white transition-colors">
                   Shipping & Returns
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-white transition-colors">
+                <Link href="/contact" className="inline-block py-1 hover:text-white transition-colors">
                   Contact Support
                 </Link>
               </li>
               <li>
-                <Link href="/privacy" className="hover:text-white transition-colors">
+                <Link href="/privacy" className="inline-block py-1 hover:text-white transition-colors">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="hover:text-white transition-colors">
+                <Link href="/terms" className="inline-block py-1 hover:text-white transition-colors">
                   Terms of Service
                 </Link>
               </li>
