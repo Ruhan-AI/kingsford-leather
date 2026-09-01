@@ -13,8 +13,8 @@
  */
 
 export const EMAILJS_CONFIG = {
-  serviceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '',
-  templateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '',
-  publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '',
+  serviceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_as9rad8',
+  templateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_t9s4cbq',
+  publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'HqnzKXcFqkYszGMXn',
   recipientEmail: 'order@kingsfordleather.ca',
 }
