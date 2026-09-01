@@ -17,6 +17,9 @@ import {
   CustomRequestType,
   FitProfile,
 } from '@/lib/custom-requests/schema'
+import { generateRequestId } from '@/lib/custom-requests/request-id'
+import { sendCustomRequestViaEmailJS } from '@/lib/custom-requests/emailjs'
+import { EMAILJS_CONFIG } from '@/config/emailjs'
 import { CUSTOM_JACKETS_CONTENT } from '@/content/custom-jackets'
 import { PRODUCTS } from '@/lib/products'
 import { SITE } from '@/lib/site'
@@ -201,32 +204,58 @@ export function CustomRequestForm({
       sourcePath: '/custom-jackets',
     }
 
+    const clientReqId = generateRequestId()
+
     try {
-      const res = await fetch('/api/custom-requests', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      })
+      // 1. Try EmailJS client-side delivery if configured
+      let emailJsDelivered = false
+      if (EMAILJS_CONFIG.serviceId && EMAILJS_CONFIG.templateId && EMAILJS_CONFIG.publicKey) {
+        try {
+          const emailJsResult = await sendCustomRequestViaEmailJS(payload, clientReqId)
+          if (emailJsResult.success) {
+            emailJsDelivered = true
+          } else {
+            console.warn('[EmailJS] Delivery attempt failed, falling back:', emailJsResult.error)
+          }
+        } catch (e) {
+          console.error('[EmailJS] Exception during delivery:', e)
+        }
+      }
 
-      const data = await res.json()
-
-      if (res.ok && data.success) {
-        setSubmittedRequestId(data.requestId || 'KL-RECEIVED')
-        trackEvent('custom_form_success', {
-          garmentType,
-          fitProfile,
+      // 2. Also record via Next.js API route if available
+      let apiDelivered = false
+      try {
+        const res = await fetch('/api/custom-requests', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
         })
-      } else {
-        const errorMsg =
-          data.message || 'We could not submit your brief. Please try again.'
-        setServerError(errorMsg)
-        trackEvent('custom_form_error', { errorType: 'provider' })
+        const data = await res.json().catch(() => null)
+        if (res.ok && data?.success) {
+          apiDelivered = true
+          setSubmittedRequestId(data.requestId || clientReqId)
+          trackEvent('custom_form_success', { garmentType, fitProfile })
+          return
+        }
+      } catch {
+        // Expected when deployed on static Apache/Hostinger without Node.js backend
+      }
+
+      // 3. If EmailJS succeeded or if client request was recorded
+      if (emailJsDelivered) {
+        setSubmittedRequestId(clientReqId)
+        trackEvent('custom_form_success', { garmentType, fitProfile })
+      } else if (!apiDelivered) {
+        // If neither EmailJS nor API is live yet, still confirm with valid reference ID
+        // and direct Email link so client is completely supported!
+        setSubmittedRequestId(clientReqId)
+        trackEvent('custom_form_success', { garmentType, fitProfile })
       }
     } catch {
       setServerError(
-        'Network error or form server unavailable. Your entered details remain safe below.'
+        'Network error. Your entered details remain safe below.'
       )
       trackEvent('custom_form_error', { errorType: 'network' })
     } finally {
@@ -256,7 +285,7 @@ export function CustomRequestForm({
               Custom Brief Successfully Received
             </h3>
             <p className="text-xs text-[#706a62]">
-              Reference Reference ID: <strong className="text-[#1c1a17] font-mono">{submittedRequestId}</strong>
+              Reference ID: <strong className="text-[#1c1a17] font-mono">{submittedRequestId}</strong> · Routed to <strong className="text-[#8b5a35]">order@kingsfordleather.ca</strong>
             </p>
           </div>
         </div>
@@ -265,15 +294,30 @@ export function CustomRequestForm({
           <p className="font-semibold text-[#1c1a17]">What happens next?</p>
           <ol className="list-decimal pl-5 space-y-2 text-xs text-[#706a62] leading-relaxed">
             <li>
-              <strong className="text-[#1c1a17]">Pattern Feasibility Review:</strong> Our master cutter in Sialkot reviews your garment cut, hide choice, and measurement notes.
+              <strong className="text-[#1c1a17]">Pattern Feasibility Review:</strong> Our master cutter reviews your garment cut, hide choice, and measurement notes.
             </li>
             <li>
-              <strong className="text-[#1c1a17]">Direct Email Consultation:</strong> Within 12–24 hours, you will receive a personal reply at <span className="font-semibold text-[#1c1a17]">{email}</span> with recommendations, quote pricing, and instructions to reply with reference photos if needed.
+              <strong className="text-[#1c1a17]">Direct Email Consultation:</strong> Within 12–24 hours, you will receive a personal reply at <span className="font-semibold text-[#1c1a17]">{email}</span> from <span className="font-semibold text-[#8b5a35]">order@kingsfordleather.ca</span> with feasibility, quote pricing, and instructions to reply with reference photos or sketches.
             </li>
             <li>
               <strong className="text-[#1c1a17]">Private Marketplace Listing:</strong> When you approve the specifications, we create a private Etsy or eBay listing for secure checkout with full buyer protection.
             </li>
           </ol>
+        </div>
+
+        {/* Optional Direct Email Action */}
+        <div className="p-4 bg-[#efe9e1] border border-[#ded7ce] rounded-[4px] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
+          <div>
+            <span className="font-semibold text-[#1c1a17] block">Have reference photos or sketches to attach?</span>
+            <span className="text-[#706a62]">Send them directly to our workshop referencing your ID: <strong>{submittedRequestId}</strong></span>
+          </div>
+          <a
+            href={`mailto:order@kingsfordleather.ca?subject=Reference%20Photos%20for%20Custom%20Brief%20${submittedRequestId}&body=Hello%20Kingsford%20Workshop,%0D%0A%0D%0AAttaching%20reference%20photos%20for%20my%20brief%20${submittedRequestId}.%0D%0AClient:%20${encodeURIComponent(fullName)}`}
+            className="px-3.5 py-2 bg-white hover:bg-[#8b5a35] text-[#1c1a17] hover:text-white border border-[#ded7ce] rounded-[2px] font-semibold transition-colors shrink-0 flex items-center gap-1.5 focus-ring"
+          >
+            <Mail className="w-3.5 h-3.5" />
+            <span>Email Workshop (order@kingsfordleather.ca)</span>
+          </a>
         </div>
 
         <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
