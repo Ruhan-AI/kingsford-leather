@@ -188,6 +188,13 @@ export function SiteHeader() {
             </Link>
 
             <Link
+              href="/custom-jackets"
+              className="text-sm font-medium text-[#2c2925] hover:text-[#8b5a35] transition-colors focus-ring"
+            >
+              Custom Jackets
+            </Link>
+
+            <Link
               href="/craftsmanship"
               className="text-sm font-medium text-[#2c2925] hover:text-[#8b5a35] transition-colors focus-ring"
             >

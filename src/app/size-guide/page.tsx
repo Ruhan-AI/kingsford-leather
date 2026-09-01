@@ -151,6 +151,16 @@ export default function SizeGuidePage() {
           <p className="text-xs sm:text-sm text-[#706a62] leading-relaxed font-sans">
             To order a custom fit, click through to the item&apos;s verified listing. On Etsy, paste your 5 measurements directly into the &ldquo;Add your personalization&rdquo; field before clicking Buy. On eBay, send your measurements via seller message right after checkout. Our pattern master reviews your numbers before cutting.
           </p>
+
+          <div className="pt-3 border-t border-[#ded7ce]">
+            <Link
+              href="/custom-jackets"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#8b5a35] hover:text-[#5d3923] hover:underline"
+            >
+              <span>Have a unique custom concept? Submit a structured Custom Jacket Brief</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
         </div>
 
         {/* Outro */}

@@ -13,6 +13,16 @@ export type AnalyticsEventName =
   | 'size_guide_open'
   | 'guide_view'
   | 'faq_expand'
+  | 'view_custom_jackets'
+  | 'custom_primary_cta_click'
+  | 'custom_form_start'
+  | 'custom_style_select'
+  | 'custom_fit_select'
+  | 'custom_faq_expand'
+  | 'custom_form_submit'
+  | 'custom_form_success'
+  | 'custom_form_error'
+  | 'custom_marketplace_click'
 
 export type MarketplaceClickProps = {
   marketplace: 'etsy' | 'ebay'

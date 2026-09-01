@@ -49,6 +49,13 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
             >
               Women&apos;s Collection
             </Link>
+            <Link
+              href="/custom-jackets"
+              onClick={onClose}
+              className="block text-[#1c1a17] hover:text-[#8b5a35] transition-colors"
+            >
+              Custom Jackets
+            </Link>
 
             {/* Silhouettes dropdown */}
             <div>

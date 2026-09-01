@@ -110,9 +110,12 @@ export default function CraftsmanshipPage() {
           </p>
 
           <div className="flex flex-wrap gap-4 pt-2">
-            <Button href="/leather-guide" variant="primary" size="md">
-              <span>Read Full Leather Guide</span>
+            <Button href="/custom-jackets" variant="primary" size="md">
+              <span>Custom Jackets Portal</span>
               <ArrowRight className="w-4 h-4" />
+            </Button>
+            <Button href="/leather-guide" variant="secondary" size="md">
+              <span>Read Full Leather Guide</span>
             </Button>
             <Button href="/size-guide" variant="secondary" size="md">
               <span>Size &amp; Fit Guide</span>

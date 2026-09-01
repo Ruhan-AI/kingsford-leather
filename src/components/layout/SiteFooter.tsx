@@ -47,6 +47,11 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
+                <Link href="/custom-jackets" className="inline-block py-1 text-[#c9a378] hover:text-white transition-colors font-medium">
+                  Custom Jackets
+                </Link>
+              </li>
+              <li>
                 <Link href="/men" className="inline-block py-1 hover:text-white transition-colors">
                   Men&apos;s Collection
                 </Link>

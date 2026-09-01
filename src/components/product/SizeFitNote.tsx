@@ -32,6 +32,16 @@ export function SizeFitNote({ gender }: SizeFitNoteProps) {
           <strong>How to specify your size:</strong> Select your standard size or enter your body measurements into the personalization box during checkout on the marketplace listing.
         </span>
       </div>
+
+      <div className="pt-2 border-t border-[#ded7ce] flex items-center justify-between text-[11px]">
+        <span className="text-[#706a62]">Need custom hide, color, or cut tweaks?</span>
+        <Link
+          href="/custom-jackets"
+          className="font-semibold text-[#8b5a35] hover:underline"
+        >
+          Custom Jacket Request →
+        </Link>
+      </div>
     </div>
   )
 }
