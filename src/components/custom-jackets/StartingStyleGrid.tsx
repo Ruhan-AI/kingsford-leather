@@ -115,7 +115,7 @@ export function StartingStyleGrid({ onSelectSilhouette }: StartingStyleGridProps
             href="/shop"
             className="text-xs sm:text-sm font-medium text-[#8b5a35] hover:text-[#5d3923] inline-flex items-center gap-1.5 transition-colors shrink-0 focus-ring"
           >
-            <span>Explore all 49 ready pieces</span>
+            <span>Explore all 52 ready pieces</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>

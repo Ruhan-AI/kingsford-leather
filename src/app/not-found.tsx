@@ -27,7 +27,7 @@ export default function NotFound() {
 
         <div className="flex flex-wrap items-center justify-center gap-3 pt-4">
           <Button href="/shop" variant="primary" size="md">
-            <span>Explore All 49 Pieces</span>
+            <span>Explore All 52 Pieces</span>
             <ArrowRight className="w-4 h-4" />
           </Button>
           <Button href="/men" variant="secondary" size="md">

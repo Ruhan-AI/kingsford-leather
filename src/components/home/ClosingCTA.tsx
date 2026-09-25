@@ -19,12 +19,12 @@ export function ClosingCTA() {
           </h2>
 
           <p className="text-xs sm:text-sm text-[#706a62] max-w-md mx-auto leading-relaxed font-sans">
-            Explore 49 handcrafted styles in standard XS–3XL or custom made-to-measure sizing. Safe, protected checkouts on Etsy and eBay.
+            Explore 52 handcrafted styles in standard XS–3XL or custom made-to-measure sizing. Safe, protected checkouts on Etsy and eBay.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
             <Button href="/shop" variant="primary" size="md">
-              <span>Explore All 49 Pieces</span>
+              <span>Explore All 52 Pieces</span>
               <ArrowRight className="w-4 h-4" />
             </Button>
             <Button href="/size-guide" variant="secondary" size="md">

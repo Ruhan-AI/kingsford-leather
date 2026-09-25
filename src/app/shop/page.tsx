@@ -7,9 +7,9 @@ import { PRODUCTS } from '@/lib/products'
 import { SITE } from '@/lib/site'
 
 export const metadata: Metadata = {
-  title: 'Shop All 49 Pieces | Handcrafted Leather Outerwear',
+  title: 'Shop All 52 Pieces | Handcrafted Leather Outerwear',
   description:
-    'Explore the complete Kingsford Leather catalogue of 49 verified biker, cafe racer, bomber, suede, shearling, and tailored coats. Custom sizing available on all made-to-order listings on Etsy and eBay.',
+    'Explore the complete Kingsford Leather catalogue of 52 verified biker, cafe racer, bomber, suede, shearling, and tailored coats. Custom sizing available on all made-to-order listings on Etsy and eBay.',
   alternates: {
     canonical: '/shop',
   },
@@ -44,7 +44,7 @@ export default function ShopPage() {
             The Complete Outerwear Catalogue
           </h1>
           <p className="text-xs sm:text-sm text-[#706a62] mt-1.5 max-w-2xl font-sans">
-            Every piece is cut and stitched to order from hand-selected cowhides, sheepskins, and genuine suedes. Browse our complete 49-piece collection below.
+            Every piece is cut and stitched to order from hand-selected cowhides, sheepskins, and genuine suedes. Browse our complete 52-piece collection below.
           </p>
         </div>
 

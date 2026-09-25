@@ -40,7 +40,7 @@ export function CuratedArchive() {
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </Link>
           <p className="font-spec text-xs sm:text-[13px] text-muted tracking-wide">
-            All 49 handcrafted jackets with standard &amp; custom sizing options
+            All 52 handcrafted jackets with standard &amp; custom sizing options
           </p>
         </div>
 

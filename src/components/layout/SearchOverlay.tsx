@@ -209,7 +209,7 @@ export function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
                   }}
                   className="mt-4 text-xs font-medium text-[#8b5a35] hover:text-[#5d3923] underline"
                 >
-                  Browse all 49 products →
+                  Browse all 52 products →
                 </button>
               </div>
             )}

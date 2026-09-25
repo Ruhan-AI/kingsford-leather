@@ -17,7 +17,7 @@ import { FAQS } from '@/lib/data/faqs'
 export const metadata: Metadata = {
   title: { absolute: 'Kingsford Leather | Handcrafted Leather Outerwear & Made-To-Measure Jackets' },
   description:
-    'Handmade genuine leather and suede outerwear made to order. Explore 49 biker, cafe racer, bomber, and shearling cuts with standard or custom sizing, purchased on Etsy and eBay.',
+    'Handmade genuine leather and suede outerwear made to order. Explore 52 biker, cafe racer, bomber, and shearling cuts with standard or custom sizing, purchased on Etsy and eBay.',
 }
 
 export default function HomePage() {

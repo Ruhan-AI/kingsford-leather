@@ -29,13 +29,16 @@ for (const match of productBlockMatches) {
 
 console.log(`📊 Found ${products.length} products in catalogue.`)
 
-if (products.length !== 49) {
-  console.error(`❌ Expected exactly 49 products, but found ${products.length}!`)
+if (products.length !== 52) {
+  console.error(`❌ Expected exactly 52 products, but found ${products.length}!`)
   process.exit(1)
 }
 
 const seenIds = new Set()
 const seenSlugs = new Set()
+const seenEtsyUrls = new Set()
+const seenEbayUrls = new Set()
+const seenPrimaryImages = new Set()
 let errors = 0
 
 products.forEach((p, idx) => {
@@ -73,20 +76,39 @@ products.forEach((p, idx) => {
     errors++
   }
 
-  if (p.etsyUrl && !p.etsyUrl.startsWith('https://www.etsy.com/')) {
-    console.error(`[${index}] Invalid Etsy URL for ${p.slug}: ${p.etsyUrl}`)
-    errors++
+  if (p.etsyUrl) {
+    if (!p.etsyUrl.startsWith('https://www.etsy.com/')) {
+      console.error(`[${index}] Invalid Etsy URL for ${p.slug}: ${p.etsyUrl}`)
+      errors++
+    }
+    if (seenEtsyUrls.has(p.etsyUrl)) {
+      console.error(`[${index}] Duplicate Etsy URL: ${p.etsyUrl} in product ${p.slug}`)
+      errors++
+    }
+    seenEtsyUrls.add(p.etsyUrl)
   }
 
-  if (p.ebayUrl && !p.ebayUrl.startsWith('https://www.ebay.com/')) {
-    console.error(`[${index}] Invalid eBay URL for ${p.slug}: ${p.ebayUrl}`)
-    errors++
+  if (p.ebayUrl) {
+    if (!p.ebayUrl.startsWith('https://www.ebay.com/')) {
+      console.error(`[${index}] Invalid eBay URL for ${p.slug}: ${p.ebayUrl}`)
+      errors++
+    }
+    if (seenEbayUrls.has(p.ebayUrl)) {
+      console.error(`[${index}] Duplicate eBay URL: ${p.ebayUrl} in product ${p.slug}`)
+      errors++
+    }
+    seenEbayUrls.add(p.ebayUrl)
   }
 
   if (!p.image) {
     console.error(`[${index}] Missing primary image for ${p.slug}`)
     errors++
   } else {
+    if (seenPrimaryImages.has(p.image)) {
+      console.error(`[${index}] Duplicate primary image: ${p.image} in product ${p.slug}`)
+      errors++
+    }
+    seenPrimaryImages.add(p.image)
     const localImgPath = path.join(rootDir, 'public', p.image.replace(/^\//, ''))
     if (!fs.existsSync(localImgPath)) {
       console.error(`[${index}] Image not found on disk: ${p.image} (${localImgPath})`)
@@ -104,5 +126,5 @@ if (errors > 0) {
   console.error(`❌ Validation failed with ${errors} error(s)!`)
   process.exit(1)
 } else {
-  console.log('✅ All 49 products successfully validated! IDs, slugs, prices, images, and marketplace URLs verified.')
+  console.log('✅ All 52 products successfully validated! IDs, slugs, prices, images, and marketplace URLs verified.')
 }

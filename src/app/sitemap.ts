@@ -103,7 +103,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }))
 
-  // Every individual product route (all 49 verified SKUs)
+  // Every individual product route (all 52 verified SKUs)
   const productRoutes: MetadataRoute.Sitemap = PRODUCTS.map((product) => ({
     url: `${baseUrl}/products/${product.slug}`,
     lastModified: new Date(),

@@ -11,7 +11,7 @@ const RAIL_ITEMS = [
   { label: 'Bomber & Aviator', href: '/collections/bomber', image: '/images/catalogue/3da6124d3698.jpg' },
   { label: 'Shearling & Fur', href: '/collections/shearling', image: '/images/catalogue/52d61d065d88.jpg' },
   { label: 'Coats & Trench', href: '/collections/coats', image: '/images/catalogue/879077e67fe6.jpg' },
-  { label: 'View All (49)', href: '/shop', image: '/images/catalogue/bb5f20eb9776.jpg' },
+  { label: 'View All (52)', href: '/shop', image: '/images/catalogue/bb5f20eb9776.jpg' },
 ]
 
 export function CollectionRail() {
@@ -26,7 +26,7 @@ export function CollectionRail() {
             href="/shop"
             className="text-xs font-medium text-[#706a62] hover:text-[#1c1a17] transition-colors"
           >
-            All 49 Pieces →
+            All 52 Pieces →
           </Link>
         </div>
 

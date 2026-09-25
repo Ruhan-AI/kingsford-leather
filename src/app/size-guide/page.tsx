@@ -172,7 +172,7 @@ export default function SizeGuidePage() {
             ← Proceed to Leather Care Guide
           </Link>
           <Button href="/shop" variant="primary" size="md">
-            <span>Shop All 49 Pieces</span>
+            <span>Shop All 52 Pieces</span>
             <ArrowRight className="w-4 h-4" />
           </Button>
         </div>

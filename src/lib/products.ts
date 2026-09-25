@@ -20,11 +20,7 @@
  *
  * ── Prices ────────────────────────────────────────────────────────────────
  * All prices are CAD, read from the listing as shown to a Canadian buyer.
- * Etsy runs a discount, so those pieces carry a real `listPrice` above
- * `salePrice`. The eBay-only pieces are not discounted, so their `listPrice`
- * equals `salePrice` and no saving is advertised. Never widen that gap by
- * hand: an invented "was" price is the one thing that would make the rest of
- * the catalogue untrustworthy.
+ * All listings carry direct active listing prices (listPrice equals salePrice) matching the real live marketplace listings.
  *
  * ── The `renamed` flag ────────────────────────────────────────────────────
  * Eleven listings are titled on their marketplace after protected properties
@@ -74,6 +70,8 @@ export type Product = {
   salePrice: number
   /** Equals salePrice when the listing is not discounted. */
   listPrice: number
+  etsyPrice?: number
+  ebayPrice?: number
   image: string
   images: readonly string[]
   blurb: string
@@ -126,8 +124,10 @@ export const PRODUCTS: readonly Product[] = [
       'Men’s Tan Suede Leather Bomber Jacket, Shearling Collar Aviator Jacket, Brown Winter Flight Jacket Gift for Him',
     etsyUrl: 'https://www.etsy.com/ca/listing/4522631878/mens-tan-suede-leather-bomber-jacket',
     ebayUrl: 'https://www.ebay.com/itm/158008678385',
-    salePrice: 193.04,
-    listPrice: 296.99,
+    salePrice: 229.99,
+    listPrice: 229.99,
+    etsyPrice: 229.99,
+    ebayPrice: 179.99,
     image: '/images/catalogue/82b19dc4cf21.jpg',
     images: [
       '/images/catalogue/82b19dc4cf21.jpg',
@@ -150,8 +150,10 @@ export const PRODUCTS: readonly Product[] = [
     marketplaceTitle: 'Brown Suede Trucker Jacket, Western Style Leather Coat, Vintage Cowgirl Outerwear',
     etsyUrl: 'https://www.etsy.com/ca/listing/4523543894/brown-suede-trucker-jacket-western-style',
     ebayUrl: 'https://www.ebay.com/itm/158008655937',
-    salePrice: 194.99,
-    listPrice: 299.99,
+    salePrice: 229.99,
+    listPrice: 229.99,
+    etsyPrice: 229.99,
+    ebayPrice: 169.99,
     image: '/images/catalogue/8352644af515.jpg',
     images: [
       '/images/catalogue/8352644af515.jpg',
@@ -175,8 +177,10 @@ export const PRODUCTS: readonly Product[] = [
       'Men’s Black Leather Cafe Racer Jacket, Distressed Motorcycle Biker Coat with Racing Stripes',
     etsyUrl: 'https://www.etsy.com/ca/listing/4523196868/mens-black-leather-cafe-racer-jacket',
     ebayUrl: 'https://www.ebay.com/itm/158009764745',
-    salePrice: 194.99,
-    listPrice: 299.99,
+    salePrice: 199.99,
+    listPrice: 199.99,
+    etsyPrice: 199.99,
+    ebayPrice: 169.99,
     image: '/images/catalogue/a765b524b418.jpg',
     images: [
       '/images/catalogue/a765b524b418.jpg',
@@ -200,8 +204,10 @@ export const PRODUCTS: readonly Product[] = [
       'Jaafar Jackson Michael Blue Military Jacket, MJ Navy Gold Button Officer Coat, Pop Star Stage Costume Blazer Gift',
     etsyUrl: 'https://www.etsy.com/ca/listing/4522622190/jaafar-jackson-michael-blue-military',
     ebayUrl: 'https://www.ebay.com/itm/158012214272',
-    salePrice: 162.49,
-    listPrice: 249.99,
+    salePrice: 169.99,
+    listPrice: 169.99,
+    etsyPrice: 169.99,
+    ebayPrice: 169.99,
     image: '/images/catalogue/94841f8f9b99.jpg',
     images: [
       '/images/catalogue/94841f8f9b99.jpg',
@@ -225,8 +231,9 @@ export const PRODUCTS: readonly Product[] = [
     marketplaceTitle:
       'Women’s Brown Genuine Suede Leather Blazer, Oversized Vintage Style Jacket, Custom Made Coat',
     etsyUrl: 'https://www.etsy.com/ca/listing/4542429218/womens-brown-genuine-suede-leather',
-    salePrice: 194.99,
-    listPrice: 299.99,
+    salePrice: 219.99,
+    listPrice: 219.99,
+    etsyPrice: 219.99,
     image: '/images/catalogue/03ca00ccfcc9.jpg',
     images: [
       '/images/catalogue/03ca00ccfcc9.jpg',
@@ -249,8 +256,9 @@ export const PRODUCTS: readonly Product[] = [
     marketplaceTitle:
       "Women's Brown Suede Genuine Leather Coat with Black Faux Fur, Custom Made Shearling Style Jacket",
     etsyUrl: 'https://www.etsy.com/ca/listing/4542406721/womens-brown-suede-genuine-leather-coat',
-    salePrice: 181.99,
+    salePrice: 279.99,
     listPrice: 279.99,
+    etsyPrice: 279.99,
     image: '/images/catalogue/531d9f3f660d.jpg',
     images: [
       '/images/catalogue/531d9f3f660d.jpg',
@@ -274,8 +282,10 @@ export const PRODUCTS: readonly Product[] = [
       'Men’s Brown Leather Bomber Jacket with Removable Hoodie, Multi-Pocket Military Style, Custom Fit',
     etsyUrl: 'https://www.etsy.com/ca/listing/4537933665/mens-brown-leather-bomber-jacket-with',
     ebayUrl: 'https://www.ebay.com/itm/158092514473',
-    salePrice: 194.99,
-    listPrice: 299.99,
+    salePrice: 199.99,
+    listPrice: 199.99,
+    etsyPrice: 199.99,
+    ebayPrice: 199.99,
     image: '/images/catalogue/320bef87b02b.jpg',
     images: [
       '/images/catalogue/320bef87b02b.jpg',
@@ -299,8 +309,10 @@ export const PRODUCTS: readonly Product[] = [
       'Women’s Black Genuine Leather Biker Jacket with Lace-Up Corset Detail, Custom Made',
     etsyUrl: 'https://www.etsy.com/ca/listing/4537928180/womens-black-genuine-leather-biker',
     ebayUrl: 'https://www.ebay.com/itm/158106012497',
-    salePrice: 194.99,
-    listPrice: 299.99,
+    salePrice: 199.99,
+    listPrice: 199.99,
+    etsyPrice: 199.99,
+    ebayPrice: 205.16,
     image: '/images/catalogue/b827de01c441.jpg',
     images: [
       '/images/catalogue/b827de01c441.jpg',
@@ -323,8 +335,9 @@ export const PRODUCTS: readonly Product[] = [
     marketplaceTitle:
       'Women’s Cognac Brown Genuine Leather Bomber Jacket, Military Aviator Style, Custom Made',
     etsyUrl: 'https://www.etsy.com/ca/listing/4537900343/womens-cognac-brown-genuine-leather',
-    salePrice: 194.99,
-    listPrice: 299.99,
+    salePrice: 199.99,
+    listPrice: 199.99,
+    etsyPrice: 199.99,
     image: '/images/catalogue/505dea7e0f0e.jpg',
     images: [
       '/images/catalogue/505dea7e0f0e.jpg',
@@ -348,8 +361,10 @@ export const PRODUCTS: readonly Product[] = [
       'Women’s Black Leather Puffer Coat, Fur-Trim Hooded Quilted Winter Parka, Custom Made Long Jacket',
     etsyUrl: 'https://www.etsy.com/ca/listing/4537893505/womens-black-leather-puffer-coat-fur',
     ebayUrl: 'https://www.ebay.com/itm/158102730379',
-    salePrice: 194.99,
+    salePrice: 299.99,
     listPrice: 299.99,
+    etsyPrice: 299.99,
+    ebayPrice: 205.16,
     image: '/images/catalogue/ff7f0e2b6701.jpg',
     images: [
       '/images/catalogue/ff7f0e2b6701.jpg',
@@ -371,8 +386,9 @@ export const PRODUCTS: readonly Product[] = [
     title: 'Brown suede A1 bomber, button front',
     marketplaceTitle: "Men's Suede Jacket, Brown A1 Bomber, Button Front Flight Style",
     etsyUrl: 'https://www.etsy.com/ca/listing/4531801671/mens-suede-jacket-brown-suede-bomber',
-    salePrice: 194.99,
-    listPrice: 299.99,
+    salePrice: 199.99,
+    listPrice: 199.99,
+    etsyPrice: 199.99,
     image: '/images/catalogue/17947ba2c886.jpg',
     images: [
       '/images/catalogue/17947ba2c886.jpg',
@@ -395,8 +411,9 @@ export const PRODUCTS: readonly Product[] = [
     marketplaceTitle:
       'Red Capsule Genuine Leather Jacket, Anime Motorcycle Cosplay Coat, Cyberpunk Biker Streetwear',
     etsyUrl: 'https://www.etsy.com/ca/listing/4530731266/red-capsule-genuine-leather-jacket-anime',
-    salePrice: 188.49,
-    listPrice: 289.99,
+    salePrice: 199.99,
+    listPrice: 199.99,
+    etsyPrice: 199.99,
     image: '/images/catalogue/19e81bd4d6ad.jpg',
     images: [
       '/images/catalogue/19e81bd4d6ad.jpg',
@@ -421,8 +438,10 @@ export const PRODUCTS: readonly Product[] = [
       'Mad Max Fury Road Black Leather Biker Jacket, Max Rockatansky Shoulder Pad Cosplay Coat',
     etsyUrl: 'https://www.etsy.com/ca/listing/4526497329/mad-max-fury-road-black-leather-biker',
     ebayUrl: 'https://www.ebay.com/itm/158023956765',
-    salePrice: 181.99,
+    salePrice: 279.99,
     listPrice: 279.99,
+    etsyPrice: 279.99,
+    ebayPrice: 208.48,
     image: '/images/catalogue/9c59c6702e27.jpg',
     images: [
       '/images/catalogue/9c59c6702e27.jpg',
@@ -443,11 +462,14 @@ export const PRODUCTS: readonly Product[] = [
     id: '4524803848',
     slug: 'mens-brown-suede-buckle-closure-jacket',
     title: 'Brown suede jacket, ornate buckle closure',
-    marketplaceTitle: "Men's Brown Suede Sci-Fi Warrior Jacket, Military Buckle Closure Cosplay Coat",
+    marketplaceTitle:
+      "Men's Brown Suede Sci Fi Warrior Jacket Custom Made Bespoke Leather Coat",
     etsyUrl: 'https://www.etsy.com/ca/listing/4524803848/mens-brown-suede-sci-fi-warrior-jacket',
     ebayUrl: 'https://www.ebay.com/itm/158023904415',
-    salePrice: 194.99,
-    listPrice: 299.99,
+    salePrice: 229.99,
+    listPrice: 229.99,
+    etsyPrice: 229.99,
+    ebayPrice: 186.39,
     image: '/images/catalogue/625eb77b16b5.jpg',
     images: [
       '/images/catalogue/625eb77b16b5.jpg',
@@ -471,8 +493,10 @@ export const PRODUCTS: readonly Product[] = [
       "Men's Tan Suede Trucker Jacket, Vintage Brown Western Button Front Leather Coat, Custom Fit",
     etsyUrl: 'https://www.etsy.com/ca/listing/4524792736/mens-tan-suede-trucker-jacket-vintage',
     ebayUrl: 'https://www.ebay.com/itm/158023568180',
-    salePrice: 181.99,
-    listPrice: 279.99,
+    salePrice: 229.99,
+    listPrice: 229.99,
+    etsyPrice: 229.99,
+    ebayPrice: 208.46,
     image: '/images/catalogue/0b059639db56.jpg',
     images: [
       '/images/catalogue/0b059639db56.jpg',
@@ -496,8 +520,10 @@ export const PRODUCTS: readonly Product[] = [
       "Men's Black Genuine Leather Biker Vest, Lace-Up Side Motorcycle Waistcoat, Custom Fit",
     etsyUrl: 'https://www.etsy.com/ca/listing/4524775655/mens-black-genuine-leather-biker-vest',
     ebayUrl: 'https://www.ebay.com/itm/158023447071',
-    salePrice: 142.99,
+    salePrice: 219.99,
     listPrice: 219.99,
+    etsyPrice: 219.99,
+    ebayPrice: 163.75,
     image: '/images/catalogue/ce1bc36028c7.jpg',
     images: [
       '/images/catalogue/ce1bc36028c7.jpg',
@@ -521,8 +547,10 @@ export const PRODUCTS: readonly Product[] = [
       "Men's Black Real Leather Biker Jacket, Red Stripe Quilted Moto Motorcycle Jacket, Custom Fit",
     etsyUrl: 'https://www.etsy.com/ca/listing/4524755040/mens-black-real-leather-biker-jacket-red',
     ebayUrl: 'https://www.ebay.com/itm/158023339831',
-    salePrice: 162.49,
-    listPrice: 249.99,
+    salePrice: 199.99,
+    listPrice: 199.99,
+    etsyPrice: 199.99,
+    ebayPrice: 186.09,
     image: '/images/catalogue/66784ab29e0c.jpg',
     images: [
       '/images/catalogue/66784ab29e0c.jpg',
@@ -545,8 +573,10 @@ export const PRODUCTS: readonly Product[] = [
     marketplaceTitle: "Men's Brown Suede Biker Jacket, Belted Brando Style Moto Leather Coat",
     etsyUrl: 'https://www.etsy.com/ca/listing/4524744142/mens-brown-suede-biker-jacket-belted',
     ebayUrl: 'https://www.ebay.com/itm/158021513973',
-    salePrice: 181.99,
-    listPrice: 279.99,
+    salePrice: 229.99,
+    listPrice: 229.99,
+    etsyPrice: 229.99,
+    ebayPrice: 199.99,
     image: '/images/catalogue/85ae09dade80.jpg',
     images: [
       '/images/catalogue/85ae09dade80.jpg',
@@ -570,8 +600,10 @@ export const PRODUCTS: readonly Product[] = [
       "Women's Black Leather Biker Jacket, Lace-Up Belted Gothic Moto Coat, Eagle Back Design, Custom Fit",
     etsyUrl: 'https://www.etsy.com/ca/listing/4524726631/womens-black-leather-biker-jacket-lace',
     ebayUrl: 'https://www.ebay.com/itm/158038923894',
-    salePrice: 181.99,
-    listPrice: 279.99,
+    salePrice: 199.99,
+    listPrice: 199.99,
+    etsyPrice: 199.99,
+    ebayPrice: 191.56,
     image: '/images/catalogue/43b2d2cfe9ee.jpg',
     images: [
       '/images/catalogue/43b2d2cfe9ee.jpg',
@@ -594,8 +626,10 @@ export const PRODUCTS: readonly Product[] = [
     marketplaceTitle: 'Men’s Black Leather Cafe Racer Jacket with Brown Piping, Custom Biker Coat',
     etsyUrl: 'https://www.etsy.com/ca/listing/4524202078/mens-black-leather-cafe-racer-jacket',
     ebayUrl: 'https://www.ebay.com/itm/158023265176',
-    salePrice: 162.49,
-    listPrice: 249.99,
+    salePrice: 199.99,
+    listPrice: 199.99,
+    etsyPrice: 199.99,
+    ebayPrice: 187.11,
     image: '/images/catalogue/9b51378de8a0.jpg',
     images: [
       '/images/catalogue/9b51378de8a0.jpg',
@@ -618,8 +652,10 @@ export const PRODUCTS: readonly Product[] = [
     marketplaceTitle: 'Punisher Vest Men, Black Skull Tactical Cosplay Vest, Kodra Costume Armor Style Vest',
     etsyUrl: 'https://www.etsy.com/ca/listing/4523778624/punisher-vest-men-black-skull-tactical',
     ebayUrl: 'https://www.ebay.com/itm/158015187806',
-    salePrice: 142.99,
-    listPrice: 219.99,
+    salePrice: 199.99,
+    listPrice: 199.99,
+    etsyPrice: 199.99,
+    ebayPrice: 199.99,
     image: '/images/catalogue/d9af7287c592.jpg',
     images: [
       '/images/catalogue/d9af7287c592.jpg',
@@ -644,8 +680,10 @@ export const PRODUCTS: readonly Product[] = [
       'Lucy Vault 33 Leather Jacket, Fallout Cosplay Costume, Blue Gold Vault Dweller Jacket Men',
     etsyUrl: 'https://www.etsy.com/ca/listing/4523763727/lucy-vault-33-leather-jacket-fallout',
     ebayUrl: 'https://www.ebay.com/itm/158012550748',
-    salePrice: 194.99,
+    salePrice: 299.99,
     listPrice: 299.99,
+    etsyPrice: 299.99,
+    ebayPrice: 229.99,
     image: '/images/catalogue/63d42e7c443c.jpg',
     images: [
       '/images/catalogue/63d42e7c443c.jpg',
@@ -670,8 +708,10 @@ export const PRODUCTS: readonly Product[] = [
       'Womens Toscana Sheepskin Leather Waistcoat, Olive Green Fur Gilet, Shearling Vest, Sleeveless Winter Coat, Luxury Fur Vest',
     etsyUrl: 'https://www.etsy.com/ca/listing/4523674880/womens-toscana-sheepskin-leather',
     ebayUrl: 'https://www.ebay.com/itm/158038580763',
-    salePrice: 292.5,
-    listPrice: 450,
+    salePrice: 400,
+    listPrice: 400,
+    etsyPrice: 400,
+    ebayPrice: 307.71,
     image: '/images/catalogue/a6fd8bcaf4ba.jpg',
     images: [
       '/images/catalogue/a6fd8bcaf4ba.jpg',
@@ -695,8 +735,10 @@ export const PRODUCTS: readonly Product[] = [
       'Womens Gothic Leather Coat, Victorian Edwardian Jacket, Green Steampunk Tailcoat, Double Breasted Leather Trench Coat, Witchy Winter Coat',
     etsyUrl: 'https://www.etsy.com/ca/listing/4523629749/womens-gothic-leather-coat-victorian',
     ebayUrl: 'https://www.ebay.com/itm/158038478901',
-    salePrice: 195,
-    listPrice: 300,
+    salePrice: 229.99,
+    listPrice: 229.99,
+    etsyPrice: 229.99,
+    ebayPrice: 205.16,
     image: '/images/catalogue/c573893a73cd.jpg',
     images: [
       '/images/catalogue/c573893a73cd.jpg',
@@ -720,8 +762,10 @@ export const PRODUCTS: readonly Product[] = [
       'Womens Captain America Leather Vest, Red Blue Motorcycle Vest, American Flag Biker Vest, Cosplay Leather Waistcoat',
     etsyUrl: 'https://www.etsy.com/ca/listing/4523499105/womens-captain-america-leather-vest-red',
     ebayUrl: 'https://www.ebay.com/itm/158038652570',
-    salePrice: 162.49,
-    listPrice: 249.99,
+    salePrice: 187,
+    listPrice: 187,
+    etsyPrice: 187,
+    ebayPrice: 170.96,
     image: '/images/catalogue/99ce3c7dc2c0.jpg',
     images: [
       '/images/catalogue/99ce3c7dc2c0.jpg',
@@ -746,8 +790,10 @@ export const PRODUCTS: readonly Product[] = [
       "Women's Brown Lambskin Leather Trench Coat | Genuine Leather Long Coat | Classic Winter Overcoat | Custom Size",
     etsyUrl: 'https://www.etsy.com/ca/listing/4523414520/womens-brown-lambskin-leather-trench',
     ebayUrl: 'https://www.ebay.com/itm/158038753536',
-    salePrice: 195,
-    listPrice: 300,
+    salePrice: 229.99,
+    listPrice: 229.99,
+    etsyPrice: 229.99,
+    ebayPrice: 205.33,
     image: '/images/catalogue/8b6e868b410c.jpg',
     images: [
       '/images/catalogue/8b6e868b410c.jpg',
@@ -770,8 +816,10 @@ export const PRODUCTS: readonly Product[] = [
     marketplaceTitle: 'Men’s Distressed Leather Biker Jacket, Black Cafe Racer Moto Jacket',
     etsyUrl: 'https://www.etsy.com/ca/listing/4523193265/mens-distressed-leather-biker-jacket',
     ebayUrl: 'https://www.ebay.com/itm/158008683621',
-    salePrice: 188.49,
-    listPrice: 289.99,
+    salePrice: 199.99,
+    listPrice: 199.99,
+    etsyPrice: 199.99,
+    ebayPrice: 169.99,
     image: '/images/catalogue/6a3c5a2ba561.jpg',
     images: [
       '/images/catalogue/6a3c5a2ba561.jpg',
@@ -794,8 +842,9 @@ export const PRODUCTS: readonly Product[] = [
     marketplaceTitle:
       'Men’s Black Leather Hooded Bomber Jacket, Genuine Leather Motorcycle Hoodie Jacket, Removable Hood Winter Biker Coat Gift',
     etsyUrl: 'https://www.etsy.com/ca/listing/4522627856/mens-black-leather-hooded-bomber-jacket',
-    salePrice: 175.49,
-    listPrice: 269.99,
+    salePrice: 199.99,
+    listPrice: 199.99,
+    etsyPrice: 199.99,
     image: '/images/catalogue/6f8f6206abbf.jpg',
     images: [
       '/images/catalogue/6f8f6206abbf.jpg',
@@ -818,8 +867,9 @@ export const PRODUCTS: readonly Product[] = [
     marketplaceTitle:
       'Michael Jackson Thriller Jacket, Red Black Leather Jacket for Men, MJ 80s Pop Star Costume, Faux or Genuine Leather Gift',
     etsyUrl: 'https://www.etsy.com/ca/listing/4522608587/michael-jackson-thriller-jacket-red',
-    salePrice: 157.94,
-    listPrice: 242.99,
+    salePrice: 182,
+    listPrice: 182,
+    etsyPrice: 182,
     image: '/images/catalogue/83b1d6059109.jpg',
     images: [
       '/images/catalogue/83b1d6059109.jpg',
@@ -844,8 +894,10 @@ export const PRODUCTS: readonly Product[] = [
       'Men’s Brown Genuine Leather Distressed Trench Coat, Real Leather Long Duster Coat, Vintage Gothic Leather Overcoat, Winter Coat Gift for Him',
     etsyUrl: 'https://www.etsy.com/ca/listing/4522602663/mens-brown-genuine-leather-distressed',
     ebayUrl: 'https://www.ebay.com/itm/158012143727',
-    salePrice: 263.24,
+    salePrice: 404.99,
     listPrice: 404.99,
+    etsyPrice: 404.99,
+    ebayPrice: 249.99,
     image: '/images/catalogue/9b3043221a2e.jpg',
     images: [
       '/images/catalogue/9b3043221a2e.jpg',
@@ -869,8 +921,10 @@ export const PRODUCTS: readonly Product[] = [
       'Mens Olive Green Suede Peacoat Double Breasted Jacket Handmade Leather Coat Tailored Fit Smart Casual Outerwear',
     etsyUrl: 'https://www.etsy.com/ca/listing/4522524026/mens-olive-green-suede-peacoat-double',
     ebayUrl: 'https://www.ebay.com/itm/158009872145',
-    salePrice: 193.04,
-    listPrice: 296.99,
+    salePrice: 229.99,
+    listPrice: 229.99,
+    etsyPrice: 229.99,
+    ebayPrice: 179.99,
     image: '/images/catalogue/5b7678486a34.jpg',
     images: [
       '/images/catalogue/5b7678486a34.jpg',
@@ -894,8 +948,10 @@ export const PRODUCTS: readonly Product[] = [
       'Resident Evil Requiem Inspired Leather Coat for Men, Leon Kennedy Style Black Leather Peacoat, Custom Made Gothic Jacket',
     etsyUrl: 'https://www.etsy.com/ca/listing/4522499953/resident-evil-requiem-inspired-leather',
     ebayUrl: 'https://www.ebay.com/itm/158011896623',
-    salePrice: 201.82,
-    listPrice: 310.49,
+    salePrice: 219.99,
+    listPrice: 219.99,
+    etsyPrice: 219.99,
+    ebayPrice: 229.61,
     image: '/images/catalogue/f6395ca29927.jpg',
     images: [
       '/images/catalogue/f6395ca29927.jpg',
@@ -920,8 +976,10 @@ export const PRODUCTS: readonly Product[] = [
       'Mens Dark Fantasy Leather Jacket, Gothic Warrior Armor Jacket, Handmade Black Leather Coat, Bespoke Custom Made Jacket',
     etsyUrl: 'https://www.etsy.com/ca/listing/4522454990/mens-dark-fantasy-leather-jacket-gothic',
     ebayUrl: 'https://www.ebay.com/itm/158010217885',
-    salePrice: 193.04,
-    listPrice: 296.99,
+    salePrice: 199.99,
+    listPrice: 199.99,
+    etsyPrice: 199.99,
+    ebayPrice: 219.62,
     image: '/images/catalogue/32a0c4da47a1.jpg',
     images: [
       '/images/catalogue/32a0c4da47a1.jpg',
@@ -945,8 +1003,10 @@ export const PRODUCTS: readonly Product[] = [
       "Men's Black Leather Duster Coat, Western Cowboy Trench Coat, Long Leather Overcoat, Vintage Drover Coat, Custom Made Ranch Outerwear",
     etsyUrl: 'https://www.etsy.com/ca/listing/4520574740/mens-black-leather-duster-coat-western',
     ebayUrl: 'https://www.ebay.com/itm/158010322947',
-    salePrice: 262.37,
-    listPrice: 403.65,
+    salePrice: 239.99,
+    listPrice: 239.99,
+    etsyPrice: 239.99,
+    ebayPrice: 298,
     image: '/images/catalogue/95fed0f51ef9.jpg',
     images: [
       '/images/catalogue/95fed0f51ef9.jpg',
@@ -969,8 +1029,9 @@ export const PRODUCTS: readonly Product[] = [
     marketplaceTitle:
       'Vintage Brown Leather Field Coat Men | Removable Inner Bib Jacket | Distressed Leather Car Coat | Winter Leather Jacket | Custom Made',
     etsyUrl: 'https://www.etsy.com/ca/listing/4520996623/vintage-brown-leather-field-coat-men',
-    salePrice: 193.04,
-    listPrice: 296.99,
+    salePrice: 209.99,
+    listPrice: 209.99,
+    etsyPrice: 209.99,
     image: '/images/catalogue/d4d5716e64f6.jpg',
     images: [
       '/images/catalogue/d4d5716e64f6.jpg',
@@ -994,8 +1055,10 @@ export const PRODUCTS: readonly Product[] = [
       'Mens Black Leather Motorcycle Vest, Custom Biker Club Vest, Handmade Cowhide Leather Riding Vest, Bespoke Motorcycle Waistcoat',
     etsyUrl: 'https://www.etsy.com/ca/listing/4521057284/mens-black-leather-motorcycle-vest',
     ebayUrl: 'https://www.ebay.com/itm/158010174984',
-    salePrice: 166.72,
-    listPrice: 256.49,
+    salePrice: 189.99,
+    listPrice: 189.99,
+    etsyPrice: 189.99,
+    ebayPrice: 179.99,
     image: '/images/catalogue/b2fd3c533ce1.jpg',
     images: [
       '/images/catalogue/b2fd3c533ce1.jpg',
@@ -1026,6 +1089,7 @@ export const PRODUCTS: readonly Product[] = [
     ebayUrl: 'https://www.ebay.com/itm/158086415405',
     salePrice: 199.99,
     listPrice: 199.99,
+    ebayPrice: 199.99,
     image: '/images/catalogue/d1bebb3c4d5a.jpg',
     images: [
       '/images/catalogue/d1bebb3c4d5a.jpg',
@@ -1050,6 +1114,7 @@ export const PRODUCTS: readonly Product[] = [
     ebayUrl: 'https://www.ebay.com/itm/158009798434',
     salePrice: 179.99,
     listPrice: 179.99,
+    ebayPrice: 179.99,
     image: '/images/catalogue/6697d82d451d.jpg',
     images: [
       '/images/catalogue/6697d82d451d.jpg',
@@ -1074,6 +1139,7 @@ export const PRODUCTS: readonly Product[] = [
     ebayUrl: 'https://www.ebay.com/itm/158083287237',
     salePrice: 169.99,
     listPrice: 169.99,
+    ebayPrice: 169.99,
     image: '/images/catalogue/b7dc50931953.jpg',
     images: [
       '/images/catalogue/b7dc50931953.jpg',
@@ -1098,6 +1164,7 @@ export const PRODUCTS: readonly Product[] = [
     ebayUrl: 'https://www.ebay.com/itm/158008691040',
     salePrice: 169.99,
     listPrice: 169.99,
+    ebayPrice: 169.99,
     image: '/images/catalogue/a79e438d77de.jpg',
     images: [
       '/images/catalogue/a79e438d77de.jpg',
@@ -1122,6 +1189,7 @@ export const PRODUCTS: readonly Product[] = [
     ebayUrl: 'https://www.ebay.com/itm/158083596331',
     salePrice: 199.99,
     listPrice: 199.99,
+    ebayPrice: 199.99,
     image: '/images/catalogue/e5724927eb3d.jpg',
     images: [
       '/images/catalogue/e5724927eb3d.jpg',
@@ -1146,6 +1214,7 @@ export const PRODUCTS: readonly Product[] = [
     ebayUrl: 'https://www.ebay.com/itm/158085638345',
     salePrice: 199.99,
     listPrice: 199.99,
+    ebayPrice: 199.99,
     image: '/images/catalogue/190ee50dd3f6.jpg',
     images: [
       '/images/catalogue/190ee50dd3f6.jpg',
@@ -1170,6 +1239,7 @@ export const PRODUCTS: readonly Product[] = [
     ebayUrl: 'https://www.ebay.com/itm/158086323172',
     salePrice: 199.99,
     listPrice: 199.99,
+    ebayPrice: 199.99,
     image: '/images/catalogue/a85508de491e.jpg',
     images: [
       '/images/catalogue/a85508de491e.jpg',
@@ -1194,6 +1264,7 @@ export const PRODUCTS: readonly Product[] = [
     ebayUrl: 'https://www.ebay.com/itm/158089903864',
     salePrice: 199.99,
     listPrice: 199.99,
+    ebayPrice: 199.99,
     image: '/images/catalogue/f9c928977272.jpg',
     images: [
       '/images/catalogue/f9c928977272.jpg',
@@ -1219,6 +1290,7 @@ export const PRODUCTS: readonly Product[] = [
     ebayUrl: 'https://www.ebay.com/itm/158086527255',
     salePrice: 199.99,
     listPrice: 199.99,
+    ebayPrice: 199.99,
     image: '/images/catalogue/1b517b979e6f.jpg',
     images: [
       '/images/catalogue/1b517b979e6f.jpg',
@@ -1244,6 +1316,7 @@ export const PRODUCTS: readonly Product[] = [
     ebayUrl: 'https://www.ebay.com/itm/158009772503',
     salePrice: 199.99,
     listPrice: 199.99,
+    ebayPrice: 199.99,
     image: '/images/catalogue/ba2f7c20be35.jpg',
     images: [
       '/images/catalogue/ba2f7c20be35.jpg',
@@ -1268,6 +1341,7 @@ export const PRODUCTS: readonly Product[] = [
     ebayUrl: 'https://www.ebay.com/itm/158009789159',
     salePrice: 180.85,
     listPrice: 180.85,
+    ebayPrice: 180.85,
     image: '/images/catalogue/20db94a43406.jpg',
     images: [
       '/images/catalogue/20db94a43406.jpg',
@@ -1292,6 +1366,7 @@ export const PRODUCTS: readonly Product[] = [
     ebayUrl: 'https://www.ebay.com/itm/158021569504',
     salePrice: 179.99,
     listPrice: 179.99,
+    ebayPrice: 179.99,
     image: '/images/catalogue/822367be6cb6.jpg',
     images: [
       '/images/catalogue/822367be6cb6.jpg',
@@ -1316,6 +1391,7 @@ export const PRODUCTS: readonly Product[] = [
     ebayUrl: 'https://www.ebay.com/itm/158021641843',
     salePrice: 159.99,
     listPrice: 159.99,
+    ebayPrice: 159.99,
     image: '/images/catalogue/d1ff194b9104.jpg',
     images: [
       '/images/catalogue/d1ff194b9104.jpg',
@@ -1330,6 +1406,91 @@ export const PRODUCTS: readonly Product[] = [
     category: 'vests',
     gender: 'men',
     material: 'Cowhide',
+    renamed: true,
+  }),
+  P({
+    id: '4550000001',
+    slug: 'mens-tactical-leather-skull-vest',
+    title: 'Tactical leather vest, armored panels',
+    marketplaceTitle:
+      "Men's Tactical Leather Vest, Vigilante Cosplay Armor, Skull Combat Costume, Sci Fi Utility Gear",
+    etsyUrl: 'https://www.etsy.com/ca/shop/KingsfordLeatherCA?search_query=tactical+leather+vest',
+    salePrice: 199.99,
+    listPrice: 199.99,
+    etsyPrice: 199.99,
+    image: '/images/catalogue/84d650bbbb82.jpg',
+    images: [
+      '/images/catalogue/84d650bbbb82.jpg',
+      '/images/catalogue/77c04982e442.jpg',
+      '/images/catalogue/a470cb72ec25.jpg',
+      '/images/catalogue/5c8846853d4c.jpg',
+      '/images/catalogue/6727249c8e48.jpg',
+      '/images/catalogue/db856f5c6f6e.jpg',
+      '/images/catalogue/58eb250c66eb.jpg',
+      '/images/catalogue/e9160daca952.jpg',
+    ],
+    blurb: 'Black and grey armored leather vest with tactical panels and utility hardware.',
+    description:
+      'A bold men’s tactical leather vest featuring a black and grey skull-inspired armored design, adjustable shoulder straps, multiple side buckles, utility-style pockets, and detailed tactical panels. Created for buyers looking for distinctive vigilante cosplay armor, sci-fi costume gear, tactical-inspired fashion, and statement leather outerwear.',
+    category: 'vests',
+    gender: 'men',
+    material: 'Genuine leather',
+    renamed: true,
+  }),
+  P({
+    id: '4550000002',
+    slug: 'mens-medieval-jerkin-leather-vest',
+    title: 'Medieval leather jerkin, lace-up sides',
+    marketplaceTitle:
+      "Men's Leather Vest Costume, Ren Faire Medieval Jerkin, Pirate Viking Doublet, Steampunk Waistcoat",
+    etsyUrl: 'https://www.etsy.com/ca/shop/KingsfordLeatherCA?search_query=medieval+jerkin',
+    salePrice: 179.99,
+    listPrice: 179.99,
+    etsyPrice: 179.99,
+    image: '/images/catalogue/76aa40924715.jpg',
+    images: [
+      '/images/catalogue/76aa40924715.jpg',
+      '/images/catalogue/89c043cdf70d.jpg',
+      '/images/catalogue/7cd437341e88.jpg',
+      '/images/catalogue/b1cf9d0c8990.jpg',
+      '/images/catalogue/46a78f15debb.jpg',
+      '/images/catalogue/c112fa1200bc.jpg',
+      '/images/catalogue/df0b7158be42.jpg',
+      '/images/catalogue/80883db8eda9.jpg',
+    ],
+    blurb: 'High stand collar, antique brass buttons, and adjustable lace-up side panels.',
+    description:
+      'A distinctive men’s black leather vest costume featuring a high stand collar, antique brass-tone button detailing, adjustable lace-up sides, and a corset-style lace-up back. Inspired by medieval, Renaissance, pirate, Viking, gothic, and steampunk fashion, this sleeveless waistcoat is tailored for events, LARP, festivals, and statement layering.',
+    category: 'vests',
+    gender: 'men',
+    material: 'Genuine leather',
+  }),
+  P({
+    id: '4550000003',
+    slug: 'mens-brown-gambit-leather-trench-coat',
+    title: 'Brown leather trench coat, belted duster',
+    marketplaceTitle:
+      "Men's Leather Trench Coat, Brown Gambit Cosplay, Long Duster, Gothic Steampunk Belted Overcoat",
+    etsyUrl: 'https://www.etsy.com/ca/shop/KingsfordLeatherCA?search_query=gambit+trench+coat',
+    salePrice: 239.99,
+    listPrice: 239.99,
+    etsyPrice: 239.99,
+    image: '/images/catalogue/c7f8ca7ee4cc.jpg',
+    images: [
+      '/images/catalogue/c7f8ca7ee4cc.jpg',
+      '/images/catalogue/43742af952db.jpg',
+      '/images/catalogue/e1290ec02e76.jpg',
+      '/images/catalogue/43391661c8c4.jpg',
+      '/images/catalogue/b159eed4ed8a.jpg',
+      '/images/catalogue/e6a5bd24074c.jpg',
+      '/images/catalogue/96aa3e420bc2.jpg',
+    ],
+    blurb: 'Longline brown leather trench with structured stitched lapels and waist belt.',
+    description:
+      'A bold men’s brown leather trench coat combining classic longline outerwear with distinctive Gambit-inspired styling. Designed with structured stitched lapels, shoulder epaulettes, an adjustable waist belt, and buckle-detailed cuffs, this coat delivers a strong statement look for conventions, themed events, and everyday cold-weather outerwear.',
+    category: 'coats',
+    gender: 'men',
+    material: 'Genuine leather',
     renamed: true,
   }),
 ]

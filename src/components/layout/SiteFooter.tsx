@@ -43,7 +43,7 @@ export function SiteFooter() {
             <ul className="space-y-2 text-sm text-[#a7a39b]">
               <li>
                 <Link href="/shop" className="inline-block py-1 hover:text-white transition-colors">
-                  All 49 Pieces
+                  All 52 Pieces
                 </Link>
               </li>
               <li>

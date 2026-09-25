@@ -26,7 +26,7 @@ export function FeaturedEdit() {
             href="/shop"
             className="mt-2 sm:mt-0 text-xs sm:text-sm font-medium text-[#8b5a35] hover:text-[#5d3923] inline-flex items-center gap-1.5 transition-colors focus-ring"
           >
-            <span>View All 49 Pieces</span>
+            <span>View All 52 Pieces</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

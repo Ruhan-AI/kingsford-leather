@@ -28,7 +28,7 @@ export function ShopMegaMenu({ onClose }: ShopMegaMenuProps) {
                 onClick={onClose}
                 className="text-[#1c1a17] hover:text-[#8b5a35] flex items-center justify-between transition-colors focus-ring"
               >
-                <span>View All 49 Pieces</span>
+                <span>View All 52 Pieces</span>
                 <ArrowRight className="w-4 h-4 opacity-50" />
               </Link>
             </li>

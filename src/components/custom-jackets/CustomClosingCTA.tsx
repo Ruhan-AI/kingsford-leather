@@ -53,7 +53,7 @@ export function CustomClosingCTA({ onStartRequest }: CustomClosingCTAProps) {
               href="/shop"
               className="w-full sm:w-auto px-6 py-3.5 bg-white hover:bg-[#f8f6f2] text-[#1c1a17] border border-[#ded7ce] text-sm font-medium rounded-[4px] transition-colors flex items-center justify-center gap-2 focus-ring"
             >
-              <span>Explore All 49 Pieces</span>
+              <span>Explore All 52 Pieces</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

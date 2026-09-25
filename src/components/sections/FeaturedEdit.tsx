@@ -33,7 +33,7 @@ export function FeaturedEdit() {
             href="/shop"
             className="inline-flex items-center gap-2 text-xs font-display font-bold text-bone-warm hover:text-white transition-colors"
           >
-            <span>View all 49 outerwear pieces</span>
+            <span>View all 52 outerwear pieces</span>
             <ArrowRight className="w-4 h-4 text-brass" />
           </Link>
         </div>

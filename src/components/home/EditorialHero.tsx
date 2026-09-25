@@ -23,7 +23,7 @@ export function EditorialHero() {
 
             <Reveal delay={0.2}>
               <p className="text-sm sm:text-base text-[#706a62] leading-relaxed max-w-xl mb-5 font-sans">
-                Explore 49 handcrafted leather jackets, coats, and suede bombers. Tailored to standard or custom measurements, and purchased securely through our verified Etsy and eBay shops.
+                Explore 52 handcrafted leather jackets, coats, and suede bombers. Tailored to standard or custom measurements, and purchased securely through our verified Etsy and eBay shops.
               </p>
             </Reveal>
 

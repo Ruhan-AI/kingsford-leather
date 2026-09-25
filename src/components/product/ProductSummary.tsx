@@ -32,13 +32,18 @@ export function ProductSummary({ product }: ProductInfoProps) {
       <div className="py-4 border-y border-[#ded7ce] flex items-center justify-between">
         <div>
           <span className="text-xs text-[#706a62] block mb-0.5">Verified Price</span>
-          <div className="flex items-baseline gap-3">
+          <div className="flex items-baseline gap-3 flex-wrap">
             <span className="text-2xl sm:text-3xl font-semibold text-[#1c1a17]">
-              CA${product.salePrice}
+              CA${product.salePrice.toFixed(2)}
             </span>
             {product.listPrice > product.salePrice && (
               <span className="text-sm text-[#a7a39b] line-through">
-                CA${product.listPrice}
+                CA${product.listPrice.toFixed(2)}
+              </span>
+            )}
+            {product.etsyPrice && product.ebayPrice && product.etsyPrice !== product.ebayPrice && (
+              <span className="text-xs text-[#706a62] font-normal">
+                (Etsy: CA${product.etsyPrice.toFixed(2)} • eBay: CA${product.ebayPrice.toFixed(2)})
               </span>
             )}
           </div>
